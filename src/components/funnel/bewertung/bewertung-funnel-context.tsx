@@ -28,7 +28,7 @@ export const BewertungsFunnelProvider = ({
 			track_funnel_version: "1.0",
 			track_funnel_type: "Immobilienpreis",
 			track_funnel_source: "Immobilienpreise Deutschland",
-			track_environment: env.NODE_ENV,
+			track_environment: env.NEXT_PUBLIC_ENV,
 			...(initialUtmParams || {}), // Safely spread UTM params if they exist
 		},
 		step: 0,

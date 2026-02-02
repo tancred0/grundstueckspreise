@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Typography } from "@/components/ui/typography";
 import brwLogo from "@/images/general/logo_small_white.svg";
 
 export interface FooterLinks {
@@ -51,7 +52,7 @@ const GeneralLinks: { sections: LinkSection[] }[] = [
 export default function Footer({ classname }: { classname?: string }) {
 	return (
 		<footer className={`${classname ?? "mt-10"}`}>
-			<div className="bg-blue-90 py-4">
+			<div className="bg-primary py-4">
 				<div className="mx-auto max-w-[1200px] px-10">
 					<div className="w-auto">
 						<Link className="mr-auto" href="/">
@@ -70,7 +71,7 @@ export default function Footer({ classname }: { classname?: string }) {
 						<div className="mb-8" key={groupIndex}>
 							{group.sections.map((section, sectionIndex) => (
 								<div className="mb-6" key={sectionIndex}>
-									<h4>{section.heading}</h4>
+									<Typography variant="h4">{section.heading}</Typography>
 									<div className="mx-auto grid grid-flow-row grid-cols-1 gap-y-2 sm:grid md:justify-start">
 										{section.links.map((link, index) => (
 											<Link

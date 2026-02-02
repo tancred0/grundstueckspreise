@@ -37,12 +37,12 @@ export function BackAndForth({
 				<button
 					className={cn(
 						"col-span-4 flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-90",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
 					)}
 					disabled={disabled}
 					onClick={handleClick}
 				>
-					<div className="text-white">Weiter</div>
+					<div className="text-primary-foreground">Weiter</div>
 					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
 				</button>
 			)}
@@ -50,19 +50,19 @@ export function BackAndForth({
 				<button
 					className={cn(
 						"col-span-4 flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-90",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
 					)}
 					disabled={disabled}
 					type="submit"
 				>
-					<div className="text-white">Weiter</div>
+					<div className="text-primary-foreground">Weiter</div>
 					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
 				</button>
 			)}
 			<button
 				className={cn(
-					"order-first rounded-lg p-3 md:p-4",
-					disabled ? "cursor-not-allowed bg-gray-300" : "bg-gray-200",
+					"order-first rounded-lg p-3 md:p-4 transition-colors",
+					disabled ? "cursor-not-allowed bg-muted" : "bg-secondary hover:bg-secondary/80",
 				)}
 				disabled={disabled}
 				onClick={() => goBack()}
@@ -91,12 +91,12 @@ export function BackAndForthNew({
 				<button
 					className={cn(
 						"flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-90",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
 					)}
 					disabled={disabled}
 					onClick={handleClick}
 				>
-					<div className="text-white">Weiter</div>
+					<div className="text-primary-foreground">Weiter</div>
 					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
 				</button>
 			)}
@@ -104,20 +104,20 @@ export function BackAndForthNew({
 				<button
 					className={cn(
 						"flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-90",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
 					)}
 					disabled={disabled}
 					type="submit"
 				>
-					<div className="text-white">Weiter</div>
+					<div className="text-primary-foreground">Weiter</div>
 					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
 				</button>
 			)}
 
 			<button
 				className={cn(
-					"order-first rounded-lg p-3 md:p-4",
-					disabled ? "cursor-not-allowed bg-gray-300" : "bg-gray-200",
+					"order-first rounded-lg p-3 md:p-4 transition-colors",
+					disabled ? "cursor-not-allowed bg-muted" : "bg-secondary hover:bg-secondary/80",
 				)}
 				disabled={disabled}
 				onClick={() => goBack()}

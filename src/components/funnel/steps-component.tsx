@@ -18,8 +18,8 @@ function StepNumber({
 		<div
 			className={`flex flex-shrink-0 items-center justify-center rounded-full text-lg ${size === "base" ? "h-10 w-10" : "h-8 w-8"} ${
 				active
-					? "bg-blue-90 text-white"
-					: "border border-blue-90 bg-white text-blue-90"
+					? "bg-primary text-primary-foreground"
+					: "border border-primary bg-white text-primary"
 			}`}
 		>
 			{number}
@@ -28,11 +28,11 @@ function StepNumber({
 }
 
 const Separator = () => {
-	return <div className="h-[1px] w-6 bg-blue-90" />;
+	return <div className="h-[1px] w-6 bg-primary" />;
 };
 
 const StepLabel = (text: string) => {
-	return <div className="text-base text-blue-90">{text}</div>;
+	return <div className="text-base text-primary">{text}</div>;
 };
 
 const SeperatorText = ({

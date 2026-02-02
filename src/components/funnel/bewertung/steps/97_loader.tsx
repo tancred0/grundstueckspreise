@@ -43,8 +43,8 @@ const getInitialChecks = (): CheckItem[] => {
 
 // Component for the header section
 const HeaderSection = ({ heading }: { heading: string }) => (
-	<div className="mb-4 space-y-6 md:mb-12">
-		<div className="funnel-h2">{heading}</div>
+	<div className="mb-6 space-y-4 md:mb-10">
+		<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
 	</div>
 );
 
@@ -53,7 +53,7 @@ const MainSpinner = ({ allCompleted }: { allCompleted: boolean }) => (
 	<div className="flex items-center pt-6 md:pb-10">
 		<div className="mx-auto h-24 w-24">
 			{allCompleted ? (
-				<Check className="h-24 w-24 text-blue-900" />
+				<Check className="h-24 w-24 text-primary" />
 			) : (
 				<svg className="h-24 w-24 animate-spin" viewBox="0 0 24 24">
 					<circle
@@ -96,10 +96,10 @@ const CheckList = ({ checks }: { checks: CheckItem[] }) => (
 const CheckItem = ({ check }: { check: CheckItem }) => (
 	<div
 		className={`flex items-center justify-between rounded-lg px-4 py-3 ${
-			check.value || check.isRunning ? "bg-blue-10" : ""
+			check.value || check.isRunning ? "bg-accent" : ""
 		}`}
 	>
-		<span className={"text-blue-90"}>{check.label}</span>
+		<span className="text-primary">{check.label}</span>
 		<CheckStatus check={check} />
 	</div>
 );
@@ -108,7 +108,7 @@ const CheckItem = ({ check }: { check: CheckItem }) => (
 const CheckStatus = ({ check }: { check: CheckItem }) => (
 	<div className="flex items-center">
 		{check.value ? (
-			<Check className="h-6 w-6 text-blue-900" />
+			<Check className="h-6 w-6 text-primary" />
 		) : check.isRunning ? (
 			<SmallSpinner />
 		) : null}
@@ -243,8 +243,8 @@ export default function LoaderScreen() {
 	const allCompleted = checks.every((check) => check.value);
 
 	return (
-		<div className="h-[674px] rounded-lg bg-blue-10 p-4 md:h-[670px] md:rounded-2xl">
-			<div className="flex h-full flex-col rounded-lg bg-white p-4 md:rounded-2xl md:p-12">
+		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
+			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
 				<HeaderSection heading={heading} />
 				<MainSpinner allCompleted={allCompleted} />
 

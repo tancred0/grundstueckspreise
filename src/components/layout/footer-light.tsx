@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function FooterLight({ className }: { className?: string }) {
 	return (
-		<footer className={cn("bg-blue-90 py-6", className)}>
+		<footer className={cn("bg-primary py-6", className)}>
 			<div className="mx-auto max-w-[1200px] px-4 md:px-10">
 				<div className="flex flex-col items-center gap-6 md:flex-row md:gap-4">
 					<div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">

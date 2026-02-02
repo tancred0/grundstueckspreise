@@ -5,6 +5,7 @@ import DistrictAside from "@/components/layout/ContentSectionDesktop";
 import Faqs from "@/components/layout/Faqs";
 import Footer from "@/components/layout/Footer";
 import HeroNew from "@/components/layout/hero-new";
+import { Typography } from "@/components/ui/typography";
 import type { PriceCityData } from "@/server/cms/types";
 import CTA from "../general/CTA";
 import ContentSection from "./content-section";
@@ -47,7 +48,6 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
 	//   yearRange: "2003-2026",
 	// });
 	const h1 = `Immobilienpreise und Quadratmeterpreise ${data.cityName} 2026`;
-	console.log(data.districts);
 	return (
 		<>
 			{/* <SchemaOrg schema={schema} /> */}
@@ -101,9 +101,9 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
 							dataSecondary={data.houseRent}
 							firstTable={
 								<>
-									<h4 className="mb-0">
+									<Typography variant="h4" className="mb-0">
 										Durchschnittspreise für Häuser pro Jahr
-									</h4>
+									</Typography>
 									<TablePricesFactor
 										houseBuyData={data.houseBuy}
 										houseRentData={data.houseRent}
@@ -142,9 +142,9 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
 							dataSecondary={data.apartmentRent}
 							firstTable={
 								<>
-									<h4 className="mb-0">
+									<Typography variant="h4" className="mb-0">
 										Durchschnittspreise für Wohnungen pro Jahr
-									</h4>
+									</Typography>
 									<TablePricesFactor
 										houseBuyData={data.apartmentBuy}
 										houseRentData={data.apartmentRent}

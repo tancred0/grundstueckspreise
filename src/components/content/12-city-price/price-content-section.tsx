@@ -3,6 +3,7 @@ import { PortableTextRenderer } from "@/server/cms/components";
 import type { PriceCityData } from "@/server/cms/types";
 import type { AddSection } from "@/server/cms/typesLowLevel";
 import type { RealEstatePrice } from "@/server/cms/typesTableData";
+import { Typography } from "@/components/ui/typography";
 import { PriceChart } from "./price-chart";
 import { type CombinedPriceData, PriceChartDouble } from "./price-chart-double";
 
@@ -94,7 +95,7 @@ export default function PriceContentSection({
 
 	return (
 		<section id={`sec${sectionNumber}`}>
-			<h2>{heading}</h2>
+			<Typography variant="h2">{heading}</Typography>
 			{introSection && (
 				<PortableTextRenderer className="mb-6" input={introSection.text} />
 			)}

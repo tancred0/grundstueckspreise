@@ -10,6 +10,7 @@ import DistrictAside from "@/components/layout/ContentSectionDesktop";
 import Faqs from "@/components/layout/Faqs";
 import Footer from "@/components/layout/Footer";
 import HeroNew from "@/components/layout/hero-new";
+import { Typography } from "@/components/ui/typography";
 import type { PriceCityData, PriceDistrictData } from "@/server/cms/types";
 import { TableNeighboringCitiesBuyPrices } from "../12-city-price/table-neighboring-cities";
 import {
@@ -138,9 +139,9 @@ export default function DistrictPagePrice({
 							dataSecondary={data.houseRent}
 							firstTable={
 								<>
-									<h4 className="mb-0">
+									<Typography variant="h4" className="mb-0">
 										Durchschnittspreise für Häuser pro Jahr
-									</h4>
+									</Typography>
 									<TablePricesFactor
 										houseBuyData={data.houseBuy}
 										houseRentData={data.houseRent}
@@ -174,9 +175,9 @@ export default function DistrictPagePrice({
 							dataSecondary={data.apartmentRent}
 							firstTable={
 								<>
-									<h4 className="mb-0">
+									<Typography variant="h4" className="mb-0">
 										Durchschnittspreise für Wohnungen pro Jahr
-									</h4>
+									</Typography>
 									<TablePricesFactor
 										houseBuyData={data.apartmentBuy}
 										houseRentData={data.apartmentRent}

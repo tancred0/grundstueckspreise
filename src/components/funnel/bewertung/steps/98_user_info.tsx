@@ -96,7 +96,7 @@ const FormFieldComponent: React.FC<FormFieldComponentProps> = ({
 				<FormItem className="mb-2 gap-2 md:mb-4 md:gap-4">
 					<div className="flex items-center justify-between">
 						<FormLabel
-							className="text-blue-90 text-small md:text-base"
+							className="text-primary text-small md:text-base"
 							htmlFor={name}
 						>
 							{label}
@@ -147,7 +147,7 @@ const GenderFieldComponent: React.FC<{ control: Control<FormData> }> = ({
 		render={({ field }) => (
 			<FormItem className="flex flex-col pb-4 md:grid md:grid-cols-[1fr_3fr] md:gap-4 md:pb-6">
 				<FormLabel
-					className="text-blue-90 text-small md:text-base"
+					className="text-primary text-small md:text-base"
 				>
 					Anrede
 					<span className="text-red-500 ml-1">*</span>
@@ -162,13 +162,13 @@ const GenderFieldComponent: React.FC<{ control: Control<FormData> }> = ({
 							<FormControl>
 								<RadioGroupItem value="Herr" />
 							</FormControl>
-							<FormLabel className="text-blue-90">Herr</FormLabel>
+							<FormLabel className="text-primary">Herr</FormLabel>
 						</FormItem>
 						<FormItem>
 							<FormControl>
 								<RadioGroupItem value="Frau" />
 							</FormControl>
-							<FormLabel className="text-blue-90">Frau</FormLabel>
+							<FormLabel className="text-primary">Frau</FormLabel>
 						</FormItem>
 					</RadioGroup>
 				</FormControl>
@@ -362,10 +362,10 @@ export default function UserInfoScreen() {
 	const heading = "Der Immobilienwert wurde ermittelt.";
 
 	return (
-		<div className="h-full rounded-lg bg-blue-10 p-4 md:rounded-2xl">
-			<div className="flex h-full flex-col rounded-lg bg-white p-4 md:rounded-2xl md:p-12">
-				<div className="-mx-4 -mt-4 flex items-center justify-center rounded-t-lg bg-blue-90 p-4 md:-mx-12 md:-mt-12 md:p-6">
-					<div className="flex items-center gap-3 text-center text-white text-xs md:text-base">
+		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
+			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
+				<div className="-mx-4 -mt-4 flex items-center justify-center rounded-t-xl bg-primary p-4 md:-mx-10 md:-mt-10 md:p-6">
+					<div className="flex items-center gap-3 text-center text-primary-foreground text-xs md:text-base">
 						<span className="whitespace-nowrap">Ihre Vorgangsnummer:</span>
 						<span className="whitespace-nowrap font-semibold">
 							{data.data.int_process_number || "IPD-2026-839201"}
@@ -377,8 +377,8 @@ export default function UserInfoScreen() {
 					<div className="mb-3">
 						<StepsComponent currentStep={2} size="small" />
 					</div>
-					<div className="funnel-h2">{heading}</div>
-					<div className="mt-2 hyphens-none text-center text-base text-blue-90">
+					<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
+					<div className="mt-2 hyphens-none text-center text-base text-primary">
 						Empfängerangaben für die Übermittlung der Immobilienpreisauskunft
 					</div>
 				</div>

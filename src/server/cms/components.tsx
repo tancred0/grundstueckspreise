@@ -43,13 +43,13 @@ const NumberedListItem = ({ children }: ChildrenProps) => (
 );
 
 const InsideQuote = ({ children }: ChildrenProps) => (
-	<div className="my-4 border-blue-90 border-l-4 py-3 pl-4 text-gray-600 text-xl">
+	<div className="my-4 border-primary border-l-4 py-3 pl-4 text-gray-600 text-xl">
 		{children}
 	</div>
 );
 
 const BlockQuote = ({ children }: ChildrenProps) => (
-	<div className="my-4 border-blue-90 border-l-4 bg-blue-10 p-4 text-gray-600 text-xl">
+	<div className="my-4 border-a border-l-4 bg-accent p-4 text-gray-600 text-xl">
 		{children}
 	</div>
 );
@@ -60,9 +60,9 @@ const InfoBox: React.FC<PortableTextTypeComponentProps<any>> = ({
 	const colorSchema = {
 		info: {
 			icon: Info,
-			bgColor: "bg-blue-10",
-			borderColor: "border-blue-90",
-			textColor: "text-blue-90",
+			bgColor: "bg-accent",
+			borderColor: "border-primary",
+			textColor: "text-primary",
 		},
 		warning: {
 			icon: AlertTriangle,
@@ -257,11 +257,11 @@ const Definition: React.FC<PortableTextTypeComponentProps<any>> = ({
 	return (
 		<div
 			className={cn(
-				"mt-6 mb-6 rounded-2xl border-4 border-blue-90 bg-blue-10 px-8 py-4",
+				"mt-6 mb-6 rounded-2xl border-4 border-primary bg-accent px-8 py-4",
 			)}
 		>
 			<dl className={cn("mt-2 mb-4 flex w-full items-center gap-x-2 pb-4")}>
-				<PiBookOpenText className={cn("h-12 w-12", "text-blue-90")} />
+				<PiBookOpenText className={cn("h-12 w-12", "text-primary")} />
 				<dt className="font-semibold text-2xl text-primary">{value.heading}</dt>
 			</dl>
 			<dd>
@@ -294,7 +294,7 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 			);
 		case "step-by-step":
 			return (
-				<div className="my-4 rounded-2xl bg-blue-10 p-8 pb-6">
+				<div className="my-4 rounded-2xl bg-accent p-8 pb-6">
 					<ol className="m-0 list-none space-y-8 p-0">
 						{value.items.map((item: any, index: number) => (
 							<li className="ml-0 flex gap-4" key={index}>

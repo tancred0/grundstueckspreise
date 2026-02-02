@@ -24,17 +24,17 @@ const TRUST_ICONS = [
 
 export function Trust() {
 	return (
-		<div className="flex flex-row items-center justify-between md:justify-center md:gap-x-10">
+		<div className="flex flex-row items-center justify-center gap-6 md:gap-10">
 			{TRUST_ICONS.map((icon) => (
-				<div className="flex items-center gap-1 md:gap-4" key={icon.alt}>
+				<div className="flex items-center gap-2 md:gap-3" key={icon.alt}>
 					<Image
 						alt={icon.alt}
-						className="h-5 w-5 md:h-8 md:w-8"
+						className="h-5 w-5 md:h-6 md:w-6"
 						height={24}
 						src={icon.icon}
 						width={24}
 					/>
-					<span className="hyphens-none font-medium text-blue-90 text-xs md:text-sm">
+					<span className="hyphens-none font-medium text-primary text-xs md:text-sm">
 						{icon.text}
 					</span>
 				</div>
@@ -45,7 +45,7 @@ export function Trust() {
 
 export function TrustWithIcon() {
 	return (
-		<div className="flex flex-row items-center justify-between md:justify-center md:gap-x-10">
+		<div className="flex flex-row items-center justify-center gap-6 md:gap-10">
 			<Image
 				alt="Logo Bodenrichtwerte Deutschland"
 				className="mr-2"
@@ -53,7 +53,7 @@ export function TrustWithIcon() {
 				src={brwLogo}
 			/>
 			{TRUST_ICONS.map((icon) => (
-				<div className="flex items-center gap-1 md:gap-4" key={icon.alt}>
+				<div className="flex items-center gap-2" key={icon.alt}>
 					<Image
 						alt={icon.alt}
 						className="h-4 w-4"
@@ -61,7 +61,7 @@ export function TrustWithIcon() {
 						src={icon.icon}
 						width={24}
 					/>
-					<span className="hyphens-none font-medium text-[10px] text-blue-90">
+					<span className="hyphens-none font-medium text-xs text-primary">
 						{icon.text}
 					</span>
 				</div>

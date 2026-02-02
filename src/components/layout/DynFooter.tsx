@@ -24,7 +24,7 @@ export default function DynFooter({
 
 	return (
 		<footer className="mt-10">
-			<div className="bg-blue-90 py-4">
+			<div className="bg-primary py-4">
 				<div className="mx-auto max-w-[1200px] px-10">
 					<div className="w-auto">
 						<Link className="mr-auto" href="/">

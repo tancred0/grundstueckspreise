@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LuArrowDownRight, LuArrowUpRight } from "react-icons/lu";
+import { Typography } from "@/components/ui/typography";
 import { PortableTextRenderer } from "@/server/cms/components";
 import type { DistrictEnum, PriceCityData } from "@/server/cms/types";
 import type { AddSection, BlockContent } from "@/server/cms/typesLowLevel";
@@ -62,15 +63,15 @@ export default function CityPriceEnum({
 
 	return (
 		<section id={`sec${sectionNumber}`}>
-			<h2>{heading}</h2>
+			<Typography variant="h2">{heading}</Typography>
 			{section && <PortableTextRenderer input={section.text} />}
-			<h3>Kreisfreie Städte</h3>
+			<Typography variant="h3">Kreisfreie Städte</Typography>
 			<CityKreistable cities={kreisfreieStädte!} currentSlug={currentSlug} />
 			{Object.entries(kreisCities)
 				.sort(([kreisA], [kreisB]) => kreisA.localeCompare(kreisB))
 				.map(([kreis, cities], index) => (
 					<div key={index}>
-						<h3>{kreis}</h3>
+						<Typography variant="h3">{kreis}</Typography>
 						<CityKreistable cities={cities} currentSlug={currentSlug} />
 					</div>
 				))}

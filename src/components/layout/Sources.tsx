@@ -9,7 +9,7 @@ export default function Sources({ sources }: { sources: BlockContent }) {
 			className="mt-12 rounded-2xl border-2 border-neutral-200 p-6"
 			id="sources"
 		>
-			<div className="mb-6 inline-flex gap-2 rounded-full border-2 border-blue-90 bg-blue-10 px-4 py-2">
+			<div className="mb-6 inline-flex gap-2 rounded-full border-2 border-primary bg-accent px-4 py-2">
 				<Image
 					alt="Infoicon"
 					className="pt-[2px]"

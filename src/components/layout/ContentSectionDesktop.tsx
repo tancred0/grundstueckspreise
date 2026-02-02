@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import useObserver from "@/hooks/useSectionObserver";
+import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 
 export default function AsideComponent({
@@ -19,7 +20,7 @@ export default function AsideComponent({
 				<Link
 					className={`content-section ${
 						highlightedSection === sectionId
-							? "-ml-[2px] border-blue-90 border-l-2 pl-[calc(1rem+2px)] font-medium text-blue-90"
+							? "-ml-[2px] border-primary border-l-2 pl-[calc(1rem+2px)] font-medium text-primary"
 							: "border-transparent border-l text-gray-80"
 					}`}
 					href={`#${sectionId}`}
@@ -38,7 +39,7 @@ export default function AsideComponent({
 			className={cn("sticky top-40 mb-auto hidden md:block", className)}
 			id="aside-section"
 		>
-			<h3>Inhaltsverzeichnis</h3>
+			<Typography variant="h3">Inhaltsverzeichnis</Typography>
 			<div className="flex flex-col gap-y-5 border-neutral-200 border-l-2">
 				{renderedSections}
 			</div>

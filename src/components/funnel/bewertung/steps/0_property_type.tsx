@@ -142,15 +142,18 @@ export default function PropertyTypeScreen({
 	return (
 		<div
 			className={cn(
-				"h-[674px] rounded-lg bg-blue-10 p-4 md:h-[670px] md:rounded-2xl",
+				"min-h-[674px] rounded-2xl bg-accent p-6 md:min-h-[670px] md:p-10",
 			)}
 		>
-			<div className="flex h-full flex-col justify-center rounded-lg bg-blue-10 md:rounded-2xl">
-				<div className="mb-8 space-y-4">
-					<div className="funnel-h1 hyphens-none">{heading}</div>
-					<div className="funnel-description-new text-xl">{description}</div>
+			<div className="flex flex-col items-center">
+				{/* Header */}
+				<div className="mb-8 w-full max-w-2xl space-y-3 text-center">
+					<h2 className="text-2xl font-bold text-primary md:text-3xl">{heading}</h2>
+					<p className="text-base text-muted-foreground md:text-lg">{description}</p>
 				</div>
-				<div className="mb-8 grid grid-cols-2 gap-4 md:px-10">
+
+				{/* Property Type Buttons */}
+				<div className="mb-10 grid w-full max-w-2xl grid-cols-2 gap-4">
 					{multipleChoiceData.map((item, index) => (
 						<FunnelButtonLarge
 							index={index}
@@ -163,16 +166,19 @@ export default function PropertyTypeScreen({
 						/>
 					))}
 				</div>
-				<div className="mx-auto mb-10">
+
+				{/* Logo */}
+				<div className="mb-6">
 					<Image
-						alt="Logo Bodenrichtwerte Deutschland - Wide"
+						alt="Immobilienpreise Deutschland"
 						src={iconLong}
-						width={185}
+						width={200}
+						height={40}
 					/>
 				</div>
-				<div className="mx-auto">
-					<Trust />
-				</div>
+
+				{/* Trust Badges */}
+				<Trust />
 			</div>
 		</div>
 	);

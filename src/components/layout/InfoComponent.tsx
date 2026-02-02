@@ -17,7 +17,7 @@ export default function InfoComponent({
 	const showedReadingTime = readingTime ?? 10;
 
 	return (
-		<div className="my-4 flex border-y-2 py-4 text-blue-90 text-xs sm:mx-2 sm:text-base">
+		<div className="my-4 flex border-y-2 py-4 text-primary text-xs sm:mx-2 sm:text-base">
 			<InfoItem
 				alt="Clock"
 				icon={clockIcon}

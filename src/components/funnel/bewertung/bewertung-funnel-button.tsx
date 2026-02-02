@@ -36,13 +36,13 @@ export const FunnelButtonNew: React.FC<
 	const isSmall = variant === "small";
 	return (
 		<button
-			className={`flex h-16 w-full items-center justify-between rounded-md border border-gray-200 bg-white px-4 ${isSmall ? "py-2" : "py-3"} mb-2 transition-colors hover:bg-gray-50`}
+			className={`flex h-16 w-full items-center justify-between rounded-lg border border-border bg-white px-4 ${isSmall ? "py-2" : "py-3"} mb-2 transition-colors hover:bg-accent hover:border-primary`}
 			key={index}
 			onClick={() => onclick()}
 		>
-			<div className="flex items-center text-blue-90">
+			<div className="flex items-center text-primary">
 				<span
-					className={`mr-5 text-blue-90 ${item.name ? (isSmall ? "text-4xl" : "text-4xl") : "text-base"}`}
+					className={`mr-5 text-primary ${item.name ? (isSmall ? "text-4xl" : "text-4xl") : "text-base"}`}
 				>
 					{item.icon}
 				</span>
@@ -50,7 +50,7 @@ export const FunnelButtonNew: React.FC<
 					<span className="text-left text-sm xxs:text-base">{item.name}</span>
 				)}
 			</div>
-			<ChevronRight className="text-gray-400" size={20} />
+			<ChevronRight className="text-muted-foreground" size={20} />
 		</button>
 	);
 };
@@ -64,23 +64,23 @@ export const FunnelButtonLarge: React.FC<
 > = ({ index, item, onclick, onMouseEnter, onMouseLeave, isHover }) => {
 	return (
 		<button
-			className={`flex-grow basis-0 rounded-md border-2 border-gray-600 bg-white p-4 transition-colors sm:p-6 ${
+			className={`flex-grow basis-0 rounded-xl bg-white p-6 transition-all duration-200 sm:p-8 ${
 				isHover
-					? "border-blue-90" //bg-blue-50
-					: "border-neutral-200 bg-white"
+					? "border-2 border-primary shadow-lg"
+					: "border border-gray-200 shadow-sm hover:shadow-md"
 			}`}
 			key={index}
 			onClick={() => onclick()}
 			onMouseEnter={() => onMouseEnter()}
 			onMouseLeave={() => onMouseLeave()}
 		>
-			<div className="flex h-full flex-col items-center justify-center text-blue-90">
+			<div className="flex h-full flex-col items-center justify-center text-primary">
 				{item.name ? (
 					<>
-						<div className="text-4xl">
+						<div className="mb-3 text-primary">
 							<IconWrapper hover={isHover} icon={item.icon} />
 						</div>
-						<div className="mt-0 xs:mt-4 text-center md:h-10">{item.name}</div>
+						<div className="text-center font-medium text-primary">{item.name}</div>
 					</>
 				) : (
 					<div className="flex h-[104px] items-center justify-center">

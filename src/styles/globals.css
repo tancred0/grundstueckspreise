@@ -52,37 +52,41 @@
 
 :root {
 	--radius: 0.625rem;
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.145 0 0);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
-	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
+	--background: #ffffff;
+	--foreground: #0F3B6B;
+	--card: #ffffff;
+	--card-foreground: #0F3B6B;
+	--popover: #ffffff;
+	--popover-foreground: #0F3B6B;
+	/* Primary: Navy blue - for CTAs, headings, links, icons */
+	--primary: #0F3B6B;
+	--primary-foreground: #ffffff;
+	/* Secondary: Neutral gray - for back buttons, secondary actions */
+	--secondary: #f4f4f5;
+	--secondary-foreground: #484848;
+	/* Muted: For subtle text and backgrounds */
+	--muted: #f4f4f5;
+	--muted-foreground: #848484;
+	/* Accent: Light blue - for card backgrounds, highlighted sections */
+	--accent: #EEF4F9;
+	--accent-foreground: #0F3B6B;
 	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.922 0 0);
-	--ring: oklch(0.708 0 0);
+	--border: #e5e7eb;
+	--input: #e5e7eb;
+	--ring: #0F3B6B;
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
 	--chart-3: oklch(0.398 0.07 227.392);
 	--chart-4: oklch(0.828 0.189 84.429);
 	--chart-5: oklch(0.769 0.188 70.08);
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.145 0 0);
-	--sidebar-primary: oklch(0.205 0 0);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.97 0 0);
-	--sidebar-accent-foreground: oklch(0.205 0 0);
-	--sidebar-border: oklch(0.922 0 0);
-	--sidebar-ring: oklch(0.708 0 0);
+	--sidebar: #ffffff;
+	--sidebar-foreground: #0F3B6B;
+	--sidebar-primary: #0F3B6B;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #EEF4F9;
+	--sidebar-accent-foreground: #0F3B6B;
+	--sidebar-border: #e5e7eb;
+	--sidebar-ring: #0F3B6B;
 }
 
 .dark {
@@ -127,6 +131,10 @@
 		@apply bg-background text-foreground;
 	}
 
+  .main-container {
+    @apply mx-auto max-w-[1400px] px-4 md:px-10;
+  }
+
 	/* Funnel-specific typography utilities */
 	.funnel-h1 {
 		@apply text-2xl md:text-3xl font-bold text-primary;
@@ -138,5 +146,54 @@
 	/* Breadcrumb utility */
 	.breadcrumb {
 		@apply text-sm text-muted-foreground hover:text-foreground transition-colors;
+	}
+
+	/* Table styles */
+	.table-container {
+		@apply mt-10 mb-6 md:mx-12 overflow-x-auto;
+	}
+
+	.table {
+		@apply min-w-full border-gray-200;
+	}
+
+	.cms-table-container {
+		@apply mt-10 mb-6 overflow-x-auto max-w-fit;
+	}
+
+	.cms-table {
+		@apply border-gray-200 mx-auto;
+	}
+
+	.header-row {
+		@apply text-primary bg-zinc-50 text-lg font-medium;
+	}
+
+	.tr-last {
+		@apply border-t-2 text-lg text-secondary-foreground bg-zinc-50 font-medium;
+	}
+
+	.city-table-container {
+		@apply mt-6 mb-10 md:mx-12 overflow-x-auto;
+	}
+
+	.th {
+		@apply p-2 text-left font-semibold whitespace-nowrap;
+	}
+
+	.tr {
+		@apply border-t-2 text-lg text-secondary-foreground;
+	}
+
+	.td {
+		@apply p-2 whitespace-nowrap;
+	}
+
+	.table-div {
+		@apply pl-2 text-lg text-gray-600;
+	}
+
+	.table-link {
+		@apply text-lg;
 	}
 }

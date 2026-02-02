@@ -9,8 +9,9 @@ export default function IconWrapper({
 	hover: boolean;
 }) {
 	const Icon = React.cloneElement(icon, {
-		color: hover ? "#0f3b6b" : "#0f3b6b", // Change '#ff0000' to your hover color
-		className: "h-12 w-12", // Always include these class names
+		color: "#0F3B6B", // Primary color
+		className: "h-10 w-10 md:h-12 md:w-12",
+		strokeWidth: 1.5,
 	});
 	return <>{Icon}</>;
 }

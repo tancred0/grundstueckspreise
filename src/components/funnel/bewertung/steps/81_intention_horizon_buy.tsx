@@ -64,11 +64,11 @@ export default function IntentionHorizonBuyScreen() {
 	};
 
 	return (
-		<div className="h-[674px] rounded-lg bg-blue-10 p-4 md:h-[670px] md:rounded-2xl">
-			<div className="flex h-full flex-col rounded-lg bg-white p-4 md:rounded-2xl md:p-12">
-				<div className="mb-4 space-y-6 md:mb-12">
+		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
+			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
+				<div className="mb-6 space-y-4 md:mb-10">
 					<StepsComponent currentStep={1} />
-					<div className="funnel-h2">{heading}</div>
+					<h2 className="text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 				</div>
 
 				<div className="md:hidden">
@@ -96,7 +96,7 @@ export default function IntentionHorizonBuyScreen() {
 						/>
 					))}
 				</div>
-				<div className="mt-auto">
+				<div className="mt-auto pt-6">
 					<OnlyBackNew />
 				</div>
 			</div>

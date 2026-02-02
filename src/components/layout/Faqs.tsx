@@ -6,6 +6,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Typography } from "@/components/ui/typography";
 import { PortableTextRenderer } from "@/server/cms/components";
 import type { Faq } from "@/server/cms/typesLowLevel";
 
@@ -20,7 +21,7 @@ export default function Faqs({
 }) {
 	return (
 		<section id={`sec${sectionNumber}`}>
-			<h2>{heading}</h2>
+			<Typography variant="h2">{heading}</Typography>
 			{faqs.map((faq, index) => (
 				<Accordion collapsible key={index} type="single">
 					<AccordionItem

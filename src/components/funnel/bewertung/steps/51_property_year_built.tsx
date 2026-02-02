@@ -54,18 +54,18 @@ export default function YearBuiltScreen() {
 	};
 
 	return (
-		<div className="h-[674px] rounded-lg bg-blue-10 p-4 md:h-[670px] md:rounded-2xl">
-			<div className="flex h-full flex-col rounded-lg bg-white p-4 md:rounded-2xl md:p-12">
-				<div className="mb-4 space-y-6 md:mb-12">
+		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
+			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
+				<div className="mb-6 space-y-4 md:mb-10">
 					<StepsComponent currentStep={1} />
-					<div className="funnel-h2">{heading}</div>
+					<h2 className="text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 				</div>
 				<div className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center">
 					{/* Large centered value display */}
 					<div className="mb-8 text-center">
-						<div className="inline-flex items-baseline gap-2 rounded-lg bg-blue-10 px-6 py-3">
-							<span className="text-blue-90 text-xl">Jahr:</span>
-							<span className="font-bold text-4xl text-blue-90">
+						<div className="inline-flex items-baseline gap-2 rounded-lg bg-accent px-6 py-3">
+							<span className="text-primary text-xl">Jahr:</span>
+							<span className="font-bold text-4xl text-primary">
 								{flaeche[0]!}
 							</span>
 						</div>
@@ -83,7 +83,7 @@ export default function YearBuiltScreen() {
 							step={1}
 							value={flaeche}
 						/>
-						<div className="flex justify-between text-neutral-600 text-sm">
+						<div className="flex justify-between text-muted-foreground text-sm">
 							<span>{minValue}</span>
 							<span>{maxValueSlider}</span>
 						</div>
@@ -92,10 +92,10 @@ export default function YearBuiltScreen() {
 					{/* Alternative input */}
 					<div className="mb-8">
 						<div className="flex items-center justify-center gap-4">
-							<span className="text-neutral-700">Manuelle Eingabe:</span>
+							<span className="text-muted-foreground">Manuelle Eingabe:</span>
 							<div className="flex items-center gap-2">
 								<Input
-									className="w-24 border-neutral-300 text-center focus:border-blue-500"
+									className="w-24 border-border text-center focus:border-primary"
 									max={maxValueSlider}
 									min={minValue}
 									onBlur={(e) => {
@@ -117,13 +117,12 @@ export default function YearBuiltScreen() {
 									type="number"
 									value={flaeche[0] || ""}
 								/>
-								<span className="text-neutral-700"></span>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="mt-auto">
+				<div className="mt-auto pt-6">
 					<BackAndForthNew nextScreen={nextScreen} preSubmit={handleSubmit} />
 				</div>
 			</div>
