@@ -35,7 +35,7 @@ export default function IntentionHorizonSellScreen() {
 		},
 		{
 			name: "Unsicher",
-			icon: <CalendarTextIcon text="..." x_start={8.5} />,
+			icon: <CalendarTextIcon text="?" x_start={10.5} />,
 			nextScreen: nextScreen,
 			value: "Unsicher",
 		},
@@ -65,42 +65,40 @@ export default function IntentionHorizonSellScreen() {
 	};
 
 	return (
-		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
-			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
-				<div className="mb-6 space-y-4 md:mb-10">
-					<StepsComponent currentStep={1} />
-					<h2 className="text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
-				</div>
-
-				<div className="md:hidden">
-					{multipleChoiceData.map((item, index) => (
-						<FunnelButtonNew
-							index={index}
-							item={item}
-							key={index}
-							onclick={() => handleSubmit(item)}
-							variant="small"
-						/>
-					))}
-				</div>
-
-				<div className="hidden grid-cols-2 gap-4 md:grid">
-					{multipleChoiceData.map((item, index) => (
-						<FunnelButtonLarge
-							index={index}
-							isHover={hoverIndex === index}
-							item={item}
-							key={index}
-							onclick={() => handleSubmit(item)}
-							onMouseEnter={() => setHoverIndex(index)}
-							onMouseLeave={() => setHoverIndex(null)}
-						/>
-					))}
-				</div>
-				<div className="mt-auto pt-6">
-					<OnlyBackNew />
-				</div>
+		<>
+			<div className="mb-6 space-y-4 md:mb-10">
+				<StepsComponent currentStep={1} />
+				<h2 className="text-center text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 			</div>
-		</div>
+
+			<div className="md:hidden">
+				{multipleChoiceData.map((item, index) => (
+					<FunnelButtonNew
+						index={index}
+						item={item}
+						key={index}
+						onclick={() => handleSubmit(item)}
+						variant="small"
+					/>
+				))}
+			</div>
+
+			<div className="hidden grid-cols-2 gap-4 md:grid">
+				{multipleChoiceData.map((item, index) => (
+					<FunnelButtonLarge
+						index={index}
+						isHover={hoverIndex === index}
+						item={item}
+						key={index}
+						onclick={() => handleSubmit(item)}
+						onMouseEnter={() => setHoverIndex(index)}
+						onMouseLeave={() => setHoverIndex(null)}
+					/>
+				))}
+			</div>
+			<div className="mt-auto pt-6">
+				<OnlyBackNew />
+			</div>
+		</>
 	);
 }

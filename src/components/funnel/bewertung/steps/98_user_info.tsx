@@ -24,7 +24,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { sendGAEvent } from "@/components/utils/analytics";
 import capitalizeWords from "@/components/utils/capitalizeWords";
 import verifyPhoneNumberGoogle from "@/components/utils/phoneNumber/verifyPhoneNumberGoogle";
-import iconLong from "@/images/funnel/immopreise-2026.svg";
+import iconLong from "@/images/general/logo_wide_black_font.svg";
 import { uploadLead } from "@/server/actions/lead-upload";
 import StepsComponent from "../../steps-component";
 import { Trust, TrustWithIcon } from "../../trust";
@@ -93,23 +93,16 @@ const FormFieldComponent: React.FC<FormFieldComponentProps> = ({
 			const errorMessage = fieldState.error?.message || customError;
 
 			return (
-				<FormItem className="mb-2 gap-2 md:mb-4 md:gap-4">
-					<div className="flex items-center justify-between">
-						<FormLabel
-							className="text-primary text-small md:text-base"
-							htmlFor={name}
-						>
-							{label}
-							{required && <span className="text-red-500 ml-1">*</span>}
-						</FormLabel>
-						{displayError && (
-							<span className="whitespace-nowrap text-red-500 text-sm md:hidden">
-								{errorMessage}
-							</span>
-						)}
-					</div>
-					<div className="h-10 md:flex md:h-12 md:items-center md:gap-4">
-						<FormControl className="flex-1">
+				<FormItem className="grid grid-cols-1 md:grid-cols-[1fr_3fr] md:items-center gap-1 md:gap-4 mb-2 md:mb-4">
+					<FormLabel
+						className="text-primary text-small md:text-base"
+						htmlFor={name}
+					>
+						{label}
+						{required && <span className="text-red-500 ml-1">*</span>}
+					</FormLabel>
+					<div className="flex flex-col gap-1">
+						<FormControl>
 							<Input
 								placeholder={placeholder}
 								{...field}
@@ -126,11 +119,9 @@ const FormFieldComponent: React.FC<FormFieldComponentProps> = ({
 								}}
 							/>
 						</FormControl>
-						<div className="hidden md:flex md:h-12 md:min-w-0 md:shrink-0 md:items-center">
-							{displayError && (
-								<span className="text-red-500 text-sm">{errorMessage}</span>
-							)}
-						</div>
+						{displayError && (
+							<span className="text-red-500 text-sm">{errorMessage}</span>
+						)}
 					</div>
 				</FormItem>
 			);
@@ -145,31 +136,25 @@ const GenderFieldComponent: React.FC<{ control: Control<FormData> }> = ({
 		control={control}
 		name="user_salutation"
 		render={({ field }) => (
-			<FormItem className="flex flex-col pb-4 md:grid md:grid-cols-[1fr_3fr] md:gap-4 md:pb-6">
-				<FormLabel
-					className="text-primary text-small md:text-base"
-				>
+			<FormItem className="grid grid-cols-1 md:grid-cols-[1fr_3fr] md:items-center gap-1 md:gap-4 pb-4 md:pb-6">
+				<FormLabel className="text-primary text-small md:text-base">
 					Anrede
 					<span className="text-red-500 ml-1">*</span>
 				</FormLabel>
 				<FormControl>
 					<RadioGroup
-						className="flex flex-row"
+						className="flex flex-row gap-4"
 						defaultValue={"Herr"}
 						onValueChange={field.onChange}
 					>
-						<FormItem>
-							<FormControl>
-								<RadioGroupItem value="Herr" />
-							</FormControl>
-							<FormLabel className="text-primary">Herr</FormLabel>
-						</FormItem>
-						<FormItem>
-							<FormControl>
-								<RadioGroupItem value="Frau" />
-							</FormControl>
-							<FormLabel className="text-primary">Frau</FormLabel>
-						</FormItem>
+						<div className="flex items-center gap-2">
+							<RadioGroupItem value="Herr" />
+							<label className="text-primary">Herr</label>
+						</div>
+						<div className="flex items-center gap-2">
+							<RadioGroupItem value="Frau" />
+							<label className="text-primary">Frau</label>
+						</div>
 					</RadioGroup>
 				</FormControl>
 				<FormMessage />
@@ -362,129 +347,129 @@ export default function UserInfoScreen() {
 	const heading = "Der Immobilienwert wurde ermittelt.";
 
 	return (
-		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
-			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
-				<div className="-mx-4 -mt-4 flex items-center justify-center rounded-t-xl bg-primary p-4 md:-mx-10 md:-mt-10 md:p-6">
-					<div className="flex items-center gap-3 text-center text-primary-foreground text-xs md:text-base">
-						<span className="whitespace-nowrap">Ihre Vorgangsnummer:</span>
-						<span className="whitespace-nowrap font-semibold">
-							{data.data.int_process_number || "IPD-2026-839201"}
-						</span>
-					</div>
+		<>
+			<div className="-mx-4 -mt-4 flex items-center justify-center rounded-t-xl bg-primary p-4 md:-mx-10 md:-mt-10 md:p-6">
+				<div className="flex items-center gap-3 text-center text-primary-foreground text-xs md:text-base">
+					<span className="whitespace-nowrap">Ihre Vorgangsnummer:</span>
+					<span className="whitespace-nowrap font-semibold">
+						{data.data.int_process_number || "IPD-2026-839201"}
+					</span>
 				</div>
+			</div>
 
-				<div className="mt-6 mb-6">
-					<div className="mb-3">
-						<StepsComponent currentStep={2} size="small" />
-					</div>
-					<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
-					<div className="mt-2 hyphens-none text-center text-base text-primary">
-						Empfängerangaben für die Übermittlung der Immobilienpreisauskunft
-					</div>
+			<div className="mt-6 mb-6">
+				<div className="mb-3">
+					<StepsComponent currentStep={2} size="small" />
 				</div>
-				<Form {...form}>
-					<form
-						className="flex h-full flex-col gap-2"
-						onSubmit={form.handleSubmit(onSubmit)}
-					>
-						<GenderFieldComponent control={form.control} />
-						<FormFieldComponent
-							control={form.control}
-							label="Vorname"
-							name="user_firstname"
-							placeholder="Max"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							label="Nachname"
-							name="user_lastname"
-							placeholder="Mustermann"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							label="E-Mail"
-							name="user_email"
-							placeholder="max.mustermann@gmail.com"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							customError={phoneError}
-							label={
-								<>
-									Telefon{" "}
-									{/* <span className="hidden md:inline">
+				<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
+				<div className="mt-2 hyphens-none text-center text-base text-primary">
+					Empfängerangaben für die Übermittlung der Immobilienpreisauskunft
+				</div>
+			</div>
+			<Form {...form}>
+				<form
+					className="flex h-full flex-col gap-2"
+					onSubmit={form.handleSubmit(onSubmit)}
+				>
+					<GenderFieldComponent control={form.control} />
+					<FormFieldComponent
+						control={form.control}
+						label="Vorname"
+						name="user_firstname"
+						placeholder="Max"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						label="Nachname"
+						name="user_lastname"
+						placeholder="Mustermann"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						label="E-Mail"
+						name="user_email"
+						placeholder="max.mustermann@gmail.com"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						customError={phoneError}
+						label={
+							<>
+								Telefon{" "}
+								{/* <span className="hidden md:inline">
                     <br />
                   </span>
                   <span className="inline md:hidden"> </span> */}
-									(bei Rückfragen)
-								</>
-							}
-							name="user_phone"
-							onClearCustomError={() => setPhoneError(null)}
-							placeholder="+49 176 123 456 78"
-							required={true}
-						/>
-						<div className="grid w-full grid-cols-1 items-start gap-x-4 md:grid-cols-[1fr_3fr]">
-							<div /> {/* Empty first column */}
-							<div>
-								<FormField
-									control={form.control}
-									name="terms"
-									render={({ field }) => (
-										<FormItem className="sm:grid-cols-[1fr_fr]">
-											<div className="flex items-center">
-												<FormControl>
-													<Checkbox
-														checked={field.value}
-														className={`mt-1 h-5 w-5 md:h-6 md:w-6 ${termsError ? "border border-red-500" : ""}`}
-														onCheckedChange={field.onChange}
-													/>
-												</FormControl>
-												<label className="ml-3 w-full text-left text-gray-600 text-sm">
-													{agbText}
-												</label>
-											</div>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</div>
-						</div>
-						<div className="mt-4 flex flex-col items-center md:mt-8">
-							<div className="w-full md:mb-4">
-								<ButtonRenderer
-									disabled={isSubmitting}
-									text="Immobilienpreisauskunft erhalten"
-								/>
-							</div>
-						</div>
-						<div className="mx-auto mt-4 hidden md:block">
-							<Image
-								alt="Logo Immobilienpreise Deutschland 2026 - Wide"
-								src={iconLong}
-								width={185}
+								(bei Rückfragen)
+							</>
+						}
+						name="user_phone"
+						onClearCustomError={() => setPhoneError(null)}
+						placeholder="+49 176 123 456 78"
+						required={true}
+					/>
+					<div className="grid w-full grid-cols-1 items-start gap-x-4 md:grid-cols-[1fr_3fr]">
+						<div /> {/* Empty first column */}
+						<div>
+							<FormField
+								control={form.control}
+								name="terms"
+								render={({ field }) => (
+									<FormItem className="sm:grid-cols-[1fr_fr]">
+										<div className="flex items-center">
+											<FormControl>
+												<Checkbox
+													checked={field.value}
+													className={`mt-1 h-5 w-5 md:h-6 md:w-6 ${termsError ? "border border-red-500" : ""}`}
+													onCheckedChange={field.onChange}
+												/>
+											</FormControl>
+											<label className="ml-3 w-full text-left text-gray-600 text-sm">
+												{agbText}
+											</label>
+										</div>
+										<FormMessage />
+									</FormItem>
+								)}
 							/>
 						</div>
-						<div className="mx-auto mt-4 hidden md:block">
-							<Trust />
+					</div>
+					<div className="mt-4 flex flex-col items-center md:mt-8">
+						<div className="w-full md:mb-4">
+							<ButtonRenderer
+								className="w-full"
+								disabled={isSubmitting}
+								text="Immobilienpreisauskunft erhalten"
+								type="submit"
+							/>
 						</div>
+					</div>
+					<div className="mx-auto mt-2">
+						<Image
+							alt="Logo Immobilienpreise Deutschland 2026 - Wide"
+							src={iconLong}
+							height={32}
+						/>
+					</div>
+					<div className="mx-auto mt-2">
+						<Trust />
+					</div>
 
-						<div className="mx-auto mt-4 md:hidden">
-							<TrustWithIcon />
-						</div>
-						<div className="mx-auto mt-4 text-center">
-							<p className="text-gray-400 text-xs">
-								{/* Datenquelle: Amtliche Bodenrichtwerte der Gutachterausschüsse (BORIS Deutschland)<br /> */}
-								Hinweis: Diese Auskunft ersetzt kein Verkehrswertgutachten nach
-								§ 194 BauGB.
-							</p>
-						</div>
-					</form>
-				</Form>
-			</div>
-		</div>
+					{/* <div className="mx-auto mt-4 md:hidden">
+						<TrustWithIcon />
+					</div> */}
+					<div className="mx-auto mt-4 text-center">
+						<p className="text-gray-400 text-xs">
+							{/* Datenquelle: Amtliche Bodenrichtwerte der Gutachterausschüsse (BORIS Deutschland)<br /> */}
+							Hinweis: Diese Auskunft ersetzt kein Verkehrswertgutachten nach
+							§ 194 BauGB.
+						</p>
+					</div>
+				</form>
+			</Form>
+		</>
 	);
 }

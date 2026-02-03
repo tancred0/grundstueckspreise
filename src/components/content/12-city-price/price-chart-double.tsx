@@ -73,7 +73,7 @@ function PriceCard({
 				<span className="font-semibold text-gray-900 text-lg">{typeKey}</span>
 			</div>
 			<div className="space-y-2">
-				<div className="font-semibold text-base">
+				<div className="font-semibold text-base text-gray-900">
 					{formatPrice(price, isBuy ? 0 : 2)}
 					/m²
 				</div>
@@ -166,7 +166,7 @@ function CustomTooltipContent({
 				<div className="space-y-2">
 					<div className="flex items-center gap-2">
 						<PrimaryIcon className="h-5 w-5 text-gray-500" />
-						<span className="font-medium text-base">
+						<span className="font-medium text-base text-gray-900">
 							{formatPrice(point.primaryPrice, primaryIsBuy ? 0 : 2)}/m²
 						</span>
 						{point.primaryChangeYear && (
@@ -186,7 +186,7 @@ function CustomTooltipContent({
 					{secondary && (
 						<div className="flex items-center gap-2">
 							<SecondaryIcon className="h-5 w-5 text-gray-500" />
-							<span className="font-medium text-base">
+							<span className="font-medium text-base text-gray-900">
 								{formatPrice(secondary.secondaryPrice, secondaryIsBuy ? 0 : 2)}
 								/m²
 							</span>
@@ -373,12 +373,7 @@ export function PriceChartDouble({
 						domain={[leftAxisMin, leftAxisMax]}
 						orientation="left"
 						tickFormatter={(v) =>
-							v.toLocaleString("de-DE", {
-								style: "currency",
-								currency: "EUR",
-								minimumFractionDigits: primaryIsBuy ? 0 : 2,
-								maximumFractionDigits: primaryIsBuy ? 0 : 2,
-							})
+							primaryIsBuy ? `${(v / 1000).toFixed(1)}k €` : `${v.toFixed(2)} €`
 						}
 						tickLine={false}
 						yAxisId="left"
@@ -390,12 +385,7 @@ export function PriceChartDouble({
 							domain={[minSecondary, maxSecondary]}
 							orientation="right"
 							tickFormatter={(v) =>
-								v.toLocaleString("de-DE", {
-									style: "currency",
-									currency: "EUR",
-									minimumFractionDigits: secondaryIsBuy ? 0 : 2,
-									maximumFractionDigits: secondaryIsBuy ? 0 : 2,
-								})
+								secondaryIsBuy ? `${(v / 1000).toFixed(1)}k €` : `${v.toFixed(2)} €`
 							}
 							tickLine={false}
 							yAxisId="right"

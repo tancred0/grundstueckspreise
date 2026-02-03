@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import iconLong from "@/images/funnel/immopreise-2026.svg";
+import iconLong from "@/images/general/logo_wide_black_font.svg";
 import StepsComponent from "../../steps-component";
 import { Trust, TrustWithIcon } from "../../trust";
 import { useBewertungsFunnel } from "../bewertung-funnel-context";
@@ -243,32 +243,24 @@ export default function LoaderScreen() {
 	const allCompleted = checks.every((check) => check.value);
 
 	return (
-		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
-			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
-				<HeaderSection heading={heading} />
-				<MainSpinner allCompleted={allCompleted} />
+		<>
+			<HeaderSection heading={heading} />
+			<MainSpinner allCompleted={allCompleted} />
 
-				<div className="flex flex-1 flex-col justify-center">
-					<CheckList checks={checks} />
-				</div>
-
-				<div className="mt-auto space-y-4">
-					<div className="flex justify-center">
-						<Image
-							alt="Logo Immobilienpreise Deutschland 2026 - Wide"
-							src={iconLong}
-							width={185}
-						/>
-					</div>
-					<Trust />
-
-					{/* <div className="mx-auto text-center">
-            <p className="text-xs text-gray-400">
-              Hinweis: Diese Auskunft ersetzt kein Verkehrswertgutachten nach § 194 BauGB.
-            </p>
-          </div> */}
-				</div>
+			<div className="flex flex-1 flex-col justify-center">
+				<CheckList checks={checks} />
 			</div>
-		</div>
+
+			<div className="mt-auto space-y-4">
+				<div className="flex justify-center">
+					<Image
+						alt="Logo Immobilienpreise Deutschland 2026 - Wide"
+						src={iconLong}
+						width={185}
+					/>
+				</div>
+				<Trust />
+			</div>
+		</>
 	);
 }

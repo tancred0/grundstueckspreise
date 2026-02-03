@@ -87,8 +87,7 @@ export function TableNeighboringDistrictsHouses({
 						)}
 					</tr>
 				</thead>
-
-				{rows}
+				<tbody>{rows}</tbody>
 			</table>
 		</div>
 	);
@@ -182,8 +181,7 @@ export function TableNeighboringDistrictsApartments({
 						)}
 					</tr>
 				</thead>
-
-				{rows}
+				<tbody>{rows}</tbody>
 			</table>
 		</div>
 	);

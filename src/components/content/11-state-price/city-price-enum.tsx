@@ -106,7 +106,7 @@ function CityKreistable({
 						<tr className="tr" key={city.citySlug}>
 							<td className="td">
 								<Link
-									className="table-link hyphens-auto"
+									className="table-link"
 									href={`${currentSlug}/${city.citySlug}`}
 								>
 									{city.cityName}

@@ -17,14 +17,14 @@ export function MainNav({
   // get current pathname in cleint mode
   const pathname = usePathname();
   const path = pathname.split("/")[1];
-  const showFunnel = path ? navConfig.showCta[path] ?? null : "bewertung";
+  const showFunnel = navConfig.showCta[path] ?? "bewertung";
   const hideBottomNav = navConfig.hideBottomNav.includes(path);
 
 
   return (
     <nav
       className={cn(
-        "hidden sm:flex flex-col w-full mb-6 md:mb-10 bg-slate-50",
+        "hidden sm:flex flex-col w-full bg-slate-50",
         className
       )}
       {...props}

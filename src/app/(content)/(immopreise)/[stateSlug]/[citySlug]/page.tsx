@@ -25,7 +25,7 @@ export async function generateMetadata(
 		title: `Immobilienpreise und Quadratmeterpreise ${data.cityName} 2026`,
 		description: data.seo.metaDescription ?? "Immobilienpreise",
 		alternates: {
-			canonical: `https://www.immobilienpreise-deutschland.com/immobilienpreise/${stateSlug}/${citySlug}`,
+			canonical: `https://www.immobilienpreise-deutschland.com/${stateSlug}/${citySlug}`,
 		},
 	};
 }
@@ -52,9 +52,9 @@ export default async function Page({ params }: PageProps) {
 						return match;
 				}
 			});
-			redirect(`/immobilienpreise/${stateSlug}/${city}`);
+			redirect(`/${stateSlug}/${city}`);
 		}
-		redirect(`/immobilienpreise/${stateSlug}`);
+		redirect(`/${stateSlug}`);
 	}
 
 	if (isCityData(data)) {

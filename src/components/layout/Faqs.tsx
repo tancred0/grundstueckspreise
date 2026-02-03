@@ -22,21 +22,24 @@ export default function Faqs({
 	return (
 		<section id={`sec${sectionNumber}`}>
 			<Typography variant="h2">{heading}</Typography>
-			{faqs.map((faq, index) => (
-				<Accordion collapsible key={index} type="single">
+			<Accordion collapsible type="single">
+				{faqs.map((faq, index) => (
 					<AccordionItem
-						className={`border-gray-600 ${index === faqs.length - 1 ? "border-0" : ""}`}
-						value="item-1"
+						key={index}
+						className="border-b border-gray-300 last:border-b-0"
+						value={`item-${index}`}
 					>
-						<AccordionTrigger className="text-left">
-							{faq.question}
+						<AccordionTrigger className="text-left hover:no-underline">
+							<Typography variant="h4" className="my-0 font-medium">
+								{faq.question}
+							</Typography>
 						</AccordionTrigger>
 						<AccordionContent>
 							<PortableTextRenderer input={faq.answer} />
 						</AccordionContent>
 					</AccordionItem>
-				</Accordion>
-			))}
+				))}
+			</Accordion>
 		</section>
 	);
 }

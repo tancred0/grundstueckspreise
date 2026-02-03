@@ -204,38 +204,29 @@ const FormFieldComponent: React.FC<FormFieldComponentProps> = ({
 		control={control}
 		name={name}
 		render={({ field, fieldState }) => (
-			<FormItem className="mb-4">
-				<div className="flex items-center justify-between">
-					<FormLabel
-						className="text-base text-primary"
-						htmlFor={name}
-					>
-						{label}
-						{required && <span className="text-red-500 ml-1">*</span>}
-					</FormLabel>
-					{fieldState.error && (
-						<span className="whitespace-nowrap text-red-500 text-sm md:hidden">
-							{fieldState.error.message}
-						</span>
-					)}
-				</div>
-				<div className="h-12 md:flex md:items-center md:gap-4">
-					<FormControl className="flex-1">
+			<FormItem className="grid grid-cols-1 md:grid-cols-[1fr_3fr] md:items-center gap-1 md:gap-4 mb-2 md:mb-4">
+				<FormLabel
+					className="text-primary text-small md:text-base"
+					htmlFor={name}
+				>
+					{label}
+					{required && <span className="text-red-500 ml-1">*</span>}
+				</FormLabel>
+				<div className="flex flex-col gap-1">
+					<FormControl>
 						<Input
 							placeholder={placeholder}
 							{...field}
 							className={
-								fieldState.error ? "h-12 border-2 border-red-500" : "h-12"
+								fieldState.error
+									? "h-10 border-2 border-red-500 md:h-12"
+									: "h-10 md:h-12"
 							}
 						/>
 					</FormControl>
-					<div className="hidden md:flex md:h-12 md:min-w-0 md:shrink-0 md:items-center">
-						{fieldState.error && (
-							<span className="text-red-500 text-sm">
-								{fieldState.error.message}
-							</span>
-						)}
-					</div>
+					{fieldState.error && (
+						<span className="text-red-500 text-sm">{fieldState.error.message}</span>
+					)}
 				</div>
 			</FormItem>
 		)}
@@ -384,51 +375,49 @@ export default function AddressScreen() {
 
 	const heading = "Wo befindet sich das Grundstück?";
 	return (
-		<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
-			<div className="flex h-full flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
-				<div className="mb-6 space-y-4 md:mb-10">
-					<StepsComponent currentStep={1} />
-					<h2 className="text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
-				</div>
-				<Form {...form}>
-					<form
-						className="flex h-full flex-col"
-						onSubmit={form.handleSubmit(onSubmit)}
-					>
-						<FormFieldComponent
-							control={form.control}
-							label="Straße"
-							name="property_street"
-							placeholder="Friedrichstraße"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							label="Hausnummer"
-							name="property_house_number"
-							placeholder="158"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							label="PLZ"
-							name="property_postalcode"
-							placeholder="10117"
-							required={true}
-						/>
-						<FormFieldComponent
-							control={form.control}
-							label="Stadt"
-							name="property_city"
-							placeholder="Berlin"
-							required={true}
-						/>
-						<div className="mt-auto">
-							<BackAndForthNew disabled={isSubmitting} />
-						</div>
-					</form>
-				</Form>
+		<>
+			<div className="mb-6 space-y-4 md:mb-10">
+				<StepsComponent currentStep={1} />
+				<h2 className="text-center text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 			</div>
-		</div>
+			<Form {...form}>
+				<form
+					className="flex h-full flex-col"
+					onSubmit={form.handleSubmit(onSubmit)}
+				>
+					<FormFieldComponent
+						control={form.control}
+						label="Straße"
+						name="property_street"
+						placeholder="Friedrichstraße"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						label="Hausnummer"
+						name="property_house_number"
+						placeholder="158"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						label="PLZ"
+						name="property_postalcode"
+						placeholder="10117"
+						required={true}
+					/>
+					<FormFieldComponent
+						control={form.control}
+						label="Stadt"
+						name="property_city"
+						placeholder="Berlin"
+						required={true}
+					/>
+					<div className="mt-auto">
+						<BackAndForthNew disabled={isSubmitting} />
+					</div>
+				</form>
+			</Form>
+		</>
 	);
 }

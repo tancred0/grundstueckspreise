@@ -23,7 +23,7 @@ export async function generateMetadata(
 		title: data.seo.title,
 		description: data.seo.metaDescription,
 		alternates: {
-			canonical: `https://www.immobilienpreise-deutschland.com/immobilienpreise/${stateSlug}`,
+			canonical: `https://www.immobilienpreise-deutschland.com/${stateSlug}`,
 		},
 	};
 }

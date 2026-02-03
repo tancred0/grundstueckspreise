@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40">
+  <!-- Text - Dark for light funnel background -->
+  <text x="0" y="18" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#000000">Immobilienpreise Deutschland</text>
+
+  <!-- German flag horizontal bar -->
+  <rect x="0" y="26" width="56" height="4" fill="#000000"/>
+  <rect x="56" y="26" width="56" height="4" fill="#DD0000"/>
+  <rect x="112" y="26" width="56" height="4" fill="#FFCC00"/>
+
+  <!-- Year -->
+  <text x="174" y="31" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#000000">2026</text>
+</svg>

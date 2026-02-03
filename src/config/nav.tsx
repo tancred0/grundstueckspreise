@@ -1,4 +1,4 @@
-import { NavigationCta, NavigationItem } from "@/types/nav";
+import type { NavigationCta, NavigationItem } from "@/types/nav";
 
 export interface NavConfigInterface {
   mainNav: NavigationItem[];
@@ -14,26 +14,7 @@ export const navConfigHardcoded: NavConfigInterface = {
       href: "/",
       items: [],
     },
-    // {
-    //   title: "Immobilienpreise",
-    //   href: "/immobilienpreise",
-    //   items: [],
-    // // },
-    // {
-    //   title: "Immobilienwissen",
-    //   href: "/immobilienwissen",
-    //   items: [],
-    // },
-    // {
-    //   title: "Gutachterausschüsse",
-    //   href: "/gutachterausschuss",
-    //   items: [],
-    // },
-    // {
-    //   title: "Grundbuchämter",
-    //   href: "/grundbuchamt",
-    //   items: [],
-    // },
+   
   ],
   sidebarNav: [
     {
@@ -57,24 +38,6 @@ export const navConfigHardcoded: NavConfigInterface = {
       //   },
       // ],
     },
-    // {
-    //   title: "Immobilienpreise",
-    //   href: "/immobilienpreise",
-    //   items: [],
-    // },
-    // {
-    //   title: "Immobilienwissen",
-    //   href: "/immobilienwissen",
-    // },
-    // {
-    //   title: "Gutachterausschüsse",
-    //   href: "/gutachterausschuss",
-    //   items: [],
-    // },
-    // {
-    //   title: "Grundbuchämter",
-    //   href: "/grundbuchamt",
-    // },
   ],
   hideBottomNav: [
     "lp",
@@ -82,18 +45,9 @@ export const navConfigHardcoded: NavConfigInterface = {
     "bewertung",
   ],
   showCta: {
-    "": "bewertung",
-    // "bodenrichtwert": "brw",
-    // "boris": "brw",
-    // "grundsteuer": "brw",
-    // "grundbuchamt": "brw",
-    // "gutachterausschuss": "brw",
-    
-    "lp": null,
-    "checkout": null,
+    // Exclusion list - paths where the CTA button should NOT show
     "bewertung": null,
-    
-    "immobilienpreise": "bewertung",
-    "immobilienwissen": "bewertung",
+    "impressum": null,
+    "datenschutz": null,
   }
 };

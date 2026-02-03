@@ -78,7 +78,21 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<FormItemContext.Provider value={{ id }}>
 			<div
-				className={cn("grid gap-2", className)}
+				className={cn("grid grid-cols-1 sm:grid-cols-[1fr_3fr] sm:items-center gap-2 sm:gap-4", className)}
+				data-slot="form-item"
+				{...props}
+			/>
+		</FormItemContext.Provider>
+	);
+}
+
+function FormItemCheckMark({ className, ...props }: React.ComponentProps<"div">) {
+	const id = React.useId();
+
+	return (
+		<FormItemContext.Provider value={{ id }}>
+			<div
+				className={cn("grid grid-cols-[1fr_3fr] items-center gap-4", className)}
 				data-slot="form-item"
 				{...props}
 			/>
@@ -88,13 +102,19 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function FormLabel({
 	className,
+	required,
 	...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof LabelPrimitive.Root> & { required?: boolean }) {
 	const { error, formItemId } = useFormField();
 
 	return (
 		<Label
-			className={cn("data-[error=true]:text-destructive", className)}
+			className={cn(
+				"text-left w-full block",
+				required && "after:content-['*'] after:ml-0.5",
+				"data-[error=true]:text-destructive",
+				className
+			)}
 			data-error={!!error}
 			data-slot="form-label"
 			htmlFor={formItemId}
@@ -145,7 +165,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
 
 	return (
 		<p
-			className={cn("text-destructive text-sm", className)}
+			className={cn("text-sm font-medium text-destructive text-red-600 sm:col-span-2", className)}
 			data-slot="form-message"
 			id={formMessageId}
 			{...props}
@@ -159,6 +179,7 @@ export {
 	useFormField,
 	Form,
 	FormItem,
+	FormItemCheckMark,
 	FormLabel,
 	FormControl,
 	FormDescription,

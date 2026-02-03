@@ -1,5 +1,6 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -8,6 +9,48 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { cn } from "@/lib/utils";
+
+type BreadcrumbItemType = {
+	label: string;
+	href?: string;
+};
+
+export function PageBreadcrumbs({
+	items,
+	className,
+}: {
+	items: BreadcrumbItemType[];
+	className?: string;
+}) {
+	return (
+		<Breadcrumb className={cn("mb-4", className)}>
+			<BreadcrumbList>
+				<BreadcrumbItem>
+					<BreadcrumbLink asChild>
+						<Link href="/">
+							<Home className="size-4" />
+						</Link>
+					</BreadcrumbLink>
+				</BreadcrumbItem>
+				{items.map((item, index) => (
+					<Fragment key={index}>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							{item.href ? (
+								<BreadcrumbLink asChild>
+									<Link href={item.href}>{item.label}</Link>
+								</BreadcrumbLink>
+							) : (
+								<BreadcrumbPage>{item.label}</BreadcrumbPage>
+							)}
+						</BreadcrumbItem>
+					</Fragment>
+				))}
+			</BreadcrumbList>
+		</Breadcrumb>
+	);
+}
 
 export default function BreadCrumbs({
 	stateName = null,

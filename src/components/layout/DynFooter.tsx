@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import brwLogo from "@/images/general/logo_small_white.svg";
+import brwLogo from "@/images/general/logo_short_white_font.svg";
 import type { DistrictsInSameCity } from "@/server/cms/typesTableData";
 
 export default function DynFooter({

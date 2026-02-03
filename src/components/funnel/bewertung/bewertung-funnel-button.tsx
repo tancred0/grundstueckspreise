@@ -1,4 +1,5 @@
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import IconWrapper from "../icon-wrapper";
 import type { DataArrayItem, DataArrayItemBool } from "./bewertung-types";
 
@@ -62,23 +63,40 @@ export const FunnelButtonLarge: React.FC<
 		isHover: boolean;
 	}
 > = ({ index, item, onclick, onMouseEnter, onMouseLeave, isHover }) => {
+	const [isClicked, setIsClicked] = useState(false);
+
+	const handleClick = () => {
+		if (isClicked) return;
+		setIsClicked(true);
+		setTimeout(() => {
+			onclick();
+		}, 400);
+	};
+
 	return (
 		<button
-			className={`flex-grow basis-0 rounded-xl bg-white p-6 transition-all duration-200 sm:p-8 ${
-				isHover
-					? "border-2 border-primary shadow-lg"
-					: "border border-gray-200 shadow-sm hover:shadow-md"
+			className={`relative grow basis-0 rounded-xl bg-white p-6 sm:p-8 border-2 transition-all duration-200 ${
+				isClicked
+					? "border-primary shadow-lg scale-[0.98]"
+					: isHover
+						? "border-primary shadow-lg"
+						: "border-gray-200 shadow-sm hover:shadow-md"
 			}`}
 			key={index}
-			onClick={() => onclick()}
+			onClick={handleClick}
 			onMouseEnter={() => onMouseEnter()}
 			onMouseLeave={() => onMouseLeave()}
 		>
+			{isClicked && (
+				<div className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+					<Check size={14} strokeWidth={3} />
+				</div>
+			)}
 			<div className="flex h-full flex-col items-center justify-center text-primary">
 				{item.name ? (
 					<>
 						<div className="mb-3 text-primary">
-							<IconWrapper hover={isHover} icon={item.icon} />
+							<IconWrapper hover={isHover || isClicked} icon={item.icon} />
 						</div>
 						<div className="text-center font-medium text-primary">{item.name}</div>
 					</>

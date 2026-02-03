@@ -1,176 +1,194 @@
-import type { Metadata } from "next";
-import { cache } from "react";
 import Link from "next/link";
-
-import { Sanity } from "@/server/cms/Sanity";
 import Footer from "@/components/layout/Footer";
-
-import BreadCrumbsAuthorities from "@/components/layout/BreadcrumbsAuthorities";
-import MobileContentSection from "@/components/layout/ContentSectionMobile";
-import Sources from "@/components/layout/Sources";
-import AsideComponent from "@/components/layout/ContentSectionDesktop";
-import Hero from "@/components/layout/Hero";
 import { BewertungsFunnel } from "@/components/funnel/bewertung/bewertung-funnel";
+import { Typography, Section } from "@/components/ui/typography";
+import nrwImage from "@/images/bundesland/nrw.svg";
+import bayernImage from "@/images/bundesland/bayern.svg";
+import hessenImage from "@/images/bundesland/hessen.svg";
+import rpImage from "@/images/bundesland/rlp.svg";
+import bwImage from "@/images/bundesland/bw.svg";
+import shImage from "@/images/bundesland/sh.svg";
+import brandenburgImage from "@/images/bundesland/brandenburg.svg";
+import niedersachsenImage from "@/images/bundesland/niedersachsen.svg";
+import sachsenImage from "@/images/bundesland/sachsen.svg";
+import mvImage from "@/images/bundesland/mv.svg";
+import sachsenAnhaltImage from "@/images/bundesland/sachsen-anhalt.svg";
+import thueringenImage from "@/images/bundesland/thueringen.svg";
+import saarlandImage from "@/images/bundesland/saarland.svg";
+import berlinImage from "@/images/bundesland/berlin.svg";
+import hamburgImage from "@/images/bundesland/hamburg.svg";
+import bremenImage from "@/images/bundesland/bremen.svg";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 
 const states = [
   {
-    name: "NRW",
-    link: "/immobilienpreise/nrw",
+    name: "Berlin",
+    link: "/berlin",
+    image: berlinImage,
     active: true,
   },
   {
-    name: "Berlin",
-    link: "/immobilienpreise/berlin",
-    active: false,
-
-  },
-  {
     name: "Hamburg",
-    link: "/immobilienpreise/hamburg",
+    link: "/hamburg",
+    image: hamburgImage,
     active: false,
-
   },
   {
     name: "Bremen",
-    link: "/immobilienpreise/bremen",
+    link: "/bremen",
+    image: bremenImage,
     active: false,
   },
   {
     name: "Bayern",
-    link: "/immobilienpreise/bayern",
+    link: "/bayern",
+    image: bayernImage,
     active: false,
-
+  },
+  {
+    name: "NRW",
+    link: "/nrw",
+    image: nrwImage,
+    active: false,
   },
   {
     name: "Hessen",
-    link: "/immobilienpreise/hessen",
-    active: false,
-  },
-  {
-    name: "Rheinland-Pfalz",
-    link: "/immobilienpreise/rlp",
+    link: "/hessen",
+    image: hessenImage,
     active: false,
   },
   {
     name: "Baden-Württemberg",
-    link: "/immobilienpreise/bw",
+    link: "/bw",
+    image: bwImage,
     active: false,
   },
   {
     name: "Schleswig-Holstein",
-    link: "/immobilienpreise/schleswig-holstein",
-    active: false,
-  },
-  {
-    name: "Brandenburg",
-    link: "/immobilienpreise/brandenburg",
-    active: false,
-  },
-  {
-    name: "Niedersachsen",
-    link: "/immobilienpreise/niedersachsen",
+    link: "/schleswig-holstein",
+    image: shImage,
     active: false,
   },
   {
     name: "Sachsen",
-    link: "/immobilienpreise/sachsen",
+    link: "/sachsen",
+    image: sachsenImage,
     active: false,
   },
   {
     name: "Mecklenburg-Vorpommern",
-    link: "/immobilienpreise/mecklenburg-vorpommern",
-    active: false,
-  },
-  {
-    name: "Sachsen-Anhalt",
-    link: "/immobilienpreise/sachsen-anhalt",
+    link: "/mv",
+    image: mvImage,
     active: false,
   },
   {
     name: "Thüringen",
-    link: "/immobilienpreise/thueringen",
+    link: "/thueringen",
+    image: thueringenImage,
     active: false,
   },
   {
     name: "Saarland",
-    link: "/immobilienpreise/saarland",
+    link: "/saarland",
+    image: saarlandImage,
     active: false,
   },
-].sort((a, b) => {
-  // First sort by active status (active items first)
-  if (a.active !== b.active) {
-    return a.active ? -1 : 1;
-  }
-  // Then sort alphabetically by name
-  return a.name.localeCompare(b.name);
-});
+  {
+    name: "Rheinland-Pfalz",
+    link: "/rlp",
+    image: rpImage,
+    active: false,
+  },
+  {
+    name: "Sachsen-Anhalt",
+    link: "/sachsen-anhalt",
+    image: sachsenAnhaltImage,
+    active: false,
+  },
+  {
+    name: "Brandenburg",
+    link: "/brandenburg",
+    image: brandenburgImage,
+    active: false,
+  },
+  {
+    name: "Niedersachsen",
+    link: "/niedersachsen",
+    image: niedersachsenImage,
+    active: false,
+  },
+];
 
-
-const fetchData = cache(() => {
-  const sanity = new Sanity();
-  const data = sanity.getCategoryBlog("immobilienpreise");
-  return data;
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const title = "Immobilienpreise und Quadratmeterpreise in Deutschland 2026";
-  const description =
-    "Übersicht über die Immobilienpreise und Quadratmeterpreise in Deutschland 2026";
-  return {
-    title: title,
-    description: description,
-    alternates: {
-      canonical: "https://www.immobilienpreise-deutschland.com",
-    },
-  };
-}
 
 export default async function Home() {
-  const data = await fetchData();
-
-  const sectionOfContent = data.sections.map((item) => item.heading);
-  // if (data.faqsList) {
-  //   sectionOfContent.push(faqTitle);
-  // }
   const h1 = "Immobilienpreise und Quadratmeterpreise in Deutschland 2026";
+  const h2 = "Übersicht der einzelnen Bundesländer"
   return (
     <>
-      <main className="main-container">
-        <BreadCrumbsAuthorities path={"immobilienpreise"} className="mb-6" />
-        <div className="grid grid-cols-4 gap-x-10	gap-y-14">
-          <AsideComponent headings={sectionOfContent} />
-          <div id="main-content" className="col-span-4 md:col-span-3 ">
-            <Hero locationName={""} h1={h1} introText={data.introText} />
-            <BewertungsFunnel className="mt-4" />
-            <MobileContentSection headings={sectionOfContent} />
-            <section id={"sec1"}>
-              <h2>{sectionOfContent[0]}</h2>
-              <table className="table">
-                <tbody>
-                  {states.map((state) => (
-                    <tr className="tr" key={state.name}>
-                      <td className="td w-1/2">
-                        {state.name}
-                      </td>
-                      <td className="td w-1/2">
-                        {state.active ? (
-                          <Link className="table-link" href={state.link}>
-                            {`Immobilienpreise ${state.name}`}
-                          </Link>
-                        ) : (
-                          <span className="text-gray-500">Bald verfügbar</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
-            </section>
+      <main className="main-container mx-auto text-center max-w-6xl mt-6 md:mt-10">
+        <Section className="pt-0 md:pt-0">
+          <Typography variant="h1">{h1}</Typography>
+          <BewertungsFunnel className="mt-4" />
+        </Section>
+        <Section id="sec1">
+          <Typography variant="h2">{h2}</Typography>
+          <div className="grid sm:grid-cols-2 gap-4 w-full">
+            {states.map((state) => (
+              <ButtonMainPage key={state.link} link={state.link} name={state.name} type="immopreise" image={state.image} active={state.active} />
+            ))}
           </div>
-        </div>
+        </Section>
       </main>
       <Footer />
     </>
   );
 }
+
+
+const ButtonMainPage = ({ type = "immopreise", link, name, image, active = true }: { type: "immopreise", link: string, name: string, image?: StaticImageData | null, active?: boolean }) => {
+  const labels = {
+    "immopreise": "Immobilienpreise"
+  }
+
+  const content = (
+    <div className={`rounded-md bg-accent px-6 py-4 ${!active ? "opacity-50" : ""}`}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          {image && <div className="w-12">
+            <Image src={image} alt={name} height={32} />
+          </div>
+          }
+          {type === "immopreise" ? (
+            <h3 className="flex flex-col font-medium my-0 text-base text-left">
+              <span className="text-gray-400 text-base">{labels[type]}</span>
+              <span className="block">{name}</span>
+            </h3>
+          ) : null
+          }
+        </div>
+        {active ? (
+          <ChevronRight className="h-5 w-5 text-muted-foreground shrink-0" />
+        ) : (
+          <span className="text-sm text-gray-400 shrink-0">Bald verfügbar</span>
+        )}
+      </div>
+    </div>
+  );
+
+  if (!active) {
+    return (
+      <div className="rounded-md cursor-not-allowed">
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={link} className="rounded-md no-underline hover:outline-2 hover:outline-primary">
+      {content}
+    </Link>
+  );
+}
+

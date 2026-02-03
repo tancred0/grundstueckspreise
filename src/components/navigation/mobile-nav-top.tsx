@@ -2,18 +2,16 @@
 
 import { cn } from "@/lib/utils";
 import { MainContainer } from "@/components/layout/main-container";
-import { MapPin, PinIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import { NavConfigInterface } from "@/config/nav";
 
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Icons } from "../ui/icons";
-import brwLogo from "@/images/general/logo_small.svg";
+import brwLogo from "@/images/general/logo_short_black_font.svg";
 // import { MobileNavDropdownCollapsile } from "./mobile-nav-dropdown-collapsile";
 // import { MobileNavDropdownItem } from "./mobile-nav-dropdown-item";
 
@@ -42,13 +40,13 @@ export function MobileNavTop({
 
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            className="mr-2 text-primary-foreground px-0 text-base hover:bg-white focus-visible:bg-white focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          <button
+            type="button"
+            className="flex items-center justify-center md:hidden"
           >
-            <Icons.hamburger className="h-6 w-6 text-primary-foreground" />
+            <Menu className="h-6 w-6 text-[#042B59]" />
             <span className="sr-only">Toggle Menu</span>
-          </Button>
+          </button>
         </SheetTrigger>
         <SheetContent side="right" className="pl-0">
           <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
@@ -62,7 +60,7 @@ export function MobileNavTop({
               {navConfig.sidebarNav.map((item, index) => (
                 <div key={index} className="flex flex-col space-y-3 pt-6">
                   <Link
-                    className="font-bold text-primary-foreground no-underline"
+                    className="font-bold text-[#042B59] no-underline"
                     href={item.href}
                     onClick={() => setOpen(false)}
                   >

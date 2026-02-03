@@ -36,33 +36,33 @@ export function BackAndForth({
 			{nextScreen && (
 				<button
 					className={cn(
-						"col-span-4 flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
+						"col-span-4 flex w-full justify-between rounded-lg p-3 text-white md:p-4",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:brightness-90",
 					)}
 					disabled={disabled}
 					onClick={handleClick}
 				>
-					<div className="text-primary-foreground">Weiter</div>
-					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
+					<span className="text-white">Weiter</span>
+					<Image alt="Weiter icon" className="brightness-0 invert" height={24} src={arrayRightIcon} width={24} />
 				</button>
 			)}
 			{!nextScreen && (
 				<button
 					className={cn(
-						"col-span-4 flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
+						"col-span-4 flex w-full justify-between rounded-lg p-3 text-white md:p-4",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:brightness-90",
 					)}
 					disabled={disabled}
 					type="submit"
 				>
-					<div className="text-primary-foreground">Weiter</div>
-					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
+					<span className="text-white">Weiter</span>
+					<Image alt="Weiter icon" className="brightness-0 invert" height={24} src={arrayRightIcon} width={24} />
 				</button>
 			)}
 			<button
 				className={cn(
 					"order-first rounded-lg p-3 md:p-4 transition-colors",
-					disabled ? "cursor-not-allowed bg-muted" : "bg-secondary hover:bg-secondary/80",
+					disabled ? "cursor-not-allowed bg-muted" : "bg-gray-200 hover:bg-gray-300",
 				)}
 				disabled={disabled}
 				onClick={() => goBack()}
@@ -90,34 +90,34 @@ export function BackAndForthNew({
 			{nextScreen && (
 				<button
 					className={cn(
-						"flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
+						"flex w-full justify-between rounded-lg p-3 text-white md:p-4",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:brightness-90",
 					)}
 					disabled={disabled}
 					onClick={handleClick}
 				>
-					<div className="text-primary-foreground">Weiter</div>
-					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
+					<span className="text-white">Weiter</span>
+					<Image alt="Weiter icon" className="brightness-0 invert" height={24} src={arrayRightIcon} width={24} />
 				</button>
 			)}
 			{!nextScreen && (
 				<button
 					className={cn(
-						"flex w-full justify-between rounded-lg p-3 md:p-4",
-						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:bg-primary/90",
+						"flex w-full justify-between rounded-lg p-3 text-white md:p-4",
+						disabled ? "cursor-not-allowed bg-muted-foreground" : "bg-primary hover:brightness-90",
 					)}
 					disabled={disabled}
 					type="submit"
 				>
-					<div className="text-primary-foreground">Weiter</div>
-					<Image alt="Weiter icon" height={24} src={arrayRightIcon} width={0} />
+					<span className="text-white">Weiter</span>
+					<Image alt="Weiter icon" className="brightness-0 invert" height={24} src={arrayRightIcon} width={24} />
 				</button>
 			)}
 
 			<button
 				className={cn(
 					"order-first rounded-lg p-3 md:p-4 transition-colors",
-					disabled ? "cursor-not-allowed bg-muted" : "bg-secondary hover:bg-secondary/80",
+					disabled ? "cursor-not-allowed bg-muted" : "bg-gray-200 hover:bg-gray-300",
 				)}
 				disabled={disabled}
 				onClick={() => goBack()}
@@ -133,7 +133,7 @@ export function OnlyBack() {
 	return (
 		<div className="flex justify-start">
 			<button
-				className="rounded-lg bg-gray-200 p-3 md:p-4"
+				className="rounded-lg bg-gray-200 p-3 transition-colors hover:bg-gray-300 md:p-4"
 				onClick={() => goBack()}
 			>
 				<Image alt="Map icon" height={24} src={arrayLeftIcon} width={0} />
@@ -148,7 +148,7 @@ export function OnlyBackNew() {
 	return (
 		<div className="grid grid-cols-[1fr_3fr] items-end gap-2 sm:gap-4">
 			<button
-				className="rounded-lg bg-gray-200 p-3 md:p-4"
+				className="rounded-lg bg-gray-200 p-3 transition-colors hover:bg-gray-300 md:p-4"
 				onClick={() => goBack()}
 			>
 				<Image alt="Map icon" height={24} src={arrayLeftIcon} width={0} />

@@ -10,9 +10,8 @@ import { Trust } from "@/components/funnel/trust";
 import { sendGAEvent } from "@/components/utils/analytics";
 import { generateTransactionNumber } from "@/components/utils/generateTransactionNumber";
 import getGAUserId from "@/components/utils/getGAUserId";
-import iconLong from "@/images/funnel/immopreise-2026.svg";
+import iconLong from "@/images/general/logo_wide_black_font.svg";
 import { storage } from "@/lib/storage";
-import { cn } from "@/lib/utils";
 import { FunnelButtonLarge } from "../bewertung-funnel-button";
 import { useBewertungsFunnel } from "../bewertung-funnel-context";
 import type { DataArrayItem } from "../bewertung-types";
@@ -140,46 +139,40 @@ export default function PropertyTypeScreen({
 	};
 
 	return (
-		<div
-			className={cn(
-				"min-h-[674px] rounded-2xl bg-accent p-6 md:min-h-[670px] md:p-10",
-			)}
-		>
-			<div className="flex flex-col items-center">
-				{/* Header */}
-				<div className="mb-8 w-full max-w-2xl space-y-3 text-center">
-					<h2 className="text-2xl font-bold text-primary md:text-3xl">{heading}</h2>
-					<p className="text-base text-muted-foreground md:text-lg">{description}</p>
-				</div>
-
-				{/* Property Type Buttons */}
-				<div className="mb-10 grid w-full max-w-2xl grid-cols-2 gap-4">
-					{multipleChoiceData.map((item, index) => (
-						<FunnelButtonLarge
-							index={index}
-							isHover={hoverIndex === index}
-							item={item}
-							key={index}
-							onclick={() => handleSubmit(item)}
-							onMouseEnter={() => setHoverIndex(index)}
-							onMouseLeave={() => setHoverIndex(null)}
-						/>
-					))}
-				</div>
-
-				{/* Logo */}
-				<div className="mb-6">
-					<Image
-						alt="Immobilienpreise Deutschland"
-						src={iconLong}
-						width={200}
-						height={40}
-					/>
-				</div>
-
-				{/* Trust Badges */}
-				<Trust />
+		<div className="flex flex-col items-center p-2 md:p-4">
+			{/* Header */}
+			<div className="mb-8 w-full max-w-3xl space-y-3 text-center ">
+				<h2 className="text-2xl font-bold text-primary md:text-3xl">{heading}</h2>
+				<p className="text-base text-muted-foreground md:text-lg">{description}</p>
 			</div>
+
+			{/* Property Type Buttons */}
+			<div className="mb-10 grid w-full max-w-3xl grid-cols-2 gap-4">
+				{multipleChoiceData.map((item, index) => (
+					<FunnelButtonLarge
+						index={index}
+						isHover={hoverIndex === index}
+						item={item}
+						key={index}
+						onclick={() => handleSubmit(item)}
+						onMouseEnter={() => setHoverIndex(index)}
+						onMouseLeave={() => setHoverIndex(null)}
+					/>
+				))}
+			</div>
+
+			{/* Logo */}
+			<div className="mb-6">
+				<Image
+					alt="Immobilienpreise Deutschland"
+					src={iconLong}
+					width={200}
+					height={40}
+				/>
+			</div>
+
+			{/* Trust Badges */}
+			<Trust />
 		</div>
 	);
 }

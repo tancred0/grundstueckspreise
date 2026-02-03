@@ -77,11 +77,38 @@ const BewertungsFunnelRender = ({
 		}
 	};
 
+	// Step 0 has no white card, all other steps have one
+	if (data.step === 0) {
+		return (
+			<div className="min-h-[674px] rounded-2xl bg-accent p-4 md:min-h-[670px] md:p-6">
+				<div key={data.step} className="animate-in fade-in duration-300">
+					{renderStep()}
+				</div>
+			</div>
+		);
+	}
+
+	// Step 98 (UserInfoScreen) needs a wider container for the form
+	if (data.step === 98) {
+		return (
+			<div className="flex min-h-[674px] flex-col rounded-2xl bg-accent p-4 md:min-h-[670px] md:min-w-[720px] md:p-6">
+				<div className="flex flex-1 flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
+					<div key={data.step} className="flex flex-1 flex-col animate-in fade-in duration-300">
+						{renderStep()}
+					</div>
+				</div>
+			</div>
+		);
+	}
+
 	return (
-		<>
-			{renderStep()}
-			{/* <ProgressBar progress={progress} className="mb-8" /> */}
-		</>
+		<div className="flex h-[674px] flex-col rounded-2xl bg-accent p-4 md:h-[670px] md:p-6">
+			<div className="flex flex-1 flex-col rounded-xl bg-white p-4 md:rounded-2xl md:p-10">
+				<div key={data.step} className="flex flex-1 flex-col animate-in fade-in duration-300">
+					{renderStep()}
+				</div>
+			</div>
+		</div>
 	);
 };
 

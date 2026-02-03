@@ -73,8 +73,7 @@ export function TableSubdistrictsHouses({
 						)}
 					</tr>
 				</thead>
-
-				{rows}
+				<tbody>{rows}</tbody>
 			</table>
 		</div>
 	);
@@ -139,8 +138,7 @@ export function TableNeighboringDistrictsApartments({
 						<th className="th">△ Vorjahr</th>
 					</tr>
 				</thead>
-
-				{rows}
+				<tbody>{rows}</tbody>
 			</table>
 		</div>
 	);

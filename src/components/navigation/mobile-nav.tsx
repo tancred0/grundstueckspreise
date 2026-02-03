@@ -16,7 +16,7 @@ export function MobileNav({
 }) {
 
   return (
-    <nav className={cn("flex sm:hidden flex-col w-full bg-slate-50 mb-6 md:mb-10", className)} {...props}>
+    <nav className={cn("flex sm:hidden flex-col w-full bg-slate-50", className)} {...props}>
       <div className="w-full border-b">
         <MobileNavTop navConfig={navConfig} />
       </div>

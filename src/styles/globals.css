@@ -74,11 +74,11 @@
 	--border: #e5e7eb;
 	--input: #e5e7eb;
 	--ring: #0F3B6B;
-	--chart-1: oklch(0.646 0.222 41.116);
-	--chart-2: oklch(0.6 0.118 184.704);
-	--chart-3: oklch(0.398 0.07 227.392);
-	--chart-4: oklch(0.828 0.189 84.429);
-	--chart-5: oklch(0.769 0.188 70.08);
+	--chart-1: 220 70% 25%;
+	--chart-2: 210 75% 30%;
+	--chart-3: 230 65% 20%;
+	--chart-4: 200 80% 35%;
+	--chart-5: 215 70% 40%;
 	--sidebar: #ffffff;
 	--sidebar-foreground: #0F3B6B;
 	--sidebar-primary: #0F3B6B;
@@ -108,11 +108,11 @@
 	--border: oklch(1 0 0 / 10%);
 	--input: oklch(1 0 0 / 15%);
 	--ring: oklch(0.556 0 0);
-	--chart-1: oklch(0.488 0.243 264.376);
-	--chart-2: oklch(0.696 0.17 162.48);
-	--chart-3: oklch(0.769 0.188 70.08);
-	--chart-4: oklch(0.627 0.265 303.9);
-	--chart-5: oklch(0.645 0.246 16.439);
+	--chart-1: 220 70% 25%;
+	--chart-2: 210 75% 30%;
+	--chart-3: 230 65% 20%;
+	--chart-4: 200 80% 35%;
+	--chart-5: 215 70% 40%;
 	--sidebar: oklch(0.205 0 0);
 	--sidebar-foreground: oklch(0.985 0 0);
 	--sidebar-primary: oklch(0.488 0.243 264.376);
@@ -129,6 +129,9 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+	strong {
+		@apply font-semibold text-primary;
 	}
 
   .main-container {
@@ -194,6 +197,6 @@
 	}
 
 	.table-link {
-		@apply text-lg;
+		@apply text-lg text-primary underline underline-offset-2;
 	}
 }

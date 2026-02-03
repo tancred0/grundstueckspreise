@@ -34,7 +34,7 @@ function PriceCard({
 			</div>
 
 			<div className="space-y-2">
-				<div className="font-semibold text-base">
+				<div className="font-semibold text-base text-gray-900">
 					{activeData.avg.toLocaleString("de-DE", {
 						style: "currency",
 						currency: "EUR",
@@ -130,7 +130,7 @@ function CustomTooltipContent({
 					</div>
 
 					<div className="space-y-2">
-						<div className="font-semibold text-base">
+						<div className="font-semibold text-base text-gray-900">
 							{primaryValue.toLocaleString("de-DE", {
 								style: "currency",
 								currency: "EUR",
@@ -153,7 +153,7 @@ function CustomTooltipContent({
 						</div>
 
 						<div className="space-y-2">
-							<div className="font-semibold text-base">
+							<div className="font-semibold text-base text-gray-900">
 								{secondaryValue.toLocaleString("de-DE", {
 									style: "currency",
 									currency: "EUR",
@@ -246,7 +246,7 @@ export function PriceChart({
 	let chartConfig: PriceChartConfig = {
 		line1: {
 			label: "Durchschnittspreis in €/m²: ",
-			color: "hsl(var(--chart-3))",
+			color: "hsl(var(--chart-4))",
 		},
 	};
 
@@ -255,7 +255,7 @@ export function PriceChart({
 			...chartConfig,
 			line2: {
 				label: "Vergleichspreis in €/m²: ",
-				color: "hsl(var(--chart-1))",
+				color: "hsl(var(--chart-3))",
 			},
 		};
 	}
@@ -310,12 +310,7 @@ export function PriceChart({
 						domain={[minValue, maxValue]}
 						padding={{ top: 0, bottom: 0 }}
 						scale="linear"
-						tickFormatter={(value) =>
-							Math.round(value).toLocaleString("de-DE", {
-								style: "currency",
-								currency: "EUR",
-							})
-						}
+						tickFormatter={(value) => `${(value / 1000).toFixed(1)}k €`}
 						tickLine={false}
 						type="number"
 					/>

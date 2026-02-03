@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PiBookOpenText } from "react-icons/pi";
 import { cn } from "@/lib/utils";
+import { Typography } from "@/components/ui/typography";
 import { Sanity } from "@/server/cms/Sanity";
 
 const sanity = new Sanity();
@@ -26,7 +27,19 @@ type ChildrenProps = {
 };
 
 const P = ({ children }: ChildrenProps) => {
-	return <p>{children}</p>;
+	return <Typography variant="p">{children}</Typography>;
+};
+
+const H2 = ({ children }: ChildrenProps) => {
+	return <Typography variant="h2">{children}</Typography>;
+};
+
+const H3 = ({ children }: ChildrenProps) => {
+	return <Typography variant="h3">{children}</Typography>;
+};
+
+const H4 = ({ children }: ChildrenProps) => {
+	return <Typography variant="h4">{children}</Typography>;
 };
 
 const Strong = ({ children }: ChildrenProps) => {
@@ -35,11 +48,13 @@ const Strong = ({ children }: ChildrenProps) => {
 	);
 };
 
-const BulletListItem = ({ children }: ChildrenProps) => <li>{children}</li>;
+const BulletListItem = ({ children }: ChildrenProps) => (
+	<li className="text-xl leading-relaxed text-gray-700">{children}</li>
+);
 
 // Custom component for numbered list items
 const NumberedListItem = ({ children }: ChildrenProps) => (
-	<li style={{ listStyleType: "decimal" }}>{children}</li>
+	<li className="text-xl leading-relaxed text-gray-700">{children}</li>
 );
 
 const InsideQuote = ({ children }: ChildrenProps) => (
@@ -219,7 +234,7 @@ const ProConList: React.FC<PortableTextTypeComponentProps<any>> = ({
 			<div className="grid grid-cols-1 divide-y divide-gray-200 md:grid-cols-2 md:divide-x md:divide-y-0">
 				{/* Pros column */}
 				<div className="p-6 md:p-8">
-					<h4 className="md:mb-6">{value.titlePro}</h4>
+					<Typography variant="h4" className="md:mb-6">{value.titlePro}</Typography>
 					<ul
 						className="space-y-4"
 						style={{ listStyleType: withIcon ? "none" : "disc" }}
@@ -234,7 +249,7 @@ const ProConList: React.FC<PortableTextTypeComponentProps<any>> = ({
 
 				{/* Cons column */}
 				<div className="bg-red p-6 md:p-8">
-					<h4 className="md:mb-6">{value.titleCon}</h4>
+					<Typography variant="h4" className="md:mb-6">{value.titleCon}</Typography>
 					<ul
 						className="space-y-4"
 						style={{ listStyleType: withIcon ? "none" : "disc" }}
@@ -282,14 +297,14 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 		case "numbered":
 			return (
 				<div>
-					<ol>
+					<Typography variant="ol">
 						{value.items.map((item: any, index: number) => (
-							<li key={index} style={{ listStyleType: "decimal" }}>
-								<h4>{item.heading}</h4>
+							<li key={index}>
+								<Typography variant="h4">{item.heading}</Typography>
 								<PortableText value={item.content} />
 							</li>
 						))}
-					</ol>
+					</Typography>
 				</div>
 			);
 		case "step-by-step":
@@ -302,9 +317,9 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 									{index + 1}
 								</div>
 								<div>
-									<h4 className="mt-0 font-semibold text-primary text-xl">
+									<Typography variant="h4" className="mt-0 font-semibold text-primary text-xl">
 										{item.heading}
-									</h4>
+									</Typography>
 									<PortableTextRenderer input={item.content} />
 								</div>
 							</li>
@@ -319,9 +334,9 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 						<li className="ml-0 flex gap-4" key={index}>
 							<Check className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary" />
 							<div>
-								<h4 className="mt-0 font-semibold text-primary text-xl">
+								<Typography variant="h4" className="mt-0 font-semibold text-primary text-xl">
 									{item.heading}
-								</h4>
+								</Typography>
 								<PortableTextRenderer input={item.content} />
 							</div>
 						</li>
@@ -331,14 +346,14 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 		default: // "bullet":
 			return (
 				<div>
-					<ul className="list-disc pl-5">
+					<Typography variant="ul">
 						{value.items.map((item: any, index: number) => (
 							<li key={index}>
-								<h4>{item.heading}</h4>
+								<Typography variant="h4">{item.heading}</Typography>
 								<PortableText value={item.content} />
 							</li>
 						))}
-					</ul>
+					</Typography>
 				</div>
 			);
 	}
@@ -354,13 +369,13 @@ const SimpleList: React.FC<PortableTextTypeComponentProps<any>> = ({
 		case "numbered":
 			return (
 				<div>
-					<ol>
+					<Typography variant="ol">
 						{value.items.map((item: any, index: number) => (
-							<li key={index} style={{ listStyleType: "decimal" }}>
+							<li key={index}>
 								<PortableText value={item.content} />
 							</li>
 						))}
-					</ol>
+					</Typography>
 				</div>
 			);
 		case "step-by-step":
@@ -394,13 +409,13 @@ const SimpleList: React.FC<PortableTextTypeComponentProps<any>> = ({
 		default: // "bullet":
 			return (
 				<div>
-					<ul className="list-disc pl-5">
+					<Typography variant="ul">
 						{value.items.map((item: any, index: number) => (
 							<li key={index}>
 								<PortableText value={item.content} />
 							</li>
 						))}
-					</ul>
+					</Typography>
 				</div>
 			);
 	}
@@ -411,7 +426,7 @@ const Formula: React.FC<PortableTextTypeComponentProps<any>> = ({
 }: any) => {
 	return (
 		<div className="mt-6 mb-6 rounded-2xl bg-gray-50 px-8 py-4">
-			<h3>Formel</h3>
+			<Typography variant="h3">Formel</Typography>
 			<div className="space-y-6">
 				<div className="rounded-xl border border-gray-200 bg-white p-6 font-mono text-lg">
 					{value.formula}
@@ -446,9 +461,20 @@ export const sanityPortableTextComponents: Partial<PortableTextReactComponents> 
 	{
 		block: {
 			normal: P,
+			h2: H2,
+			h3: H3,
+			h4: H4,
 			strong: Strong,
 			blockquote: BlockQuote,
 			insidequote: InsideQuote,
+		},
+		list: {
+			bullet: ({ children }: ChildrenProps) => (
+				<Typography variant="ul">{children}</Typography>
+			),
+			number: ({ children }: ChildrenProps) => (
+				<Typography variant="ol">{children}</Typography>
+			),
 		},
 		listItem: {
 			bullet: BulletListItem,
@@ -514,7 +540,7 @@ export const PortableBlogRenderer = ({ input }: { input: any }) => {
 			h2: (props: any) => {
 				const id = `sec${h2Counter}`;
 				h2Counter += 1;
-				return <h2 id={id}>{props.children}</h2>;
+				return <Typography variant="h2" id={id}>{props.children}</Typography>;
 			},
 		},
 	} as Partial<PortableTextReactComponents>;

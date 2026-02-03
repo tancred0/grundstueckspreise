@@ -31,7 +31,7 @@ export async function generateMetadata(
 		title: `Immobilienpreise und Quadratmeterpreise ${data.cityName}-${data.districtName} 2026`,
 		description: data.seo.metaDescription ?? "Immobilienpreise",
 		alternates: {
-			canonical: `https://www.immobilienpreise-deutschland.com/immobilienpreise/${stateSlug}/${citySlug}/${districtSlug}`,
+			canonical: `https://www.immobilienpreise-deutschland.com/${stateSlug}/${citySlug}/${districtSlug}`,
 		},
 	};
 }
@@ -69,12 +69,12 @@ export default async function Page({ params }: PageProps) {
 		// If any fixes occurred, redirect using the fixed slugs
 		if (city_fixed !== citySlug || district_fixed !== districtSlug) {
 			redirect(
-				`/immobilienpreise/${stateSlug}/${city_fixed}/${district_fixed}`,
+				`/${stateSlug}/${city_fixed}/${district_fixed}`,
 			);
 		}
 
 		// Fallback: redirect up one level
-		// redirect(`/immobilienpreise/${stateSlug}/${city_fixed}`);
+		// redirect(`/${stateSlug}/${city_fixed}`);
 	}
 
 	if (isDistrictData(data)) {

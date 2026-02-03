@@ -2,7 +2,7 @@ import Image from "next/image";
 import ContractIcon from "@/images/funnel/trust/contract_mui.svg";
 import FolderIcon from "@/images/funnel/trust/folder_mui.svg";
 import ShieldIcon from "@/images/funnel/trust/shield_mui.svg";
-import brwLogo from "@/images/general/logo_small.svg";
+import brwLogo from "@/images/general/logo_short_black_font.svg";
 
 const TRUST_ICONS = [
 	{
@@ -45,23 +45,24 @@ export function Trust() {
 
 export function TrustWithIcon() {
 	return (
-		<div className="flex flex-row items-center justify-center gap-6 md:gap-10">
+		<div className="flex flex-row flex-wrap items-center justify-center gap-4">
 			<Image
 				alt="Logo Bodenrichtwerte Deutschland"
-				className="mr-2"
-				height={28}
+				className="h-6 w-auto"
+				height={24}
 				src={brwLogo}
+				width={100}
 			/>
 			{TRUST_ICONS.map((icon) => (
-				<div className="flex items-center gap-2" key={icon.alt}>
+				<div className="flex items-center gap-1.5" key={icon.alt}>
 					<Image
 						alt={icon.alt}
-						className="h-4 w-4"
-						height={24}
+						className="h-4 w-4 shrink-0"
+						height={16}
 						src={icon.icon}
-						width={24}
+						width={16}
 					/>
-					<span className="hyphens-none font-medium text-xs text-primary">
+					<span className="hyphens-none font-medium text-xs text-primary whitespace-nowrap">
 						{icon.text}
 					</span>
 				</div>
