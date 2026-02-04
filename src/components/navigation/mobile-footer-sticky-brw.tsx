@@ -14,7 +14,7 @@ export function MobileFooterStickyBrw({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
-  const { scrollProgress, isScrollingUp } = useScrollProgress();
+  const { scrollProgress } = useScrollProgress();
 
   return (
     <MainContainer

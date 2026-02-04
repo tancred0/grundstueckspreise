@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { MobileNavTop } from "@/components/navigation/mobile-nav-top";
-import { NavConfigInterface } from "@/config/nav";
+import type { NavConfigInterface } from "@/config/nav";
 
 export function MobileNav({
   navConfig,

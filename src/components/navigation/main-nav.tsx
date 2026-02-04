@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { MainNavTop } from "@/components/navigation/main-nav-top";
 import { MainNavBottom } from "@/components/navigation/main-nav-bottom";
-import { NavConfigInterface } from "@/config/nav";
+import type { NavConfigInterface } from "@/config/nav";
 import { usePathname } from "next/navigation";
 
 export function MainNav({
@@ -16,7 +16,7 @@ export function MainNav({
 }) {
   // get current pathname in cleint mode
   const pathname = usePathname();
-  const path = pathname.split("/")[1];
+  const path = pathname.split("/")[1] ?? "";
   const showFunnel = navConfig.showCta[path] ?? "bewertung";
   const hideBottomNav = navConfig.hideBottomNav.includes(path);
 

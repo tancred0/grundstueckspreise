@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import { MainContainer } from "@/components/layout/main-container";
 import { Menu } from "lucide-react";
 import Image from "next/image";
-import Link, { LinkProps } from "next/link";
-import { NavConfigInterface } from "@/config/nav";
+import Link from "next/link";
+import type { LinkProps } from "next/link";
+import type { NavConfigInterface } from "@/config/nav";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import type { UTMParameters } from "@/components/funnel/bewertung/bewertung-types";
 import { storage } from "@/lib/storage";
 
@@ -18,7 +18,7 @@ const UTM_PARAMS = [
 	"wbraid",
 ] as const;
 
-export function UTMTracker() {
+function UTMTrackerInner() {
 	const searchParams = useSearchParams();
 
 	useEffect(() => {
@@ -51,6 +51,14 @@ export function UTMTracker() {
 	}, [searchParams]);
 
 	return null;
+}
+
+export function UTMTracker() {
+	return (
+		<Suspense fallback={null}>
+			<UTMTrackerInner />
+		</Suspense>
+	);
 }
 
 export default UTMTracker;

@@ -1,14 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { MainContainer } from "@/components/layout/main-container";
-import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 // import { MainNavDropdown } from "@/components/navigation/main-nav-dropdown";
 import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { NavConfigInterface } from "@/config/nav";
+import type { NavConfigInterface } from "@/config/nav";
 
 export function MainNavBottom({
   navConfig,
