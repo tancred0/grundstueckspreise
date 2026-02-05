@@ -6,7 +6,7 @@ import { Sanity } from "@/server/cms/Sanity";
 
 const fetchData = cache(() => {
 	const sanity = new Sanity();
-	const data = sanity.getBlogPost("agb-immopreise");
+	const data = sanity.getBlogPost("agb-immopreise-206");
 	return data;
 });
 
