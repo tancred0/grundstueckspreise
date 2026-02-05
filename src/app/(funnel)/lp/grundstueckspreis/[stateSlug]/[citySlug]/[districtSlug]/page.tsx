@@ -25,7 +25,7 @@ export async function generateMetadata(
 
 	const title = `Bodenrichtwert ${data.cityName} ${data.districtName} 2026 | Jetzt kostenlos abfragen`;
 	const description = `Aktuelle Bodenrichtwerte 2026 für ${data.cityName} ${data.districtName}. Jetzt kostenlos Grundstückswert für Ihre Adresse abfragen.`;
-	const canonicalUrl = `https://www.immobilienpreise-deutschland.com/bodenrichtwert/${stateSlug}/${citySlug}`;
+	const canonicalUrl = `https://www.immobilienpreise-2026.de/bodenrichtwert/${stateSlug}/${citySlug}`;
 
 	return {
 		title: title,

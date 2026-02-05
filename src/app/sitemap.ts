@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { Sanity } from "@/server/cms/Sanity";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const URL = "https://www.immobilienpreise-deutschland.com";
+	const URL = "https://www.immobilienpreise-2026.de";
 	const sanity = new Sanity();
 	const statePriceData = await sanity.getAllStatePriceData();
 	const cityPriceData = await sanity.getAllCityPriceData();

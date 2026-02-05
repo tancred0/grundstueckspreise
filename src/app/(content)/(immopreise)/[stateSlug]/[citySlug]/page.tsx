@@ -25,7 +25,7 @@ export async function generateMetadata(
 		title: `Immobilienpreise und Quadratmeterpreise ${data.cityName} 2026`,
 		description: data.seo.metaDescription ?? "Immobilienpreise",
 		alternates: {
-			canonical: `https://www.immobilienpreise-deutschland.com/${stateSlug}/${citySlug}`,
+			canonical: `https://www.immobilienpreise-2026.de/${stateSlug}/${citySlug}`,
 		},
 	};
 }

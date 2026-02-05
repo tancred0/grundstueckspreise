@@ -90,7 +90,7 @@ export default function PropertyTypeScreen({
 			firstPagePH = firstPageVisited;
 		} else if (firstPagePH.startsWith("https:")) {
 			firstPagePH = firstPagePH.replace(
-				"https://www.immobilienpreise-deutschland.com",
+				"https://www.immobilienpreise-2026.de",
 				"",
 			);
 		}

@@ -48,7 +48,7 @@ export default function DistrictPagePrice({
 	//   citySlug: data.citySlug.current,
 	//   rating: data.rating,
 	//   averageValue: data.avgBrw,
-	//   baseUrl: "https://www.immobilienpreise-deutschland.com",
+	//   baseUrl: "https://www.immobilienpreise-2026.de",
 	//   gutachterName: data.gutachterInfoContent ? data.gutachterInfoContent.adressName : data.gutachterInfo ? data.gutachterInfo.adressLine1 : "",
 	//   gutachterUrl: data.gutachterInfoContent ? data.gutachterInfoContent.website : data.gutachterInfo ? data.gutachterInfo.website : "",
 	//   yearRange: "2003-2026",
