@@ -47,6 +47,7 @@ export const navConfigHardcoded: NavConfigInterface = {
   showCta: {
     // Exclusion list - paths where the CTA button should NOT show
     "bewertung": null,
+    "agb": null,
     "impressum": null,
     "datenschutz": null,
   }

@@ -30,6 +30,11 @@ const P = ({ children }: ChildrenProps) => {
 	return <Typography variant="p">{children}</Typography>;
 };
 
+const H1 = ({ children }: ChildrenProps) => {
+	return <Typography variant="h1">{children}</Typography>;
+};
+
+
 const H2 = ({ children }: ChildrenProps) => {
 	return <Typography variant="h2">{children}</Typography>;
 };
@@ -460,6 +465,7 @@ export const sanityPortableTextComponents: Partial<PortableTextReactComponents> 
 	{
 		block: {
 			normal: P,
+      h1: H1,
 			h2: H2,
 			h3: H3,
 			h4: H4,

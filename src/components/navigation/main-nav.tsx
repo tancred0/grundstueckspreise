@@ -17,7 +17,7 @@ export function MainNav({
   // get current pathname in cleint mode
   const pathname = usePathname();
   const path = pathname.split("/")[1] ?? "";
-  const showFunnel = navConfig.showCta[path] ?? "bewertung";
+  const showFunnel = path in navConfig.showCta ? navConfig.showCta[path] : "bewertung";
   const hideBottomNav = navConfig.hideBottomNav.includes(path);
 
 
