@@ -30,7 +30,7 @@ export default function Faqs({
 						value={`item-${index}`}
 					>
 						<AccordionTrigger className="text-left hover:no-underline">
-							<Typography variant="h4" className="my-0 font-medium">
+							<Typography variant="h2" as="h3" className="my-0 text-2xl ">
 								{faq.question}
 							</Typography>
 						</AccordionTrigger>

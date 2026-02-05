@@ -46,7 +46,7 @@ const GeneralLinks: { sections: LinkSection[] }[] = [
 export default function Footer({ classname }: { classname?: string }) {
   return (
     <footer className={`${classname ?? "mt-10"}`}>
-      <div className="bg-primary py-4">
+      <div className="bg-primary py-1">
         <div className="main-container mx-auto">
           <div className="w-auto">
             <Link className="mr-auto" href="/">
@@ -54,6 +54,7 @@ export default function Footer({ classname }: { classname?: string }) {
                 alt="Logo Immobilienpreise Deutschland"
                 className="mr-10"
                 src={brwLogo}
+                height={64}
               />
             </Link>
           </div>

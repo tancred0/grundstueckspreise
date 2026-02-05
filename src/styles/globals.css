@@ -127,6 +127,9 @@
 	* {
 		@apply border-border outline-ring/50;
 	}
+	html {
+		scroll-behavior: smooth;
+	}
 	body {
 		@apply bg-background text-foreground;
 	}
@@ -198,5 +201,15 @@
 
 	.table-link {
 		@apply text-lg text-primary underline underline-offset-2;
+	}
+
+	/* Scroll offset for TOC anchor targets — clears sticky navbar/TOC bar */
+	section[id] {
+		scroll-margin-top: 140px;
+	}
+	@media (min-width: 768px) {
+		section[id] {
+			scroll-margin-top: 120px;
+		}
 	}
 }
