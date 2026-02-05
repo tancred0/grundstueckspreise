@@ -362,7 +362,7 @@ export default function UserInfoScreen() {
 					<StepsComponent currentStep={2} size="small" />
 				</div>
 				<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
-				<div className="mt-2 hyphens-none text-center text-base text-primary">
+				<div className="mt-2 hyphens-auto text-center text-base text-primary" lang="de">
 					Empfängerangaben für die Übermittlung der Immobilienpreisauskunft
 				</div>
 			</div>
@@ -440,7 +440,7 @@ export default function UserInfoScreen() {
 					<div className="mt-4 flex flex-col items-center md:mt-8">
 						<div className="w-full md:mb-4">
 							<ButtonRenderer
-								className="w-full"
+								className="w-full h-10 md:h-12 text-base md:text-lg"
 								disabled={isSubmitting}
 								text="Immobilienpreisauskunft erhalten"
 								type="submit"

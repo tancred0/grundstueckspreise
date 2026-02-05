@@ -66,7 +66,7 @@ export default function IntentionHorizonSellScreen() {
 
 	return (
 		<>
-			<div className="mb-6 space-y-4 md:mb-10">
+			<div className="mb-4 space-y-4 md:mb-10">
 				<StepsComponent currentStep={1} />
 				<h2 className="text-center text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 			</div>
@@ -96,7 +96,7 @@ export default function IntentionHorizonSellScreen() {
 					/>
 				))}
 			</div>
-			<div className="mt-auto pt-6">
+			<div className="mt-auto">
 				<OnlyBackNew />
 			</div>
 		</>

@@ -43,7 +43,7 @@ const getInitialChecks = (): CheckItem[] => {
 
 // Component for the header section
 const HeaderSection = ({ heading }: { heading: string }) => (
-	<div className="mb-6 space-y-4 md:mb-10">
+	<div className="mb-4 space-y-4 md:mb-10">
 		<h2 className="text-xl font-semibold text-primary md:text-2xl text-center">{heading}</h2>
 	</div>
 );

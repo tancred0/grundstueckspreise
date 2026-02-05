@@ -204,7 +204,7 @@ const FormFieldComponent: React.FC<FormFieldComponentProps> = ({
 		control={control}
 		name={name}
 		render={({ field, fieldState }) => (
-			<FormItem className="grid grid-cols-1 md:grid-cols-[1fr_3fr] md:items-center gap-1 md:gap-4 mb-2 md:mb-4">
+			<FormItem className="grid grid-cols-1 md:grid-cols-[1fr_3fr] md:items-center gap-1 md:gap-4 mb-4 md:mb-6">
 				<FormLabel
 					className="text-primary text-small md:text-base"
 					htmlFor={name}
@@ -376,7 +376,7 @@ export default function AddressScreen() {
 	const heading = "Wo befindet sich das Grundstück?";
 	return (
 		<>
-			<div className="mb-6 space-y-4 md:mb-10">
+			<div className="mb-4 space-y-4 md:mb-10">
 				<StepsComponent currentStep={1} />
 				<h2 className="text-center text-xl font-semibold text-primary md:text-2xl">{heading}</h2>
 			</div>

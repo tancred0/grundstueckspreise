@@ -22,12 +22,11 @@ const GeneralLinks: { sections: LinkSection[] }[] = [
         heading: "Immobilienpreise",
         links: [
           { name: "Immobilienpreise Deutschland", slug: "/" },
-          { name: "Immobilienpreise NRW", slug: "/nrw" },
+          { name: "Immobilienpreise Berlin", slug: "/berlin" },
         ],
       },
     ],
   },
-
   {
     sections: [
       {
@@ -41,6 +40,30 @@ const GeneralLinks: { sections: LinkSection[] }[] = [
       },
     ],
   },
+  // {
+  //   sections: [
+  //     {
+  //       heading: "Immobilienpreise",
+  //       links: [
+  //         { name: "Immobilienpreise Deutschland", slug: "/" },
+  //         { name: "Immobilienpreise NRW", slug: "/nrw" },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // {
+  //   sections: [
+  //     {
+  //       heading: "Bodenrichtwerte",
+  //       links: [
+  //         {
+  //           name: "Bodenrichtwerte Deutschland",
+  //           slug: "https://www.bodenrichtwerte-deutschland.de/",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 
 export default function Footer({ classname }: { classname?: string }) {
@@ -61,7 +84,7 @@ export default function Footer({ classname }: { classname?: string }) {
         </div>
       </div>
       <div className="py-2">
-        <div className="main-container mx-auto grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3">
+        <div className="main-container mx-auto grid grid-cols-1 xs:grid-cols-2 ">
           {GeneralLinks.map((group, groupIndex) => (
             <div className="mb-8" key={groupIndex}>
               {group.sections.map((section, sectionIndex) => (

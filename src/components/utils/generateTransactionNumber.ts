@@ -1,5 +1,5 @@
 export function generateTransactionNumber(): string {
-	const timestamp = Date.now().toString(36);
-	const randomPart = Math.random().toString(36).substring(2, 8);
-	return `TXN-${timestamp}-${randomPart}`.toUpperCase();
+  const year = new Date().getFullYear();
+  const randomNumber = (Math.floor(Math.random() * (10_000)) + 10_000).toString();
+  return `IPD-${year}-${randomNumber}`.toUpperCase();
 }
