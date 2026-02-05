@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { PortableTextRenderer } from "@/server/cms/components";
 import type { AddSection } from "@/server/cms/typesLowLevel";
 import { Typography } from "@/components/ui/typography";
-import CTA from "../general/CTA";
+import CTA from "../cta/cta-button";
 
 export default function ContentSection({
 	sectionNumber,

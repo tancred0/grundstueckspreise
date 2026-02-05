@@ -77,6 +77,7 @@ export default async function Page({ params }: PageProps) {
 		// redirect(`/${stateSlug}/${city_fixed}`);
 	}
 
+  
 	if (isDistrictData(data)) {
 		return <DistrictPagePrice data={data} />;
 	}

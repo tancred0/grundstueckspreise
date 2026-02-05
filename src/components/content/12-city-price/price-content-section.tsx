@@ -26,6 +26,8 @@ export default function PriceContentSection({
 	firstTable,
 	secondTable,
 	thirdTable,
+
+  renderBelow,
 }: {
 	sectionNumber: number;
 	introSection?: AddSection;
@@ -45,6 +47,8 @@ export default function PriceContentSection({
 	firstTable?: JSX.Element;
 	secondTable?: JSX.Element;
 	thirdTable?: JSX.Element;
+
+  renderBelow?: JSX.Element;
 }) {
 	const objectPrimary = Object.fromEntries(
 		dataPrimary.map((item) => [item.label, { ...item, type: typePrimary }]),
@@ -116,6 +120,7 @@ export default function PriceContentSection({
 				<PortableTextRenderer input={section3.text} />
 			)}
 			{thirdTable && thirdTable}
+      {renderBelow && renderBelow}
 		</section>
 	);
 }

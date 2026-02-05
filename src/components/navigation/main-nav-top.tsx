@@ -16,7 +16,7 @@ export function MainNavTop({
   
   return (
     <MainContainer
-      className={cn("flex justify-between items-center w-full py-4", className)}
+      className={cn("flex justify-between items-center w-full py-1", className)}
       {...props}
     >
       <Link href="/">
@@ -24,6 +24,7 @@ export function MainNavTop({
           className="mr-10 "
           src={brwLogo}
           alt="Logo Immobilienpreise Deutschland"
+          height={64}
         />
       </Link>
 

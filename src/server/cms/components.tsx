@@ -49,12 +49,12 @@ const Strong = ({ children }: ChildrenProps) => {
 };
 
 const BulletListItem = ({ children }: ChildrenProps) => (
-	<li className="text-xl leading-relaxed text-gray-700">{children}</li>
+	<li>{children}</li>
 );
 
 // Custom component for numbered list items
 const NumberedListItem = ({ children }: ChildrenProps) => (
-	<li className="text-xl leading-relaxed text-gray-700">{children}</li>
+	<li>{children}</li>
 );
 
 const InsideQuote = ({ children }: ChildrenProps) => (
@@ -205,20 +205,16 @@ const Table: React.FC<PortableTextTypeComponentProps<any>> = ({
 	);
 };
 
-const CheckListItem = ({ children, type, withIcon = true }: any) => {
+const CheckListItem = ({ children, type }: any) => {
 	const isPro = type === "pro";
 	return (
-		<li className={cn("ml-0 flex items-start", { "gap-3": withIcon })}>
-			{withIcon ? (
-				isPro ? (
-					<Check className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
-				) : (
-					<X className="mt-1 h-5 w-5 flex-shrink-0 text-red-600" />
-				)
+		<li className="ml-0 flex items-start gap-3">
+			{isPro ? (
+				<Check className="mt-1 h-5 w-5 shrink-0 text-green-600" />
 			) : (
-				<span className="inline-block h-5 w-5">{"•"}</span>
+				<X className="mt-1 h-5 w-5 shrink-0 text-red-600" />
 			)}
-			<span className="text-gray-700 leading-relaxed">{children}</span>
+			<span className="leading-relaxed">{children}</span>
 		</li>
 	);
 };
@@ -233,33 +229,36 @@ const ProConList: React.FC<PortableTextTypeComponentProps<any>> = ({
 			{/* Unified layout that works for both desktop and mobile */}
 			<div className="grid grid-cols-1 divide-y divide-gray-200 md:grid-cols-2 md:divide-x md:divide-y-0">
 				{/* Pros column */}
-				<div className="p-6 md:p-8">
-					<Typography variant="h4" className="md:mb-6">{value.titlePro}</Typography>
-					<ul
-						className="space-y-4"
-						style={{ listStyleType: withIcon ? "none" : "disc" }}
-					>
-						{value.pros.map((pro: string, index: number) => (
-							<CheckListItem key={index} type="pro" withIcon={withIcon}>
-								{pro}
-							</CheckListItem>
-						))}
-					</ul>
+				{/* Pros column */}
+				<div className="p-6 md:p-8 border-l-4 border-green-500 bg-white">
+					<Typography variant="h4" className="md:mb-6 text-green-700">{value.titlePro}</Typography>
+					<Typography variant="ul" className={withIcon ? "ml-0 list-none" : ""}>
+						{value.pros.map((pro: string, index: number) =>
+							withIcon ? (
+								<CheckListItem key={index} type="pro">
+									{pro}
+								</CheckListItem>
+							) : (
+								<li key={index}>{pro}</li>
+							)
+						)}
+					</Typography>
 				</div>
 
 				{/* Cons column */}
-				<div className="bg-red p-6 md:p-8">
-					<Typography variant="h4" className="md:mb-6">{value.titleCon}</Typography>
-					<ul
-						className="space-y-4"
-						style={{ listStyleType: withIcon ? "none" : "disc" }}
-					>
-						{value.cons.map((con: string, index: number) => (
-							<CheckListItem key={index} type="con" withIcon={withIcon}>
-								{con}
-							</CheckListItem>
-						))}
-					</ul>
+				<div className="p-6 md:p-8 border-l-4 border-red-500 bg-white">
+					<Typography variant="h4" className="md:mb-6 text-red-700">{value.titleCon}</Typography>
+					<Typography variant="ul" className={withIcon ? "ml-0 list-none" : ""}>
+						{value.cons.map((con: string, index: number) =>
+							withIcon ? (
+								<CheckListItem key={index} type="con">
+									{con}
+								</CheckListItem>
+							) : (
+								<li key={index}>{con}</li>
+							)
+						)}
+					</Typography>
 				</div>
 			</div>
 		</div>
@@ -310,10 +309,10 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 		case "step-by-step":
 			return (
 				<div className="my-4 rounded-2xl bg-accent p-8 pb-6">
-					<ol className="m-0 list-none space-y-8 p-0">
+					<Typography variant="ol" className="list-none">
 						{value.items.map((item: any, index: number) => (
 							<li className="ml-0 flex gap-4" key={index}>
-								<div className="mt-0.5 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-primary text-sm text-white">
+								<div className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-sm text-white">
 									{index + 1}
 								</div>
 								<div>
@@ -324,15 +323,15 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 								</div>
 							</li>
 						))}
-					</ol>
+					</Typography>
 				</div>
 			);
 		case "checkmarks":
 			return (
-				<ol className="list-none space-y-8">
+				<Typography variant="ol" className="list-none space-y-8">
 					{value.items.map((item: any, index: number) => (
 						<li className="ml-0 flex gap-4" key={index}>
-							<Check className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary" />
+							<Check className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
 							<div>
 								<Typography variant="h4" className="mt-0 font-semibold text-primary text-xl">
 									{item.heading}
@@ -341,7 +340,7 @@ const DetailedList: React.FC<PortableTextTypeComponentProps<any>> = ({
 							</div>
 						</li>
 					))}
-				</ol>
+				</Typography>
 			);
 		default: // "bullet":
 			return (
@@ -380,10 +379,10 @@ const SimpleList: React.FC<PortableTextTypeComponentProps<any>> = ({
 			);
 		case "step-by-step":
 			return (
-				<ol className="m-0 list-none space-y-8 p-0">
+				<Typography variant="ol" className="list-none">
 					{value.items.map((item: any, index: number) => (
 						<li className="ml-0 flex gap-4" key={index}>
-							<div className="mt-0.5 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-primary text-sm text-white">
+							<div className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary text-sm text-white">
 								{index + 1}
 							</div>
 							<div>
@@ -391,20 +390,20 @@ const SimpleList: React.FC<PortableTextTypeComponentProps<any>> = ({
 							</div>
 						</li>
 					))}
-				</ol>
+				</Typography>
 			);
 		case "checkmarks":
 			return (
-				<ol className="list-none">
+				<Typography variant="ol" className="list-none">
 					{value.items.map((item: any, index: number) => (
 						<li className="mb-0 ml-0 flex gap-4" key={index}>
-							<Check className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary" />
+							<Check className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
 							<div>
 								<PortableTextRenderer input={item.content} />
 							</div>
 						</li>
 					))}
-				</ol>
+				</Typography>
 			);
 		default: // "bullet":
 			return (
@@ -434,14 +433,14 @@ const Formula: React.FC<PortableTextTypeComponentProps<any>> = ({
 
 				<div className="space-y-4">
 					{value.explanation.map((item: any, index: number) => (
-						<ol className="text-lg" key={index}>
+						<Typography variant="ol" key={index}>
 							<li>
 								<span className="font-semibold text-primary">
 									{item.title}:{" "}
 								</span>
 								<span className="text-gray-700">{item.description}</span>
 							</li>
-						</ol>
+						</Typography>
 					))}
 				</div>
 

@@ -25,7 +25,6 @@ type ExcludedLeadFields =
 	| "brw_valuation"
 	| "brw_show_online"
 	| "property_location_type"
-	| "utm_term"
 	| "property_street_and_number"
 	| "property_city_input_raw"
 	| "property_address_confirmed"
@@ -269,9 +268,9 @@ export const LEAD_FIELD_MAPPING: Record<MappableLeadField, FieldMapping> = {
 	utm_campaign: {
 		salesforceField: "lead_utm_campaign__c",
 	},
-	// utm_term: {
-	//   salesforceField: "lead_utm_term__c",
-	// },
+	utm_term: {
+		salesforceField: "lead_utm_term__c",
+	},
 	utm_content: {
 		salesforceField: "lead_utm_content__c",
 	},

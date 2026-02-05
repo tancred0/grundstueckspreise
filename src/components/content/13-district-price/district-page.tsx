@@ -18,7 +18,7 @@ import {
 	TableNeighboringDistrictsApartments,
 	TableNeighboringDistrictsHouses,
 } from "../12-city-price/table-neighboring-districts";
-import CTA from "../general/CTA";
+import CTA from "../cta/cta-button";
 
 export default function DistrictPagePrice({
 	data,
