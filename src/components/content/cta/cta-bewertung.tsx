@@ -2,10 +2,10 @@ import { CTA_Big, type CTAImageType } from "./cta-big";
 
 type CTAVariant = "professional" | "speed" | "local";
 
-const ctaVariants: Record<CTAVariant, (locationName: string) => { title: string; description: string; ctaText: string, imageType: CTAImageType }> = {
-  professional: (locationName) => ({
+const ctaVariants: Record<CTAVariant, (locationName: string, cityName: string) => { title: string; description: string; ctaText: string, imageType: CTAImageType }> = {
+  professional: (locationName, cityName) => ({
     title: `Kostenlose Immobilienbewertung für ${locationName}`,
-    description: `Ermitteln Sie den aktuellen Marktwert Ihrer Immobilie in ${locationName}.`,
+    description: `Ermitteln Sie den aktuellen Marktwert Ihrer Immobilie in ${cityName}.`,
     ctaText: "Kostenlose Bewertung starten",
     imageType: "card"
   }),
@@ -15,8 +15,8 @@ const ctaVariants: Record<CTAVariant, (locationName: string) => { title: string;
     ctaText: "Jetzt Wert ermitteln",
     imageType: "phone"
   }),
-  local: (locationName) => ({
-    title: `Kostenlose Immobilienbewertung für ${locationName}`,
+  local: (locationName, cityName) => ({
+    title: `Kostenlose Immobilienbewertung für ${cityName}`,
     description: "Professionelle Marktwerteinschätzung basierend auf lokalen Vergleichsdaten.",
     ctaText: "Kostenlose Bewertung starten",
     imageType: "card"
@@ -25,16 +25,18 @@ const ctaVariants: Record<CTAVariant, (locationName: string) => { title: string;
 
 export function CTA_BewertungVariant({
   locationName,
+  cityName,
   variant,
   pageLink,
   className,
 }: {
   locationName: string;
+  cityName: string;
   variant: CTAVariant;
   pageLink?: string;
   className?: string;
 }) {
-  const { title, description, ctaText, imageType } = ctaVariants[variant](locationName);
+  const { title, description, ctaText, imageType } = ctaVariants[variant](locationName, cityName);
   return (
     <CTA_Big
       title={title}

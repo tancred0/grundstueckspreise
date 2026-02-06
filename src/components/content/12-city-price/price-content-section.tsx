@@ -3,7 +3,7 @@ import { PortableTextRenderer } from "@/server/cms/components";
 import type { PriceCityData } from "@/server/cms/types";
 import type { AddSection } from "@/server/cms/typesLowLevel";
 import type { RealEstatePrice } from "@/server/cms/typesTableData";
-import { Typography } from "@/components/ui/typography";
+import { Section, Typography } from "@/components/ui/typography";
 import { PriceChart } from "./price-chart";
 import { type CombinedPriceData, PriceChartDouble } from "./price-chart-double";
 
@@ -98,7 +98,7 @@ export default function PriceContentSection({
 	// get the average of
 
 	return (
-		<section id={`sec${sectionNumber}`}>
+		<Section id={`sec${sectionNumber}`}>
 			<Typography variant="h2">{heading}</Typography>
 			{introSection && (
 				<PortableTextRenderer className="mb-6" input={introSection.text} />
@@ -121,6 +121,6 @@ export default function PriceContentSection({
 			)}
 			{thirdTable && thirdTable}
       {renderBelow && renderBelow}
-		</section>
+		</Section>
 	);
 }

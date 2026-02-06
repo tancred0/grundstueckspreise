@@ -114,7 +114,7 @@ export default function Footer({ classname }: { classname?: string }) {
           <div className="grid grid-flow-col justify-between gap-x-10">
             <p className="mb-0 text-base">Copyright © 2026</p>
             <div className="flex flex-col gap-2 sm:flex-row">
-              <p className="mb-0 text-base">All rights reserved.</p>
+              <p className="mb-0 text-base">Alle Rechte vorbehalten.</p>
               <Link
                 className="truncate text-base text-gray-600 no-underline"
                 href="/impressum"

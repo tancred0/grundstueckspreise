@@ -20,16 +20,32 @@ import { TablePricesFactor } from "./table-price-factor";
 import { CTA_BewertungVariant } from "../cta/cta-bewertung";
 
 export default function CityPagePrice({ data }: { data: PriceCityData }) {
-  const sectionOfContent: string[] = [
-    `Wie haben sich die Immobilienpreise in ${data.cityName} entwickelt (2020-2026)?`,
-    `Wie haben sich die Hauspreise in ${data.cityName} entwickelt (2020-2026)?`,
-    `Wie haben sich die Wohnungspreise in ${data.cityName} entwickelt (2020-2026)?`,
-    `Aktuelle Grundstückspreise in ${data.cityName} 2026`,
-    `Wie haben sich die Mietpreise in ${data.cityName} entwickelt (2020-2026)?`,
-    `Immobilienpreise in benachbarten Städten in ${data.cityName} 2026 entwickelt?`,
-    `Was beeinflusst die Immobilienpreise in ${data.cityName}?`,
-    `Fragen und Antworten zu Immobilienpreisen in ${data.cityName}`,
+  // Define sections with conditional visibility
+  const isCityState = data.stateSlug === null;
+
+  const sectionDefs = [
+    { key: "intro", title: `Wie haben sich die Immobilienpreise in ${data.cityName} entwickelt (2020-2026)?`, show: true },
+    { key: "houses", title: `Wie haben sich die Hauspreise in ${data.cityName} entwickelt (2020-2026)?`, show: true },
+    { key: "apartments", title: `Wie haben sich die Wohnungspreise in ${data.cityName} entwickelt (2020-2026)?`, show: true },
+    { key: "property", title: `Aktuelle Grundstückspreise in ${data.cityName} 2026`, show: true },
+    { key: "rent", title: `Wie haben sich die Mietpreise in ${data.cityName} entwickelt (2020-2026)?`, show: true },
+    { key: "neighboring", title: `Immobilienpreise in benachbarten Städten in ${data.cityName} 2026 entwickelt?`, show: !isCityState },
+    { key: "factors", title: `Was beeinflusst die Immobilienpreise in ${data.cityName}?`, show: true },
+    { key: "faq", title: `Fragen und Antworten zu Immobilienpreisen in ${data.cityName}`, show: !!data.faqsList },
   ];
+
+  // Filter to visible sections for TOC
+  const visibleSections = sectionDefs.filter(s => s.show);
+  const sectionTitles = visibleSections.map(s => s.title);
+
+  // Helper to get section number by key (returns 0 if hidden)
+  const getSectionNumber = (key: string) => {
+    const idx = visibleSections.findIndex(s => s.key === key);
+    return idx >= 0 ? idx + 1 : 0;
+  };
+
+  // Helper to get heading by key
+  const getHeading = (key: string) => sectionDefs.find(s => s.key === key)?.title ?? "";
 
   const brwSlug =
     data.stateSlug === null
@@ -53,22 +69,22 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
     <>
       {/* <SchemaOrg schema={schema} /> */}
       <ProgressBar />
-      <MobileTocSticky headings={sectionOfContent} />
+      <MobileTocSticky headings={sectionTitles} />
       <main className="main-container mt-6 md:mt-10">
         <div className="grid grid-cols-4 gap-x-10">
           <AsideDesktop
-            headings={sectionOfContent}
+            headings={sectionTitles}
             breadcrumbs={
               <PageBreadcrumbs
                 items={
                   data.stateSlug
                     ? [
-                        { label: data.stateName, href: `/${data.stateSlug}` },
-                        { label: data.cityName },
-                      ]
+                      { label: data.stateName, href: `/${data.stateSlug}` },
+                      { label: data.cityName },
+                    ]
                     : [
-                        { label: data.cityName },
-                      ]
+                      { label: data.cityName },
+                    ]
                 }
               />
             }
@@ -82,164 +98,152 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                 locationName={data.cityName}
               />
             </Section>
-            <Section>
-              <PriceContentSection
-                dataPrimary={data.houseBuy}
-                dataSecondary={data.apartmentBuy}
-                heading={sectionOfContent[0]!}
-                introSection={data.sectionIntro}
-                legendTitlePrimary="Kaufpreis Häuser (€/m²)"
-                legendTitleSecondary="Kaufpreis Wohnungen (€/m²)"
-                primaryIsBuy={true}
-                secondaryIsBuy={true}
-                section={data.sectionBuyingMarket}
-                section2={data.sectionBuyingMarket2}
-                section3={data.sectionBuyingMarket3}
-                sectionNumber={1}
-                typePrimary="Häuser"
-                typeSecondary="Wohnungen"
-                // secondTable={
-                //   <TablePricesChange
-                //     houseRentData={data.apartmentBuy}
-                //     type="buy"
-                //   />
-                // }
-                // section3={data.sectionBuyingMarket3}
-                // thirdTable={
-                //   <TablePricesRatio
-                //     houseBuyData={data.houseBuy}
-                //     apartmentBuyData={data.apartmentBuy}
-                //   />
-                // }
-                renderBelow={
-                  <CTA_BewertungVariant locationName={data.cityName} variant="professional" className="mt-6" />
-                }
-              />
-
-            </Section>
-            <Section>
-              <PriceContentSection
-                dataPrimary={data.houseBuy}
-                dataSecondary={data.houseRent}
-                firstTable={
-                  <>
-                    <Typography variant="h4" className="mb-0">
-                      Durchschnittspreise für Häuser pro Jahr
-                    </Typography>
-                    <TablePricesFactor
-                      houseBuyData={data.houseBuy}
-                      houseRentData={data.houseRent}
-                    />
-                  </>
-                }
-                heading={sectionOfContent[1]!}
-                legendTitlePrimary="Kaufpreis Häuser (€/m²)"
-                legendTitleSecondary="Mietpreis Häuser (€/m²)"
-                primaryIsBuy={true}
-                secondaryIsBuy={false}
-                secondTable={
-                  [
-                    "subdistricts",
-                    "districts_onpage",
-                    "districts_newpage",
-                  ].includes(data.cityType) ? (
-                    <TableNeighboringDistrictsHouses
-                      neighboringCitiesData={data.districts}
-                      sortByDistance={false}
-                      withLink={["districts_newpage", "subdistricts"].includes(
-                        data.cityType,
-                      )}
-                    />
-                  ) : undefined
-                }
-                section={data.sectionHousePrices}
-                section2={data.sectionHousePrices2}
-                sectionNumber={2}
-                typePrimary="Kaufen"
-                typeSecondary="Mieten"
-              />
-            </Section>
-            <Section>
-              <PriceContentSection
-                dataPrimary={data.apartmentBuy}
-                dataSecondary={data.apartmentRent}
-                firstTable={
-                  <>
-                    <Typography variant="h4" className="mb-0">
-                      Durchschnittspreise für Wohnungen pro Jahr
-                    </Typography>
-                    <TablePricesFactor
-                      houseBuyData={data.apartmentBuy}
-                      houseRentData={data.apartmentRent}
-                    />
-                  </>
-                }
-                heading={sectionOfContent[2]!}
-                legendTitlePrimary="Kaufpreis Wohnungen (€/m²)"
-                legendTitleSecondary="Mietpreis Wohnungen (€/m²)"
-                primaryIsBuy={true}
-                secondaryIsBuy={false}
-                secondTable={
-                  [
-                    "subdistricts",
-                    "districts_onpage",
-                    "districts_newpage",
-                  ].includes(data.cityType) ? (
-                    <TableNeighboringDistrictsApartments
-                      neighboringCitiesData={data.districts}
-                      sortByDistance={false}
-                      withLink={["districts_newpage", "subdistricts"].includes(
-                        data.cityType,
-                      )}
-                    />
-                  ) : undefined
-                }
-                section={data.sectionApartmentPrices}
-                section2={data.sectionApartmentPrices2}
-                sectionNumber={3}
-                typePrimary="Kaufen"
-                typeSecondary="Mieten"
-                renderBelow={
-                  <CTA_BewertungVariant locationName={data.cityName} variant="speed" className="mt-6" />
-                }
-              />
-            </Section>
-            <Section>
-              <ContentSection
-                heading={sectionOfContent[3]!}
-                section={data.sectionPropertyPrices}
-                sectionNumber={4}
-              />
-            </Section>
-            <Section>
-              <PriceContentSection
-                dataPrimary={data.houseRent}
-                dataSecondary={data.apartmentRent}
-                firstTable={
-                  <TablePricesChange houseRentData={data.houseRent} type="rent" />
-                }
-                heading={sectionOfContent[4]!}
-                legendTitlePrimary="Mietpreis Häuser (€/m²)"
-                legendTitleSecondary="Mietpreis Wohnungen (€/m²)"
-                primaryIsBuy={false}
-                secondaryIsBuy={false}
-                secondTable={
-                  <TablePricesChange
-                    houseRentData={data.apartmentRent}
-                    type="rent"
+            <PriceContentSection
+              dataPrimary={data.houseBuy}
+              dataSecondary={data.apartmentBuy}
+              heading={getHeading("intro")}
+              introSection={data.sectionIntro}
+              legendTitlePrimary="Kaufpreis Häuser (€/m²)"
+              legendTitleSecondary="Kaufpreis Wohnungen (€/m²)"
+              primaryIsBuy={true}
+              secondaryIsBuy={true}
+              section={data.sectionBuyingMarket}
+              section2={data.sectionBuyingMarket2}
+              section3={data.sectionBuyingMarket3}
+              sectionNumber={getSectionNumber("intro")}
+              typePrimary="Häuser"
+              typeSecondary="Wohnungen"
+              // secondTable={
+              //   <TablePricesChange
+              //     houseRentData={data.apartmentBuy}
+              //     type="buy"
+              //   />
+              // }
+              // section3={data.sectionBuyingMarket3}
+              // thirdTable={
+              //   <TablePricesRatio
+              //     houseBuyData={data.houseBuy}
+              //     apartmentBuyData={data.apartmentBuy}
+              //   />
+              // }
+              renderBelow={
+                <CTA_BewertungVariant locationName={data.cityName} cityName={data.cityName} variant="professional" className="mt-6" />
+              }
+            />
+            <PriceContentSection
+              dataPrimary={data.houseBuy}
+              dataSecondary={data.houseRent}
+              firstTable={
+                <>
+                  <Typography variant="h4" className="mb-0">
+                    Durchschnittspreise für Häuser pro Jahr
+                  </Typography>
+                  <TablePricesFactor
+                    houseBuyData={data.houseBuy}
+                    houseRentData={data.houseRent}
                   />
-                }
-                section={data.sectionRentingMarket}
-                section2={data.sectionRentingMarket2}
-                sectionNumber={5}
-                typePrimary="Häuser"
-                typeSecondary="Wohnungen"
-              />
-            </Section>
-            {/*
-            <Section>
-               <PriceNeighboringCities
-                heading={sectionOfContent[5]!}
+                </>
+              }
+              heading={getHeading("houses")}
+              legendTitlePrimary="Kaufpreis Häuser (€/m²)"
+              legendTitleSecondary="Mietpreis Häuser (€/m²)"
+              primaryIsBuy={true}
+              secondaryIsBuy={false}
+              secondTable={
+                [
+                  "subdistricts",
+                  "districts_onpage",
+                  "districts_newpage",
+                ].includes(data.cityType) ? (
+                  <TableNeighboringDistrictsHouses
+                    neighboringCitiesData={data.districts}
+                    sortByDistance={false}
+                    withLink={["districts_newpage", "subdistricts"].includes(
+                      data.cityType,
+                    )}
+                  />
+                ) : undefined
+              }
+              section={data.sectionHousePrices}
+              section2={data.sectionHousePrices2}
+              sectionNumber={getSectionNumber("houses")}
+              typePrimary="Kaufen"
+              typeSecondary="Mieten"
+            />
+            <PriceContentSection
+              dataPrimary={data.apartmentBuy}
+              dataSecondary={data.apartmentRent}
+              firstTable={
+                <>
+                  <Typography variant="h4" className="mb-0">
+                    Durchschnittspreise für Wohnungen pro Jahr
+                  </Typography>
+                  <TablePricesFactor
+                    houseBuyData={data.apartmentBuy}
+                    houseRentData={data.apartmentRent}
+                  />
+                </>
+              }
+              heading={getHeading("apartments")}
+              legendTitlePrimary="Kaufpreis Wohnungen (€/m²)"
+              legendTitleSecondary="Mietpreis Wohnungen (€/m²)"
+              primaryIsBuy={true}
+              secondaryIsBuy={false}
+              secondTable={
+                [
+                  "subdistricts",
+                  "districts_onpage",
+                  "districts_newpage",
+                ].includes(data.cityType) ? (
+                  <TableNeighboringDistrictsApartments
+                    neighboringCitiesData={data.districts}
+                    sortByDistance={false}
+                    withLink={["districts_newpage", "subdistricts"].includes(
+                      data.cityType,
+                    )}
+                  />
+                ) : undefined
+              }
+              section={data.sectionApartmentPrices}
+              section2={data.sectionApartmentPrices2}
+              sectionNumber={getSectionNumber("apartments")}
+              typePrimary="Kaufen"
+              typeSecondary="Mieten"
+              renderBelow={
+                <CTA_BewertungVariant locationName={data.cityName} cityName={data.cityName} variant="speed" className="mt-6" />
+              }
+            />
+            <ContentSection
+              heading={getHeading("property")}
+              section={data.sectionPropertyPrices}
+              sectionNumber={getSectionNumber("property")}
+            />
+            <PriceContentSection
+              dataPrimary={data.houseRent}
+              dataSecondary={data.apartmentRent}
+              firstTable={
+                <TablePricesChange houseRentData={data.houseRent} type="rent" />
+              }
+              heading={getHeading("rent")}
+              legendTitlePrimary="Mietpreis Häuser (€/m²)"
+              legendTitleSecondary="Mietpreis Wohnungen (€/m²)"
+              primaryIsBuy={false}
+              secondaryIsBuy={false}
+              secondTable={
+                <TablePricesChange
+                  houseRentData={data.apartmentRent}
+                  type="rent"
+                />
+              }
+              section={data.sectionRentingMarket}
+              section2={data.sectionRentingMarket2}
+              sectionNumber={getSectionNumber("rent")}
+              typePrimary="Häuser"
+              typeSecondary="Wohnungen"
+            />
+            {getSectionNumber("neighboring") > 0 && (
+              <PriceNeighboringCities
+                heading={getHeading("neighboring")}
                 neighboringCitiesData={data.neighboringCities}
                 sectionNeighboringCityBuyPrices={
                   data.sectionNeighboringCityBuyPrices
@@ -247,28 +251,23 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                 sectionNeighboringCityRentPrices={
                   data.sectionNeighboringCityRentPrices
                 }
-                sectionNumber={6}
+                sectionNumber={getSectionNumber("neighboring")}
                 renderBelow={
-                  <CTA_BewertungVariant locationName={data.cityName} variant="local" className="mt-6" />
+                  <CTA_BewertungVariant locationName={data.cityName} cityName={data.cityName} variant="local" className="mt-6" />
                 }
-              /> 
-            </Section>
-            */}
-            <Section>
-              <ContentSection
-                heading={sectionOfContent[6]!}
-                section={data.sectionDrivingFactors}
-                sectionNumber={7}
               />
-            </Section>
-            {data.faqsList && (
-              <Section>
-                <Faqs
-                  faqs={data.faqsList}
-                  heading={sectionOfContent[7]!}
-                  sectionNumber={8}
-                />
-              </Section>
+            )}
+            <ContentSection
+              heading={getHeading("factors")}
+              section={data.sectionDrivingFactors}
+              sectionNumber={getSectionNumber("factors")}
+            />
+            {getSectionNumber("faq") > 0 && (
+              <Faqs
+                faqs={data.faqsList!}
+                heading={getHeading("faq")}
+                sectionNumber={getSectionNumber("faq")}
+              />
             )}
           </div>
         </div>

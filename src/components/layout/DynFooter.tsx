@@ -70,7 +70,7 @@ export default function DynFooter({
 							Copyright © {new Date().getFullYear()}
 						</p>
 						<div className="flex gap-2">
-							<p className="mb-0 text-base">All rights reserved.</p>
+							<p className="mb-0 text-base">Alle Rechte vorbehalten.</p>
 							<Link
 								className="text-base text-gray-600 no-underline"
 								href="/impressum"

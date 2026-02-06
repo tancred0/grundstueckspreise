@@ -473,6 +473,18 @@ export const sanityPortableTextComponents: Partial<PortableTextReactComponents> 
 			blockquote: BlockQuote,
 			insidequote: InsideQuote,
 		},
+		marks: {
+			link: ({ children, value }: any) => (
+				<Link
+					href={value?.href || "#"}
+					className="font-medium text-primary underline underline-offset-2"
+					target={value?.href?.startsWith("http") ? "_blank" : undefined}
+					rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+				>
+					{children}
+				</Link>
+			),
+		},
 		list: {
 			bullet: ({ children }: ChildrenProps) => (
 				<Typography variant="ul">{children}</Typography>

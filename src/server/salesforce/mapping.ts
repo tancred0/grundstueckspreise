@@ -235,7 +235,7 @@ export const LEAD_FIELD_MAPPING: Record<MappableLeadField, FieldMapping> = {
 
 	// User information
 	user_phone: {
-		salesforceField: "Phone",
+		salesforceField: "MobilePhone",
 	},
 	user_salutation: {
 		salesforceField: "gender__c",

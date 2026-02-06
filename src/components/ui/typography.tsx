@@ -17,8 +17,8 @@ type TypographyVariant =
 type HTMLElementTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "small" | "ul" | "ol";
 
 const variantStyles: Record<TypographyVariant, string> = {
-	h1: "scroll-mt-20 text-4xl font-semibold tracking-tight lg:text-5xl md:mb-6",
-	h2: "scroll-mt-20 text-3xl font-semibold tracking-tight my-4",
+	h1: "scroll-mt-20 text-4xl font-semibold tracking-tight md:lg:text-5xl md:leading-[1.2]",
+	h2: "scroll-mt-20 text-3xl font-semibold tracking-tight my-4 md:leading-[1.25]",
 	h3: "scroll-mt-20 text-[28px] font-semibold tracking-tight my-3",
 	h4: "scroll-mt-20 text-2xl font-semibold tracking-tight my-2",
 	p: "text-xl leading-relaxed text-gray-700 [&:not(:first-child)]:mt-4",

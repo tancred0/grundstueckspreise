@@ -1,5 +1,5 @@
 import { PortableTextRenderer } from "@/server/cms/components";
-import { Typography } from "@/components/ui/typography";
+import { Section, Typography } from "@/components/ui/typography";
 import type { PriceCityData } from "@/server/cms/types";
 import type { AddSection } from "@/server/cms/typesLowLevel";
 import type {
@@ -35,7 +35,7 @@ export default function PriceNeighboringCities({
   );
 
   return (
-    <section id={`sec${sectionNumber}`}>
+    <Section id={`sec${sectionNumber}`}>
       <Typography variant="h2">{heading}</Typography>
       {sectionNeighboringCityBuyPrices.text && (
         <PortableTextRenderer input={sectionNeighboringCityBuyPrices.text} />
@@ -50,6 +50,6 @@ export default function PriceNeighboringCities({
         neighboringCitiesData={tenClosestCities}
       />
       {renderBelow && renderBelow}
-    </section>
+    </Section>
   );
 }

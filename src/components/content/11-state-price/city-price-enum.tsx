@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LuArrowDownRight, LuArrowUpRight } from "react-icons/lu";
-import { Typography } from "@/components/ui/typography";
+import { Section, Typography } from "@/components/ui/typography";
 import { PortableTextRenderer } from "@/server/cms/components";
 import type { DistrictEnum, PriceCityData } from "@/server/cms/types";
 import type { AddSection, BlockContent } from "@/server/cms/typesLowLevel";
@@ -62,7 +62,7 @@ export default function CityPriceEnum({
 	);
 
 	return (
-		<section id={`sec${sectionNumber}`}>
+		<Section id={`sec${sectionNumber}`}>
 			<Typography variant="h2">{heading}</Typography>
 			{section && <PortableTextRenderer input={section.text} />}
 			<Typography variant="h3">Kreisfreie Städte</Typography>
@@ -75,7 +75,7 @@ export default function CityPriceEnum({
 						<CityKreistable cities={cities} currentSlug={currentSlug} />
 					</div>
 				))}
-		</section>
+		</Section>
 	);
 }
 

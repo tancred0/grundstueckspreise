@@ -35,7 +35,7 @@ export default function FooterLight({ className }: { className?: string }) {
 
 					<div className="text-center text-white md:text-left">
 						<span className="text-sm md:text-base">
-							Copyright © {new Date().getFullYear()} - All rights reserved.
+							Copyright © {new Date().getFullYear()} - Alle Rechte vorbehalten.
 						</span>
 					</div>
 
