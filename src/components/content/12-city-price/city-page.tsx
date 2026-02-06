@@ -127,7 +127,12 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
               //   />
               // }
               renderBelow={
-                <CTA_BewertungVariant locationName={data.cityName} cityName={data.cityName} variant="professional" className="mt-6" />
+                <CTA_BewertungVariant 
+                locationName={data.cityName} 
+                cityName={data.cityName}
+                 variant="professional" 
+                 className="mt-6" 
+                 />
               }
             />
             <PriceContentSection
@@ -161,6 +166,7 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                     withLink={["districts_newpage", "subdistricts"].includes(
                       data.cityType,
                     )}
+                    groupByBezirk={isCityState}
                   />
                 ) : undefined
               }
@@ -201,6 +207,7 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                     withLink={["districts_newpage", "subdistricts"].includes(
                       data.cityType,
                     )}
+                    groupByBezirk={isCityState}
                   />
                 ) : undefined
               }

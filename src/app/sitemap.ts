@@ -9,15 +9,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const districtPriceData = await sanity.getAllDistrictPriceData();
 
 	const date = new Date();
-	const statePriceEnum: MetadataRoute.Sitemap = statePriceData
-		.filter((state) => state.stateSlug.current !== "nrw")
-		.map((state) => ({
-			url: `${URL}/${state.stateSlug.current}`,
-			lastModified: date,
-		}));
+	// const statePriceEnum: MetadataRoute.Sitemap = statePriceData
+	// 	.filter((state) => state.stateSlug.current !== "nrw")
+	// 	.map((state) => ({
+	// 		url: `${URL}/${state.stateSlug.current}`,
+	// 		lastModified: date,
+	// 	}));
 
 	const cityPriceEnum: MetadataRoute.Sitemap = cityPriceData
-		.filter((city) => city.stateSlug !== "nrw")
+		.filter((city) => city.citySlug.current === "berlin")
 		.map((city) => ({
 			url:
 				city.stateSlug === null
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}));
 
 	const districtPriceEnum: MetadataRoute.Sitemap = districtPriceData
-		.filter((district) => district.stateSlug !== "nrw")
+		.filter((district) => district.citySlug === "berlin")
 		.map((district) => ({
 			url:
 				district.stateSlug === null
@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	return [
 		...mainPages,
-		...statePriceEnum,
+		// ...statePriceEnum,
 		...cityPriceEnum,
 		...districtPriceEnum,
 	];

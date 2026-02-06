@@ -160,4 +160,5 @@ export interface NeighboringDistrictPrices extends NeighboringPrices {
 	district: string;
 	slug: string;
 	full_slug: string;
+  bezirk: string;
 }
