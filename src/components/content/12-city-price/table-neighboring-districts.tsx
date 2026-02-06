@@ -33,10 +33,20 @@ export function TableNeighboringDistrictsHouses({
 				)}
 			</td>
 			<td className="td whitespace-nowrap">
-				{Math.round(city.house_buy_avg).toLocaleString("de-DE")} €/m²
+				{isNaN(city.house_buy_avg) ? (
+					<>–</>
+				) : (
+					<>
+						{Math.round(city.house_buy_avg).toLocaleString("de-DE")} €/m²
+					</>
+				)}
 			</td>
 			<td className="td whitespace-nowrap">
-				<PercentageChange value={city.house_buy_change_last_year} />
+				{isNaN(city.house_buy_change_last_year) ? (
+					<>–</>
+				) : (
+					<PercentageChange value={city.house_buy_change_last_year} />
+				)}
 			</td>
 			{colType === "buyrent" && (
 				<>

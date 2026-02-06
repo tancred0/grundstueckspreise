@@ -60,10 +60,16 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
             headings={sectionOfContent}
             breadcrumbs={
               <PageBreadcrumbs
-                items={[
-                  { label: data.stateName, href: `/${data.stateSlug}` },
-                  { label: data.cityName },
-                ]}
+                items={
+                  data.stateSlug
+                    ? [
+                        { label: data.stateName, href: `/${data.stateSlug}` },
+                        { label: data.cityName },
+                      ]
+                    : [
+                        { label: data.cityName },
+                      ]
+                }
               />
             }
           />
@@ -230,8 +236,9 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                 typeSecondary="Wohnungen"
               />
             </Section>
+            {/*
             <Section>
-              <PriceNeighboringCities
+               <PriceNeighboringCities
                 heading={sectionOfContent[5]!}
                 neighboringCitiesData={data.neighboringCities}
                 sectionNeighboringCityBuyPrices={
@@ -244,8 +251,9 @@ export default function CityPagePrice({ data }: { data: PriceCityData }) {
                 renderBelow={
                   <CTA_BewertungVariant locationName={data.cityName} variant="local" className="mt-6" />
                 }
-              />
+              /> 
             </Section>
+            */}
             <Section>
               <ContentSection
                 heading={sectionOfContent[6]!}

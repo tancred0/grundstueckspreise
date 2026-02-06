@@ -1,9 +1,11 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
 import DistrictPagePrice from "@/components/content/13-district-price/district-page";
 import { Sanity } from "@/server/cms/Sanity";
 import { isDistrictData } from "@/server/cms/typeGuards";
+
+const CITY_STATES = ["berlin", "hamburg"];
 
 type PageProps = {
 	params: Promise<{
@@ -25,7 +27,16 @@ export async function generateMetadata(
 	_parent: ResolvingMetadata,
 ): Promise<Metadata> {
 	const { stateSlug, citySlug, districtSlug } = await params;
+
+	if (CITY_STATES.includes(stateSlug)) {
+		notFound();
+	}
+
 	const data = await fetchData(stateSlug, citySlug, districtSlug);
+
+	if (!data) {
+		return { title: "Immobilienpreise" };
+	}
 
 	return {
 		title: `Immobilienpreise und Quadratmeterpreise ${data.cityName}-${data.districtName} 2026`,
@@ -38,6 +49,11 @@ export async function generateMetadata(
 
 export default async function Page({ params }: PageProps) {
 	const { stateSlug, citySlug, districtSlug } = await params;
+
+	if (CITY_STATES.includes(stateSlug)) {
+		notFound();
+	}
+
 	const data = await fetchData(stateSlug, citySlug, districtSlug);
 
 	if (data === null) {

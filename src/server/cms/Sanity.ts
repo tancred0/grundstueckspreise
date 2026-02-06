@@ -599,7 +599,7 @@ export class Sanity {
 	};
 
 	getPriceCityData = async (
-		stateSlug: string,
+		stateSlug: string | null,
 		citySlug: string,
 	): Promise<PriceCityData> => {
 		const data: PriceCityData = await this.client.fetch(
@@ -645,7 +645,7 @@ export class Sanity {
 	};
 
 	getPriceDistrictData = async (
-		stateSlug: string,
+		stateSlug: string | null,
 		citySlug: string,
 		districtSlug: string,
 	): Promise<PriceDistrictData> => {

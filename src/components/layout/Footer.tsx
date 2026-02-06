@@ -84,7 +84,7 @@ export default function Footer({ classname }: { classname?: string }) {
         </div>
       </div>
       <div className="py-2">
-        <div className="main-container mx-auto grid grid-cols-1 xs:grid-cols-2 ">
+        <div className="main-container mx-auto grid grid-cols-1 sm:grid-cols-2">
           {GeneralLinks.map((group, groupIndex) => (
             <div className="mb-8" key={groupIndex}>
               {group.sections.map((section, sectionIndex) => (
