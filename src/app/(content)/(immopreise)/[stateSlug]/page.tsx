@@ -9,7 +9,13 @@ type PageProps = {
 	params: Promise<{ stateSlug: string }>;
 };
 
-const CITY_STATES = ["berlin", "hamburg"];
+export const revalidate = 604800; // 1 week
+
+const CITY_STATES = ["berlin"]; // TODO: add "hamburg" back
+
+export async function generateStaticParams() {
+	return CITY_STATES.map((stateSlug) => ({ stateSlug }));
+}
 
 const fetchData = cache(async (stateSlug: string) => {
 	const sanity = new Sanity();

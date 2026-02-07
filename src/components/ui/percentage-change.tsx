@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface PercentageChangeProps {
-	value: number; // value can be undefined
+	value: number | undefined | null;
 	className?: string;
 }
 
@@ -9,7 +9,10 @@ export function PercentageChange({
 	value,
 	className,
 }: PercentageChangeProps) {
-	
+	if (value == null) {
+		return <span className={cn("font-medium text-muted-foreground", className)}>–</span>;
+	}
+
 	const isPositive = value > 0;
 	const isNegative = value < 0;
 

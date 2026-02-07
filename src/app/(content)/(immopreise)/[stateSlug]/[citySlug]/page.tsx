@@ -11,7 +11,22 @@ type PageProps = {
 	params: Promise<{ stateSlug: string; citySlug: string }>;
 };
 
-const CITY_STATES = ["berlin", "hamburg"];
+export const revalidate = 604800; // 1 week
+
+const CITY_STATES = ["berlin"]; // TODO: add "hamburg" back
+
+export async function generateStaticParams() {
+	const sanity = new Sanity();
+	const allDistricts = await sanity.getAllDistrictPriceData();
+
+	// For city-states (Berlin, Hamburg), the citySlug is actually a districtSlug
+	return allDistricts
+		.filter((d) => CITY_STATES.includes(d.stateSlug))
+		.map((d) => ({
+			stateSlug: d.stateSlug,
+			citySlug: d.districtSlug,
+		}));
+}
 
 const fetchData = cache(async (stateSlug: string, citySlug: string) => {
 	const sanity = new Sanity();

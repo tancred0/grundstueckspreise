@@ -5,6 +5,8 @@ import DistrictPagePrice from "@/components/content/13-district-price/district-p
 import { Sanity } from "@/server/cms/Sanity";
 import { isDistrictData } from "@/server/cms/typeGuards";
 
+export const revalidate = 604800; // 1 week
+
 const CITY_STATES = ["berlin", "hamburg"];
 
 type PageProps = {
