@@ -142,7 +142,7 @@ export default function PropertyTypeScreen({
 		<div className="flex flex-col items-center p-2 md:p-4">
 			{/* Header */}
 			<div className="mb-8 w-full max-w-3xl space-y-3 text-center ">
-				<h2 className="text-2xl font-bold text-primary md:text-3xl">{heading}</h2>
+				<div className="text-2xl font-bold text-primary md:text-3xl">{heading}</div>
 				<p className="text-base text-muted-foreground md:text-lg">{description}</p>
 			</div>
 
