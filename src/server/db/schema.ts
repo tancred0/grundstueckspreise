@@ -56,7 +56,7 @@ export const leads = leadsSchema.table('leads', {
 
   // BRW-specific fields
   brw_value: doublePrecision('brw_value'),
-  brw_valuation: integer('brw_valuation'),
+  brw_valuation: doublePrecision('brw_valuation'),
   brw_gfz: varchar('brw_gfz', { length: 8 }),
   brw_grz: varchar('brw_grz', { length: 8 }),
   brw_gez: varchar('brw_gez', { length: 8 }),
