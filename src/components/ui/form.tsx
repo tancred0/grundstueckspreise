@@ -123,7 +123,7 @@ function FormLabel({
 	);
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {
+function FormControl({ className, ...props }: React.ComponentProps<typeof Slot.Root>) {
 	const { error, formItemId, formDescriptionId, formMessageId } =
 		useFormField();
 
@@ -135,6 +135,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {
 					: `${formDescriptionId} ${formMessageId}`
 			}
 			aria-invalid={!!error}
+			className={cn("text-black placeholder:text-gray-700", className)}
 			data-slot="form-control"
 			id={formItemId}
 			{...props}
