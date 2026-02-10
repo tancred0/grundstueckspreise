@@ -135,7 +135,7 @@ function FormControl({ className, ...props }: React.ComponentProps<typeof Slot.R
 					: `${formDescriptionId} ${formMessageId}`
 			}
 			aria-invalid={!!error}
-			className={cn("text-black placeholder:text-gray-700", className)}
+			className={cn("text-black placeholder:text-gray-400", className)}
 			data-slot="form-control"
 			id={formItemId}
 			{...props}
