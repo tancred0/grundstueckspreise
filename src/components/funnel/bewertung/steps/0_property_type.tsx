@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import useRudderStackAnalytics from "@/app/useRudderAnalytics";
 import { Trust } from "@/components/funnel/trust";
-import { sendGAEvent } from "@/components/utils/analytics";
+// import { sendGAEvent } from "@/components/utils/analytics";
 import { generateTransactionNumber } from "@/components/utils/generateTransactionNumber";
 import getGAUserId from "@/components/utils/getGAUserId";
 import iconLong from "@/images/general/logo_wide_black_font.svg";
@@ -33,16 +33,16 @@ export default function PropertyTypeScreen({
 	const utmUrl = usePathname();
 
 	useEffect(() => {
-		// Only fetch the URL values after a delay
-		const timer = setTimeout(() => {
-			setStateUrl(storage.get("stateUrl"));
-			setCityUrl(storage.get("cityUrl"));
-			setDistrictUrl(storage.get("districtUrl"));
-			setFirstPageVisited(storage.get("firstPageVisited"));
-		}, 100);
+    // Only fetch the URL values after a delay
+    const timer = setTimeout(() => {
+      setStateUrl(storage.get("stateUrl"));
+      setCityUrl(storage.get("cityUrl"));
+      setDistrictUrl(storage.get("districtUrl"));
+      setFirstPageVisited(storage.get("firstPageVisited"));
+    }, 100);
 
-		return () => clearTimeout(timer);
-	}, []);
+    return () => clearTimeout(timer);
+  }, []);
 
 	// const utmParams = getUTMParameters();
 	// console.log(utmParams);
@@ -81,19 +81,8 @@ export default function PropertyTypeScreen({
 	];
 
 	const handleSubmit = (item: DataArrayItem) => {
-		const phc = storage.getJSON(
-			"ph_phc_Xte7Ml9fMfnb4CTYTcANcd8RWdw1cc4zSh28mX1pBVM_posthog",
-		);
-		// @ts-expect-error
-		let firstPagePH = phc?.$client_session_props?.props?.u;
-		if (firstPagePH === undefined) {
-			firstPagePH = firstPageVisited;
-		} else if (firstPagePH.startsWith("https:")) {
-			firstPagePH = firstPagePH.replace(
-				"https://www.immobilienpreise-2026.de",
-				"",
-			);
-		}
+		// Fallback to current pathname if FirstPageTracker hasn't set the value yet (race condition)
+    const firstPage = firstPageVisited ?? utmUrl;
 
 		const trackingData = {
 			...data.data,
@@ -105,7 +94,7 @@ export default function PropertyTypeScreen({
 			track_url_state: stateUrl !== "" ? stateUrl : null,
 			track_url_city: cityUrl !== "" ? cityUrl : null,
 			track_url_district: districtUrl !== "" ? districtUrl : null,
-			track_page_first_visit: firstPagePH,
+			track_page_first_visit: firstPage,
 			track_funnel_started_at: new Date(),
 			property_city: cityName ?? null,
 			int_process_number: generateTransactionNumber(),
@@ -130,10 +119,10 @@ export default function PropertyTypeScreen({
 			},
 		});
 
-		sendGAEvent({
-			action: "BRW | Funnel Started",
-			data: trackingData,
-		});
+		// sendGAEvent({
+		// 	action: "BRW | Funnel Started",
+		// 	data: trackingData,
+		// });
 
 		goToScreen(item.nextScreen);
 	};
@@ -161,7 +150,6 @@ export default function PropertyTypeScreen({
 				))}
 			</div>
 
-			{/* Logo */}
 			<div className="mb-6">
 				<Image
 					alt="Immobilienpreise Deutschland"

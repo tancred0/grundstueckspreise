@@ -59,6 +59,12 @@ export default function IntentionHorizonSellScreen() {
 		analytics?.track("Funnel Sell Horizon Submitted", {
 			...data.data,
 			intention_horizon_sell: item.value,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 
 		goToScreen(item.nextScreen);

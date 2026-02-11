@@ -58,6 +58,12 @@ export default function IntentionHorizonBuyScreen() {
 		analytics?.track("Funnel Buy Horizon Submitted", {
 			...data.data,
 			intention_horizon_buy: item.value,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 
 		goToScreen(item.nextScreen);

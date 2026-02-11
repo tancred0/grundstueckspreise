@@ -48,6 +48,12 @@ export default function PropertyConditionScreen() {
 		analytics?.track("Funnel Property Condition Submitted", {
 			...data.data,
 			property_condition: item.value,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 
 		goToScreen(item.nextScreen);

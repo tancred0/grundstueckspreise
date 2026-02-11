@@ -43,6 +43,12 @@ export default function PlotAreaScreen() {
 		analytics?.track("Funnel Plot Area Submitted", {
 			...data.data,
 			property_plot_area: flaeche[0],
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 
 		// goToScreen(6);

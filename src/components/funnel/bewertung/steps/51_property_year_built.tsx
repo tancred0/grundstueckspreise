@@ -48,6 +48,12 @@ export default function YearBuiltScreen() {
 		analytics?.track("Funnel Property Year Built Submitted", {
 			...data.data,
 			property_year_built: clampedValue,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 
 		// goToScreen(91);

@@ -3,14 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle, FileText, Lock } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import Link from "next/link";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { type Control, useForm } from "react-hook-form";
 import { z } from "zod";
 import useRudderStackAnalytics from "@/app/useRudderAnalytics";
+import { AgbText, CONSENT_CONFIG, computeConsentHash } from '@/config/consent-versions';
 import ButtonRenderer from "@/components/ui/ButtonRenderer";
-import { Checkbox } from "@/components/ui/checkbox";
+// import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Form,
 	FormControl,
@@ -21,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { sendGAEvent } from "@/components/utils/analytics";
+// import { sendGAEvent } from "@/components/utils/analytics";
 import capitalizeWords from "@/components/utils/capitalizeWords";
 import verifyPhoneNumberGoogle from "@/components/utils/phoneNumber/verifyPhoneNumberGoogle";
 import iconLong from "@/images/general/logo_wide_black_font.svg";
@@ -55,19 +56,12 @@ const schema = z.object({
 		.refine((value) => value.replace(/[\s+\-\d]/g, "").length === 0, {
 			message: 'Telefonnummer darf nur aus den Zahlen 0-9 und "+" bestehen',
 		}),
-	// Then validate the phone number format
-	// .refine(validatePhoneNumber, {
-	//   message: "Ungültige Telefonnummer",
-	// }),
-	terms: z
-		.boolean()
-		.refine((val) => val === true, "Bitte stimmen Sie den AGB zu."),
 });
 
 type FormData = z.infer<typeof schema>;
 
 interface FormFieldComponentProps {
-	name: Exclude<keyof FormData, "user_salutation" | "terms">;
+	name: Exclude<keyof FormData, "user_salutation">;
 	label: React.ReactNode;
 	placeholder: string;
 	control: Control<FormData>;
@@ -169,8 +163,6 @@ export default function UserInfoScreen() {
 	const [hasTracked, setHasTracked] = useState(false);
 	const [phoneError, setPhoneError] = useState<string | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [termsError, setTermsError] = useState(false);
-	const router = useRouter();
 
 	useEffect(() => {
 		if (!hasTracked && data && data.data && analytics) {
@@ -182,40 +174,9 @@ export default function UserInfoScreen() {
 				},
 			});
 
-			sendGAEvent({
-				action: "BRW | Funnel Contact Page Viewed",
-				data: {
-					...data.data,
-				},
-			});
-
 			setHasTracked(true);
 		}
 	}, [data, analytics]);
-
-	const agbCondition = data.data.int_broker_coverage_active;
-	const agbText = agbCondition ? (
-		<p className="mb-0 text-gray-600 text-xs">
-			Es gelten unsere{" "}
-			<Link className="text-xs" href="/agb" target="_blank">
-				Allgemeinen Geschäftsbedingungen
-			</Link>
-			.
-		</p>
-	) : (
-		<p className="mb-0 text-gray-600 text-xs">
-			Ich stimme zu zwecks Immobilienbewertung per E-Mail und Telefon
-			kontaktiert zu werden. Widerrufen geht jederzeit. Mehr Infos in der{" "}
-			<Link className="text-xs" href="/agb" target="_blank">
-				AGB
-			</Link>{" "}
-			und der{" "}
-			<Link className="text-xs" href="/datenschutz" target="_blank">
-				Datenschutzerklärung
-			</Link>
-			.
-		</p>
-	);
 
 	const form = useForm<FormData>({
 		resolver: zodResolver(schema),
@@ -225,19 +186,8 @@ export default function UserInfoScreen() {
 			user_lastname: "",
 			user_email: "",
 			user_phone: "",
-			terms: false,
 		},
 	});
-
-	const { errors } = form.formState;
-
-	useEffect(() => {
-		if (errors.terms) {
-			setTermsError(true);
-		} else {
-			setTermsError(false);
-		}
-	}, [errors.terms]);
 
 	const onSubmit = async (formData: FormData) => {
 		if (isSubmitting) return; // Prevent multiple submissions
@@ -299,7 +249,26 @@ export default function UserInfoScreen() {
 
 			console.log(SFData);
 
-			analytics?.track(
+			// Track consent given
+			const consentHash = await computeConsentHash(CONSENT_CONFIG.consent_text);
+			analytics?.track("Funnel Consent Given", {
+				...data.data,
+				consent_version: CONSENT_CONFIG.consent_version,
+				consent_text_hash: consentHash,
+				consent_method: CONSENT_CONFIG.consent_method,
+				agb_version: CONSENT_CONFIG.agb_version,
+				dse_version: CONSENT_CONFIG.dse_version,
+				form_url: window.location.href,
+				form_type: 'bewertung_funnel',
+			}, {
+				campaign: {
+					gclid: data.data.gclid,
+					gbraid: data.data.gbraid,
+					wbraid: data.data.wbraid,
+				}
+			});
+
+      analytics?.track(
 				"Funnel Contact Submitted",
 				{
 					...data.data,
@@ -314,7 +283,7 @@ export default function UserInfoScreen() {
 					},
 				},
 			);
-
+      
 			// Wait 500ms before navigating to next screen
 			await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -323,6 +292,7 @@ export default function UserInfoScreen() {
 
 			// Upload lead to database (happens in background)
 			const uploadResult = await uploadLead(SFData);
+
 
 			if (!uploadResult.success) {
 				console.error(
@@ -411,32 +381,7 @@ export default function UserInfoScreen() {
 						placeholder="+49 176 123 456 78"
 						required={true}
 					/>
-					<div className="grid w-full grid-cols-1 items-start gap-x-4 md:grid-cols-[1fr_3fr]">
-						<div /> {/* Empty first column */}
-						<div>
-							<FormField
-								control={form.control}
-								name="terms"
-								render={({ field }) => (
-									<FormItem className="sm:grid-cols-[1fr_fr]">
-										<div className="flex items-center">
-											<FormControl>
-												<Checkbox
-													checked={field.value}
-													className={`mt-1 h-5 w-5 md:h-6 md:w-6 ${termsError ? "border border-red-500" : ""}`}
-													onCheckedChange={field.onChange}
-												/>
-											</FormControl>
-											<label className="ml-3 w-full text-left text-gray-600 text-sm">
-												{agbText}
-											</label>
-										</div>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-					</div>
+					<AgbText className="mt-2" />
 					<div className="mt-4 flex flex-col items-center md:mt-8">
 						<div className="w-full md:mb-4">
 							<ButtonRenderer

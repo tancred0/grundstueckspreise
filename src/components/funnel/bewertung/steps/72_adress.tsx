@@ -333,45 +333,38 @@ export default function AddressScreen() {
 		goToScreen(97);
 
 		const [coverage, brwValues, zipCodeBrw] = await Promise.all([
-			getCoverage(finalFormData.property_postalcode),
-			getBrwValue(
-				finalFormData.property_latitude,
-				finalFormData.property_longitude,
-			),
-			getZipCodeBrw(finalFormData.property_postalcode),
-		]);
+      getCoverage(finalFormData.property_postalcode),
+      getBrwValue(finalFormData.property_latitude, finalFormData.property_longitude),
+      getZipCodeBrw(finalFormData.property_postalcode),
+    ]);
 
-		setData((prevData: any) => ({
-			...prevData,
-			data: {
-				...prevData.data,
-				...finalFormData,
-				property_street_and_number: `${finalFormData.property_street} ${finalFormData.property_house_number}`,
-				brw_zip_code: zipCodeBrw !== null ? zipCodeBrw : undefined,
-				brw_value: brwValues?.[0]?.brw ?? null,
-				brw_gutachterausschuss: brwValues?.[0]?.gutachterausschuss ?? "",
-				brw_gutachter_date: brwValues?.[0]?.stichtag ?? "",
-				int_broker_coverage: coverage.isCovered,
-				int_broker_coverage_active: coverage.activeCoverage,
-			},
-		}));
+    setData((prevData: any) => ({
+      ...prevData,
+      data: {
+        ...prevData.data,
+        ...finalFormData,
+        property_street_and_number: `${finalFormData.property_street} ${finalFormData.property_house_number}`,
+        brw_zip_code: zipCodeBrw !== null ? zipCodeBrw : undefined,
+        brw_value: brwValues?.[0]?.brw ?? null,
+        brw_gutachterausschuss: brwValues?.[0]?.gutachterausschuss ?? "",
+        brw_gutachter_date: brwValues?.[0]?.stichtag ?? "",
+        int_broker_coverage: coverage.isCovered,
+        int_broker_coverage_active: coverage.activeCoverage,
+      },
+    }));
 
-		analytics?.track(
-			"Funnel Address Submitted",
-			{
-				...data.data,
-				...finalFormData,
-			},
-			{
-				campaign: {
-					gclid: data.data.gclid,
-					gbraid: data.data.gbraid,
-					wbraid: data.data.wbraid,
-				},
-			},
-		);
-		setIsSubmitting(false);
-	};
+    analytics?.track("Funnel Address Submitted", {
+      ...data.data,
+      ...finalFormData,
+     }, {
+      campaign: {
+        gclid: data.data.gclid,
+        gbraid: data.data.gbraid,
+        wbraid: data.data.wbraid,
+      }
+    });
+    setIsSubmitting(false);
+  };
 
 	const heading = "Wo befindet sich das Grundstück?";
 	return (

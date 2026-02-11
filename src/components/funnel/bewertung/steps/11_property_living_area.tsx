@@ -31,10 +31,16 @@ export default function PropertyLivingAreaScreen() {
 			};
 		});
 
-		// analytics?.track("Funnel Property Living Area Submitted", {
-		//   ...data.data,
-		//   property_living_area: flaeche[0],
-		// });
+		analytics?.track("Funnel Property Living Area Submitted", {
+			...data.data,
+			property_living_area: flaeche[0],
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
+		});
 
 		// goToScreen(22);
 	};

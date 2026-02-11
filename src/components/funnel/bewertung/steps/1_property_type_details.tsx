@@ -155,7 +155,13 @@ export default function PropertyTypeDetailsScreen() {
 				property_type_details: item.value,
 			};
 
-			analytics?.track("Funnel Property Type Detail Submitted", updatedData);
+			analytics?.track("Funnel Property Type Detail Submitted", updatedData, {
+				campaign: {
+					gclid: data.data.gclid,
+					gbraid: data.data.gbraid,
+					wbraid: data.data.wbraid,
+				},
+			});
 
 			return {
 				...prevData,

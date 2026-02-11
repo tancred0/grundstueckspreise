@@ -1,6 +1,6 @@
 import { CheckCircle, FileText, Hourglass } from "lucide-react";
 import Image from "next/image";
-import iconLong from "@/images/general/logo_wide_black_font.svg";
+// import iconLong from "@/images/general/logo_wide_black_font.svg";
 import { Trust } from "../../trust";
 import { useBewertungsFunnel } from "../bewertung-funnel-context";
 
@@ -61,14 +61,14 @@ export default function SuccessScreen() {
 				</div>
 			</div>
 
-			<div className="mx-auto mt-auto">
+			{/* <div className="mx-auto mt-auto">
 				<Image
 					alt="Immobilienpreise Deutschland"
 					src={iconLong}
 					width={200}
 					height={40}
 				/>
-			</div>
+			</div> */}
 			<div className="mx-auto mt-4">
 				<Trust />
 			</div>

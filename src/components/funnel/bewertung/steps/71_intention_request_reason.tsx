@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import useRudderStackAnalytics from "@/app/useRudderAnalytics";
-import { sendGAEvent } from "@/components/utils/analytics";
+// import { sendGAEvent } from "@/components/utils/analytics";
 import StepsComponent from "../../steps-component";
 import { FunnelButtonLarge, FunnelButtonNew } from "../bewertung-funnel-button";
 import { useBewertungsFunnel } from "../bewertung-funnel-context";
@@ -79,15 +79,21 @@ export default function IntentionRequestReasonScreen() {
 		analytics?.track("Funnel Request Reason Submitted", {
 			...data.data,
 			intention_request_reason: item.value,
-		});
-
-		sendGAEvent({
-			action: "BRW | Funnel Request Reason Submitted",
-			data: {
-				...data.data,
-				intention_request_reason: item.value,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
 			},
 		});
+
+		// sendGAEvent({
+		// 	action: "BRW | Funnel Request Reason Submitted",
+		// 	data: {
+		// 		...data.data,
+		// 		intention_request_reason: item.value,
+		// 	},
+		// });
 
 		goToScreen(item.nextScreen);
 	};

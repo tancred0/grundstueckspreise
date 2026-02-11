@@ -59,6 +59,12 @@ export default function UserIsOwnerScreen() {
 		analytics?.track("Funnel Owner Type Submitted", {
 			...data.data,
 			user_is_owner: item.value,
+		}, {
+			campaign: {
+				gclid: data.data.gclid,
+				gbraid: data.data.gbraid,
+				wbraid: data.data.wbraid,
+			},
 		});
 		goToScreen(item.nextScreen);
 	};
