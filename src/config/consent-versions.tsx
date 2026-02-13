@@ -26,8 +26,8 @@ export function AgbText({ className = '' }: { className?: string }) {
   return (
     <p className={`text-xs text-gray-600 mb-0 ${className}`}>
       Mit dem Klick auf den untenstehenden Button bestätigen Sie, dass Sie die{" "}
-      <Link href="/agb" className="text-xs" target="_blank">AGB</Link> und die{" "}
-      <Link href="/datenschutz" className="text-xs" target="_blank">Datenschutzerklärung</Link> gelesen haben und diesen zustimmen (Widerruf jederzeit möglich).
+      <Link href="/agb" className="text-xs underline" target="_blank">AGB</Link> und die{" "}
+      <Link href="/datenschutz" className="text-xs underline" target="_blank">Datenschutzerklärung</Link> gelesen haben und diesen zustimmen (Widerruf jederzeit möglich).
     </p>
   );
 }

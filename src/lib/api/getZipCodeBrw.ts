@@ -1,17 +1,37 @@
-export interface ZipCodeBrwResult {
-	zipCode: string;
-	averageBrw: number;
-	minBrw?: number;
-	maxBrw?: number;
-	year: number;
-}
+"use server";
 
-export async function getZipCodeBrw(
-	zipCode: string,
-): Promise<ZipCodeBrwResult | null> {
-	// Stub implementation - replace with actual API call
-	console.log(`getZipCodeBrw called with zipCode: ${zipCode}`);
-	return null;
-}
+import { Client } from "pg";
 
-export default getZipCodeBrw;
+export async function getZipCodeBrw(plz: string): Promise<number | null> {
+  const client = new Client({
+    host: process.env.ENDPOINT,
+    user: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    port: 5432,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  try {
+    await client.connect();
+    const query = `
+        SELECT weighted_brw
+        FROM plz_brw
+        WHERE plz = $1;
+    `;
+
+    const result = await client.query(query, [plz]);
+
+    if (result.rows.length === 0) {
+      return null;
+    }
+    return Math.round(result.rows[0].weighted_brw * 100) / 100;
+  } catch (err) {
+    console.error(err);
+    return null;
+  } finally {
+    await client.end();
+  }
+}

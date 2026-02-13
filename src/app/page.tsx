@@ -21,6 +21,7 @@ import bremenImage from "@/images/bundesland/bremen.svg";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import { BRWFunnel } from "@/components/funnel/brw/brw-funnel";
 
 const states = [
   {
@@ -130,7 +131,7 @@ export default async function Home() {
       <main className="main-container mx-auto text-center max-w-6xl mt-6 md:mt-10">
         <Section className="pt-0 md:pt-0">
           <Typography variant="h1">{h1}</Typography>
-          <BewertungsFunnel className="mt-4" />
+          <BRWFunnel className="mt-4" />
         </Section>
         <Section id="sec1">
           <Typography variant="h2">{h2}</Typography>

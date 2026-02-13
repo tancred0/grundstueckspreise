@@ -26,8 +26,8 @@ export const BewertungsFunnelProvider = ({
 	const [data, setData] = useState<StateData>({
 		data: {
 			track_funnel_version: "1.0",
-			track_funnel_type: "Immobilienpreis",
-			track_funnel_source: "Immobilienpreise 2026",
+			track_funnel_type: "Immobilienbewertung",
+			track_funnel_source: "Grundstückspreise Deutschland",
 			track_environment: env.NEXT_PUBLIC_ENV,
 			...(initialUtmParams || {}), // Safely spread UTM params if they exist
 		},

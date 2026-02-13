@@ -3,10 +3,10 @@
   <text x="0" y="18" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#000000">Grundstückspreise Deutschland</text>
 
   <!-- German flag horizontal bar -->
-  <rect x="0" y="26" width="56" height="4" fill="#000000"/>
-  <rect x="56" y="26" width="56" height="4" fill="#DD0000"/>
-  <rect x="112" y="26" width="56" height="4" fill="#FFCC00"/>
+  <rect x="0" y="26" width="60" height="4" fill="#000000"/>
+  <rect x="60" y="26" width="60" height="4" fill="#DD0000"/>
+  <rect x="120" y="26" width="60" height="4" fill="#FFCC00"/>
 
   <!-- Year -->
-  <text x="174" y="31" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#000000">2026</text>
+  <text x="185.5" y="31" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#000000">2026</text>
 </svg>
