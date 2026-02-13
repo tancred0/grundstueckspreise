@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export interface ButtonRendererProps {
 	children?: ReactNode;
-	text?: string;
+	text?: ReactNode;
 	onClick?: () => void;
 	variant?: "default" | "outline" | "ghost" | "link" | "destructive" | "secondary";
 	size?: "default" | "sm" | "lg" | "icon";
