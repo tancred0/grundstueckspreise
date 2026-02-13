@@ -8,8 +8,8 @@ import { FirstPageTracker } from "@/components/tracking/FirstPageTracker";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "Immobilienpreise Deutschland 2026",
-  description: "Immobilienpreise und Quadratmeterpreise in Deutschland 2026",
+  title: "Grundstückspreise Deutschland 2026",
+  description: "Aktuelle Grundstückspreise in Deutschland 2026 ✓ Bodenrichtwerte ✓ Marktdaten",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

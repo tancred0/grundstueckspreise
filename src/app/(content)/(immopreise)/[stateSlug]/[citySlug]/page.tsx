@@ -59,7 +59,7 @@ export async function generateMetadata(
 		title,
 		description: data.seo.metaDescription ?? "Immobilienpreise",
 		alternates: {
-			canonical: `https://www.immobilienpreise-2026.de/${stateSlug}/${citySlug}`,
+			canonical: `https://www.grundstueckspreise-deutschland.de/${stateSlug}/${citySlug}`,
 		},
 	};
 }

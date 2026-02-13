@@ -7,47 +7,29 @@ export default function FooterLight({ className }: { className?: string }) {
 	return (
 		<footer className={cn("bg-primary py-6", className)}>
 			<div className="mx-auto max-w-[1200px] px-4 md:px-10">
-				<div className="flex flex-col items-center gap-6 md:flex-row md:gap-4">
-					<div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
-						<nav className="flex gap-4 md:gap-6">
-							<Link className="mb-4 md:mb-0" href="/">
-								<Image
-									alt="Logo Immobilienpreise Deutschland"
-									className="h-8 w-auto md:h-10"
-									src={brwLogo}
-								/>
-							</Link>
-
-							<Link
-								className="text-sm text-white transition-colors hover:text-gray-200 md:hidden md:text-base"
-								href="/impressum"
-							>
-								Impressum
-							</Link>
-							<Link
-								className="text-sm text-white transition-colors hover:text-gray-200 md:hidden md:text-base"
-								href="/datenschutz"
-							>
-								Datenschutz
-							</Link>
-						</nav>
-					</div>
-
-					<div className="text-center text-white md:text-left">
-						<span className="text-sm md:text-base">
-							Copyright © {new Date().getFullYear()} - Alle Rechte vorbehalten.
+				<div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+					<div className="flex items-center gap-4">
+						<Link href="/">
+							<Image
+								alt="Logo Grundstückspreise Deutschland"
+								className="h-8 w-auto md:h-10"
+								src={brwLogo}
+							/>
+						</Link>
+						<span className="text-sm text-gray-300">
+							© {new Date().getFullYear()} Alle Rechte vorbehalten.
 						</span>
 					</div>
 
-					<div className="flex flex-col items-center gap-4 md:ml-auto md:flex-row md:gap-8">
+					<div className="flex gap-6">
 						<Link
-							className="hidden text-sm text-white transition-colors hover:text-gray-200 md:block md:text-base"
+							className="text-sm text-gray-300 hover:text-white transition-colors"
 							href="/impressum"
 						>
 							Impressum
 						</Link>
 						<Link
-							className="hidden text-sm text-white transition-colors hover:text-gray-200 md:block md:text-base"
+							className="text-sm text-gray-300 hover:text-white transition-colors"
 							href="/datenschutz"
 						>
 							Datenschutz

@@ -15,7 +15,7 @@ export default async function Page() {
           Impressum
         </Typography>
         <p className="mt-6">
-          www.immobilienpreise-2026.de ist ein Service der HLRE GmbH
+          www.grundstueckspreise-deutschland.de ist ein Service der HLRE GmbH
         </p>
         <Typography variant="h2">Adresse</Typography>
         <Image alt="Impressum" height={100} src={impressumImg1} />

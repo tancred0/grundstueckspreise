@@ -5,7 +5,7 @@
   <rect x="0" y="26.66" width="6" height="13.33" fill="#FFCC00"/>
 
   <!-- Text - Black for light backgrounds, tighter letter spacing (letter-spacing: -0.02em) -->
-  <text x="10" y="11" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#000000" letter-spacing="-0.02em">Immobilienpreise</text>
+  <text x="10" y="11" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#000000" letter-spacing="-0.02em">Grundstückspreise</text>
   <text x="10" y="23.33" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#000000" letter-spacing="-0.02em">Deutschland</text>
   <text x="10" y="37.66" font-family="'Open Sans', system-ui, -apple-system, sans-serif" font-size="9" font-weight="300" fill="#000000" letter-spacing="-0.02em">2026</text>
 </svg>

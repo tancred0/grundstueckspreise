@@ -3,67 +3,17 @@ import Link from "next/link";
 import { Typography } from "@/components/ui/typography";
 import brwLogo from "@/images/general/logo_short_white_font.svg";
 
-export interface FooterLinks {
-  name: string;
-  slug: string;
-  bold?: boolean;
-  addMargin?: boolean;
-}
+const GRUNDSTUECKSPREISE_LINKS = [
+  { label: "Grundstückspreise Deutschland", href: "/" },
+  { label: "Grundstückspreise Berlin", href: "/berlin" },
+];
 
-interface LinkSection {
-  heading: string;
-  links: FooterLinks[];
-}
+const BODENRICHTWERTE_LINKS = [
+  { label: "Bodenrichtwert Deutschland", href: "https://bodenrichtwerte-deutschland.de" },
+];
 
-const GeneralLinks: { sections: LinkSection[] }[] = [
-  {
-    sections: [
-      {
-        heading: "Immobilienpreise",
-        links: [
-          { name: "Immobilienpreise Deutschland", slug: "/" },
-          { name: "Immobilienpreise Berlin", slug: "/berlin" },
-        ],
-      },
-    ],
-  },
-  {
-    sections: [
-      {
-        heading: "Bodenrichtwerte",
-        links: [
-          {
-            name: "Bodenrichtwerte Deutschland",
-            slug: "https://www.bodenrichtwerte-deutschland.de/",
-          },
-        ],
-      },
-    ],
-  },
-  // {
-  //   sections: [
-  //     {
-  //       heading: "Immobilienpreise",
-  //       links: [
-  //         { name: "Immobilienpreise Deutschland", slug: "/" },
-  //         { name: "Immobilienpreise NRW", slug: "/nrw" },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   sections: [
-  //     {
-  //       heading: "Bodenrichtwerte",
-  //       links: [
-  //         {
-  //           name: "Bodenrichtwerte Deutschland",
-  //           slug: "https://www.bodenrichtwerte-deutschland.de/",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
+const IMMOBILIENPREISE_LINKS = [
+  { label: "Immobilienpreise Deutschland", href: "https://immobilienpreise-2026.de" },
 ];
 
 export default function Footer({ classname }: { classname?: string }) {
@@ -74,7 +24,7 @@ export default function Footer({ classname }: { classname?: string }) {
           <div className="w-auto">
             <Link className="mr-auto" href="/">
               <Image
-                alt="Logo Immobilienpreise Deutschland"
+                alt="Logo Grundstückspreise Deutschland"
                 className="mr-10"
                 src={brwLogo}
                 height={64}
@@ -83,29 +33,55 @@ export default function Footer({ classname }: { classname?: string }) {
           </div>
         </div>
       </div>
-      <div className="py-2">
-        <div className="main-container mx-auto grid grid-cols-1 sm:grid-cols-2">
-          {GeneralLinks.map((group, groupIndex) => (
-            <div className="mb-8" key={groupIndex}>
-              {group.sections.map((section, sectionIndex) => (
-                <div className="mb-6" key={sectionIndex}>
-                  <Typography variant="h4">{section.heading}</Typography>
-                  <div className="mx-auto grid grid-flow-row grid-cols-1 gap-y-2 sm:grid md:justify-start">
-                    {section.links.map((link, index) => (
-                      <Link
-                        className={`block truncate text-base no-underline ${link.bold ? "font-medium" : ""
-                          } ${link.addMargin ? "mb-4" : ""}`}
-                        href={link.slug}
-                        key={index}
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+      <div className="py-4">
+        <div className="main-container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Grundstückspreise Column */}
+          <div className="mb-6">
+            <Typography variant="h4">Grundstückspreise</Typography>
+            <div className="grid grid-flow-row grid-cols-1 gap-y-2">
+              {GRUNDSTUECKSPREISE_LINKS.map((link) => (
+                <Link
+                  className="block truncate text-base no-underline"
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                </Link>
               ))}
             </div>
-          ))}
+          </div>
+
+          {/* Bodenrichtwerte Column */}
+          <div className="mb-6">
+            <Typography variant="h4">Bodenrichtwerte</Typography>
+            <div className="grid grid-flow-row grid-cols-1 gap-y-2">
+              {BODENRICHTWERTE_LINKS.map((link) => (
+                <Link
+                  className="block truncate text-base no-underline"
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Immobilienpreise Column */}
+          <div className="mb-6">
+            <Typography variant="h4">Immobilienpreise</Typography>
+            <div className="grid grid-flow-row grid-cols-1 gap-y-2">
+              {IMMOBILIENPREISE_LINKS.map((link) => (
+                <Link
+                  className="block truncate text-base no-underline"
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
 				disallow: "/lp/",
 			},
 		],
-		sitemap: "https://www.immobilienpreise-2026.de/sitemap.xml",
+		sitemap: "https://www.grundstueckspreise-deutschland.de/sitemap.xml",
 	};
 }

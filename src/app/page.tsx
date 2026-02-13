@@ -123,7 +123,7 @@ const states = [
 
 
 export default async function Home() {
-  const h1 = "Immobilienpreise und Quadratmeterpreise in Deutschland 2026";
+  const h1 = "Grundstückspreise in Deutschland 2026";
   const h2 = "Übersicht der einzelnen Bundesländer"
   return (
     <>
@@ -136,7 +136,7 @@ export default async function Home() {
           <Typography variant="h2">{h2}</Typography>
           <div className="grid sm:grid-cols-2 gap-4 w-full">
             {states.map((state) => (
-              <ButtonMainPage key={state.link} link={state.link} name={state.name} type="immopreise" image={state.image} active={state.active} />
+              <ButtonMainPage key={state.link} link={state.link} name={state.name} type="grundstuecke" image={state.image} active={state.active} />
             ))}
           </div>
         </Section>
@@ -147,9 +147,10 @@ export default async function Home() {
 }
 
 
-const ButtonMainPage = ({ type = "immopreise", link, name, image, active = true }: { type: "immopreise", link: string, name: string, image?: StaticImageData | null, active?: boolean }) => {
+const ButtonMainPage = ({ type = "grundstuecke", link, name, image, active = true }: { type: "grundstuecke", link: string, name: string, image?: StaticImageData | null, active?: boolean }) => {
   const labels = {
-    "immopreise": "Immobilienpreise"
+    "immopreise": "Immobilienpreise",
+    "grundstuecke": "Grundstückspreise"
   }
 
   const content = (
@@ -160,7 +161,7 @@ const ButtonMainPage = ({ type = "immopreise", link, name, image, active = true 
             <Image src={image} alt={name} height={32} />
           </div>
           }
-          {type === "immopreise" ? (
+          {type === "grundstuecke" ? (
             <h3 className="flex flex-col font-medium my-0 text-base text-left">
               <span className="text-gray-400 text-base">{labels[type]}</span>
               <span className="block">{name}</span>
