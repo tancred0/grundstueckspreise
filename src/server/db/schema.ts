@@ -21,9 +21,10 @@ export const leads = leadsSchema.table('leads', {
   // Property details
   property_type: varchar('property_type', { length: 255 }),
   property_type_details: varchar('property_type_details', { length: 255 }),
+  property_type_details_sonstiges: varchar('property_type_details_sonstiges', { length: 255 }),
   property_house_units: integer('property_house_units'),
-  property_living_area: integer('property_living_area'),
-  property_plot_area: integer('property_plot_area'),
+  property_living_area: doublePrecision('property_living_area'),
+  property_plot_area: doublePrecision('property_plot_area'),
   property_year_built: integer('property_year_built'),
   property_condition: varchar('property_condition', { length: 255 }),
 

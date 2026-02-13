@@ -87,7 +87,7 @@ export default function PropertyHouseUnitsScreen() {
 									const value =
 										e.target.value === ""
 											? 0
-											: parseFloat(e.target.value) || 0;
+											: parseInt(e.target.value, 10) || 0;
 									setFlaeche([value]);
 								}}
 								placeholder="425"

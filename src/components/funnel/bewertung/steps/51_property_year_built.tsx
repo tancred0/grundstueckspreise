@@ -108,14 +108,14 @@ export default function YearBuiltScreen() {
 									const value =
 										e.target.value === ""
 											? defaultValue
-											: parseFloat(e.target.value) || defaultValue;
+											: parseInt(e.target.value, 10) || defaultValue;
 									handleValueChange(value);
 								}}
 								onChange={(e) => {
 									const value =
 										e.target.value === ""
 											? 0
-											: parseFloat(e.target.value) || 0;
+											: parseInt(e.target.value, 10) || 0;
 									setFlaeche([value]);
 								}}
 								placeholder="1985"
