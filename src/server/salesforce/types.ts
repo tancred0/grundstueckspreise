@@ -294,6 +294,7 @@ export interface SalesforceQueryResponse<T> {
  * Lead Salesforce Object
  */
 
+
 export interface Lead extends SalesforceRecord {
 	// Standard fields
 	Name?: string;
@@ -309,7 +310,7 @@ export interface Lead extends SalesforceRecord {
 	Website?: string;
 	Description?: string;
 	LeadSource?: string; // Picklist
-	PostalCode?: string;
+  PostalCode?: string;
 	Status?: string; // Picklist
 	Industry?: string; // Picklist
 	Rating?: string; // Picklist
@@ -380,6 +381,7 @@ export interface Lead extends SalesforceRecord {
 	lead_GEZ__c?: string;
 	lead_GFZ__c?: string;
 	lead_immobilien_typ_detail__c?: string; // Picklist
+	property_type_details_sonstiges__c?: string;
 	lead_Grundstuecksflaeche__c?: string;
 	lead_GRZ__c?: string;
 	lead_GutachterConstraintsMet__c?: boolean;
@@ -413,7 +415,7 @@ export interface Lead extends SalesforceRecord {
 	lead_Pricehubble_Dossier_ID__c?: string;
 	lead_Pricehubble_valuation_requested__c?: boolean;
 	lead_Property_City__c?: string;
-	lead_Stadt__c?: string;
+  lead_Stadt__c?: string;
 	lead_Property_Postal_Code__c?: string;
 	lead_Property_Street_Housenumber__c?: string;
 	int_process_number__c?: string;
@@ -482,11 +484,11 @@ export interface Lead extends SalesforceRecord {
 	lead_Lack_of_building_permits__c?: string; // Picklist
 	wants_maklerbewertung__c?: boolean;
 	lead_score_at_registration__c?: number;
-	City: string;
-	Street: string;
+  City: string;
+  Street: string;
 
-	valuation_sqm__c?: number;
-	valuation_total__c?: number;
-	valuation_type__c?: string; // Picklist
-	// Note: CreatedDate is a read-only system field and cannot be set via API
+  valuation_sqm__c?: number;
+  valuation_total__c?: number;
+  valuation_type__c?: string; // Picklist
+  // Note: CreatedDate is a read-only system field and cannot be set via API
 }
